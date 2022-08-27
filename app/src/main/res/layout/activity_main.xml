@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:name="androidx.navigation.fragment.NavHostFragment"
+    android:background="@color/bacgroundApp"
     app:defaultNavHost="true"
     app:navGraph="@navigation/navigation">
 </androidx.fragment.app.FragmentContainerView>
