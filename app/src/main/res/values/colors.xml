@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- background app -->
+    <color name="bacgroundApp">#DAEAEAEA</color>
+
+    <!--    Colors Tela Login-->
+    <color name="backgroundtxt">#DAC5C5C5</color>
+    <color name="backgroundBottom">#268029</color>
 </resources>
