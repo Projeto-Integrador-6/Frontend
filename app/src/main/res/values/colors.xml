@@ -8,6 +8,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- Cores do APP-->
+    <color name="primaryColor">#1b5e20</color>
+    <color name="primaryLightColor">#4c8c4a</color>
+    <color name="primaryDarkColor">#003300</color>
+    <color name="secondaryColor">#e64a19</color>
+    <color name="secondaryLightColor">#ff7d47</color>
+    <color name="secondaryDarkColor">#ac0800</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
+
     <!-- background app -->
     <color name="bacgroundApp">#DAEAEAEA</color>
 

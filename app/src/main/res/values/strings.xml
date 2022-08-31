@@ -2,4 +2,7 @@
     <string name="app_name">Uni-Rank</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="log_in">Entrar</string>
+    <string name="password">Senha</string>
+    <string name="options_log_in">E-mail ou Matrícula</string>
 </resources>
