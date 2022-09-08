@@ -24,10 +24,19 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_homeStudentFragment"
-            app:destination="@id/homeStudentFragment" />
+            app:destination="@id/homeStudentFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_loginFragment_to_homeTeacherFragment"
-            app:destination="@id/homeTeacherFragment" />
+            app:destination="@id/homeTeacherFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_loginFragment_to_newPasswordFragment"
+            app:destination="@id/newPasswordFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/homeStudentFragment"
@@ -39,4 +48,15 @@
         android:name="com.pi.ativas.teacher.HomeTeacherFragment"
         android:label="fragment_home_teacher"
         tools:layout="@layout/fragment_home_teacher" />
+    <fragment
+        android:id="@+id/newPasswordFragment"
+        android:name="com.pi.ativas.firstLogin.NewPasswordFragment"
+        android:label="NewPasswordFragment"
+        tools:layout="@layout/fragment_new_password">
+        <action
+            android:id="@+id/action_newPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/newPasswordFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>
