@@ -33,10 +33,85 @@
         android:id="@+id/homeStudentFragment"
         android:name="com.pi.ativas.student.HomeStudentFragment"
         android:label="fragment_home_student"
-        tools:layout="@layout/fragment_home_student" />
+        tools:layout="@layout/fragment_home_student">
+    <action
+        android:id="@+id/action_homeStudent_to_rankStudent"
+        app:destination="@id/rankStudentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeTeacherFragment"
         android:name="com.pi.ativas.teacher.HomeTeacherFragment"
         android:label="fragment_home_teacher"
         tools:layout="@layout/fragment_home_teacher" />
+    <fragment
+        android:id="@+id/rankStudentFragment"
+        android:name="com.pi.ativas.student.RankStudentFragment"
+        android:label="fragment_rank_student"
+        tools:layout="@layout/fragment_rank_student" />
+    <fragment
+        android:id="@+id/disciplineStudentFragment"
+        android:name="com.pi.ativas.student.DisciplineStudentFragment"
+        android:label="fragment_discipline_student"
+        tools:layout="@layout/fragment_discipline_student" />
+    <fragment
+        android:id="@+id/teacherStudentFragment"
+        android:name="com.pi.ativas.student.TeacherStudentFragment"
+        android:label="fragment_teacher_student"
+        tools:layout="@layout/fragment_teacher_student" />
+    <fragment
+        android:id="@+id/pendingTaskStudentFragment"
+        android:name="com.pi.ativas.student.PendingTaskStudentFragment"
+        android:label="fragment_pending_taks_student"
+        tools:layout="@layout/fragment_pending_task_student" />
+    <fragment
+        android:id="@+id/taskHistoryStudentFragment"
+        android:name="com.pi.ativas.student.TaskHistoryStudentFragment"
+        android:label="fragment_taks_history_student"
+        tools:layout="@layout/fragment_task_history_student" />
+    <fragment
+        android:id="@+id/useTermsStudentFragment"
+        android:name="com.pi.ativas.student.UseTermsStudentFragment"
+        android:label="fragment_use_terms_student"
+        tools:layout="@layout/fragment_use_terms_student" />
+    <fragment
+        android:id="@+id/supportStudentFragment"
+        android:name="com.pi.ativas.student.SupportStudentFragment"
+        android:label="fragment_support_student"
+        tools:layout="@layout/fragment_support_student" />
+    <fragment
+        android:id="@+id/classTeacherFragment"
+        android:name="com.pi.ativas.teacher.ClassTeacherFragment"
+        android:label="fragment_class_teacher"
+        tools:layout="@layout/fragment_class_teacher" />
+    <fragment
+        android:id="@+id/profileTeacherFragment"
+        android:name="com.pi.ativas.teacher.ProfileTeacherFragment"
+        android:label="fragment_profile_teacher"
+        tools:layout="@layout/fragment_profile_teacher" />
+    <fragment
+        android:id="@+id/newTaskTeacherFragment"
+        android:name="com.pi.ativas.teacher.NewTaskTeacherFragment"
+        android:label="fragment_new_task_teacher"
+        tools:layout="@layout/fragment_new_task_teacher" />
+    <fragment
+        android:id="@+id/pendingTaskTeacherFragment"
+        android:name="com.pi.ativas.teacher.PendingTaskTeacherFragment"
+        android:label="fragment_pending_task_teacher"
+        tools:layout="@layout/fragment_pending_task_teacher" />
+    <fragment
+        android:id="@+id/taskHistoryTeacherFragment"
+        android:name="com.pi.ativas.teacher.TaskHistoryTeacherFragment"
+        android:label="fragment_task_history_teacher"
+        tools:layout="@layout/fragment_task_history_teacher" />
+    <fragment
+        android:id="@+id/useTermsTeacherFragment"
+        android:name="com.pi.ativas.teacher.UseTermsTeacherFragment"
+        android:label="fragment_use_terms_teacher"
+        tools:layout="@layout/fragment_use_terms_teacher" />
+    <fragment
+        android:id="@+id/supportTeacherFragment"
+        android:name="com.pi.ativas.teacher.SupportTeacherFragment"
+        android:label="fragment_support_teacher"
+        tools:layout="@layout/fragment_support_teacher" />
+
 </navigation>

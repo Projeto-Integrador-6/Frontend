@@ -1,8 +1,38 @@
 <resources>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="app_name">Uni-Rank</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="log_in">Entrar</string>
     <string name="password">Senha</string>
     <string name="options_log_in">E-mail ou Matrícula</string>
+
+    <!-- Menu Student-->
+    <string name="menu_student_home">Início</string>
+    <string name="menu_student_rank">Rank</string>
+    <string name="menu_student_discipline">Disciplinas</string>
+    <string name="menu_student_teacher">Professores</string>
+    <string name="menu_student_profile">Perfil</string>
+    <string name="menu_student_task">Atividade</string>
+    <string name="menu_student_task_pending">Atividades Pendentes</string>
+    <string name="menu_student_task_history">Histórico de Atividades</string>
+    <string name="menu_student_info">Informações</string>
+    <string name="menu_student_support">Suporte</string>
+    <string name="menu_student_terms">Termos de Uso</string>
+    <string name="menu_student_share">Compartilhar</string>
+
+
+    <!-- Menu Teacher-->
+    <string name="menu_teacher_home">Início</string>
+    <string name="menu_teacher_class">Turmas</string>
+    <string name="menu_teacher_task">Atividade</string>
+    <string name="menu_teacher_rank">Rank</string>
+    <string name="menu_teacher_new_task">Criar Atividade</string>
+    <string name="menu_teacher_profile">Perfil</string>
+    <string name="menu_teacher_support">Suporte</string>
+    <string name="menu_teacher_share">Compartilhar</string>
+    <string name="menu_teacher_terms">Termos de Uso</string>
+
 </resources>
