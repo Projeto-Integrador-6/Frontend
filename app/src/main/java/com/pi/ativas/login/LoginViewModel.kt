@@ -1,25 +1,23 @@
 package com.pi.ativas.login
 
-import android.telephony.mbms.StreamingServiceInfo
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.pi.ativas.R
 import com.pi.ativas.data.Retrofit
 import com.pi.ativas.data.bodys.LoginBody
 import com.pi.ativas.data.bodys.TokenBody
 import com.pi.ativas.data.responses.LoginResponse
 import com.pi.ativas.data.responses.TokenResponse
-import kotlinx.coroutines.*
+import com.pi.ativas.model.User
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginViewModel() : ViewModel() {
 
-    private val _invalidCredential  = MutableLiveData<Boolean>()
-    val invalidCredential : LiveData<Boolean> = _invalidCredential
+    private val _invalidCredential = MutableLiveData<Boolean>()
+    val invalidCredential: LiveData<Boolean> = _invalidCredential
 
     private val _inactiveAccount = MutableLiveData<Boolean>()
     val inactiveAccount: LiveData<Boolean> = _inactiveAccount
@@ -27,10 +25,12 @@ class LoginViewModel() : ViewModel() {
     private val _newPassword = MutableLiveData<Boolean>()
     val newPassword: LiveData<Boolean> = _newPassword
 
+    private val _dataLogin = MutableLiveData<LoginBody>()
+    val dataLogin: LiveData<LoginBody> = _dataLogin
 
-    // TODO: OBSERVAVEIS APENAS PARA MOSTRAR OQUE ESTÁ VOLTANDO DA API
-    private val _user = MutableLiveData<String>()
-    val user: LiveData<String> = _user
+    // OBSERVAVEIS APENAS PARA MOSTRAR OQUE ESTÁ VOLTANDO DA API
+    private val _user = MutableLiveData<User>()
+    val user: LiveData<User> = _user
 
     private var credentialsLogin: LoginBody = LoginBody("", "", "")
     private var isStudent: Boolean = true
@@ -60,6 +60,7 @@ class LoginViewModel() : ViewModel() {
                 _inactiveAccount.postValue(it)
             }
             changePassword?.let {
+                _dataLogin.postValue(credentialsLogin)
                 _newPassword.postValue(it)
             }
             user?.let {
@@ -95,7 +96,6 @@ class LoginViewModel() : ViewModel() {
             setNewLoginTeacher(credentialsLogin)
         }
     }
-
 
     private fun setNewLoginStudent(loginBody: LoginBody) {
         viewModelScope.launch {
@@ -144,4 +144,5 @@ class LoginViewModel() : ViewModel() {
             }
         }
     }
+
 }

@@ -2,18 +2,19 @@ package com.pi.ativas.data.bodys
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginBody(
+data class NewPasswordBody(
     @SerializedName("email")
-    var email: String,
+    val email: String,
 
     @SerializedName("password")
     var password: String,
 
     @SerializedName("token")
-    var token: String
-) {
-    fun getArray(): Array<String> {
-        return arrayOf(email, password, token)
-    }
-}
+    val token: String,
 
+    @SerializedName("oldPassword")
+    val oldPassword: String,
+
+    @SerializedName("newPassword")
+    val newPassword: String
+)

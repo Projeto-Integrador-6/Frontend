@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.R
@@ -13,6 +14,8 @@ import com.pi.ativas.data.bodys.LoginBody
 import com.pi.ativas.data.bodys.TokenBody
 import com.pi.ativas.data.responses.LoginResponse
 import com.pi.ativas.databinding.FragmentLoginBinding
+import com.pi.ativas.firstLogin.NewPasswordFragment
+import com.pi.ativas.firstLogin.NewPasswordFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment() {
@@ -63,13 +66,17 @@ class LoginFragment : BaseFragment() {
 
             newPassword.observe(viewLifecycleOwner) {
                 if (it) {
-                    newPassword()
                     binding.progressBarLogin.visibility = View.GONE
+                    dataLogin.value?.let { bodyLogin ->
+                        this@LoginFragment.newPassword(bodyLogin)
+                    }
                 }
             }
 
             user.observe(viewLifecycleOwner) {
-                binding.logo.text = it.toString()
+                binding.progressBarLogin.visibility = View.GONE
+                val x = it
+                binding.logo.text = x.telephone
             }
         }
     }
@@ -102,14 +109,16 @@ class LoginFragment : BaseFragment() {
             .show()
     }
 
-    private fun newPassword() {
+    private fun newPassword(dataLogin: LoginBody) {
+        val action = LoginFragmentDirections.actionLoginFragmentToNewPasswordFragment(dataLogin.getArray())
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("NOVA SENHA")
             .setMessage("Por ser seu primeiro acesso ao UNI-Rank, você deve defenir uma nova senha!")
             .setPositiveButton("OK") { dialog, which ->
-                findNavController().navigate(R.id.action_loginFragment_to_newPasswordFragment)
+                findNavController().navigate(action)
             }
             .show()
     }
+
 }
 

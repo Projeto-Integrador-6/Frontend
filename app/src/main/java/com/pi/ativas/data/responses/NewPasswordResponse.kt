@@ -1,9 +1,8 @@
 package com.pi.ativas.data.responses
 
 import com.google.gson.annotations.SerializedName
-import com.pi.ativas.model.User
 
-data class LoginResponse(
+data class NewPasswordResponse(
     @SerializedName("success")
     val success: Boolean,
 
@@ -16,12 +15,9 @@ data class LoginResponse(
     @SerializedName("generateToken")
     val generateToken: Boolean?,
 
-    @SerializedName("inactiveAccount")
-    val inactiveAccount: Boolean?,
+    @SerializedName("validParameters")
+    val validParameters: Boolean?,
 
-    @SerializedName("changePassword")
-    val changePassword: Boolean?,
-
-    @SerializedName("object")
-    val user: User?
+    @SerializedName("weakPassword")
+    val weakPassword: Boolean?
 )

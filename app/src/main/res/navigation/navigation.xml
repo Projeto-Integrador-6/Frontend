@@ -58,5 +58,8 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/newPasswordFragment"
             app:popUpToInclusive="true"/>
+        <argument
+            android:name="loginData"
+            app:argType="string[]" />
     </fragment>
 </navigation>
