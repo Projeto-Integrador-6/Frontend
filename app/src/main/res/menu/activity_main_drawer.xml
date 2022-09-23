@@ -38,31 +38,6 @@
                 android:checkable="true"/>
         </menu>
     </item>
-    <item android:title="@string/menu_student_info"
-        android:id="@+id/item_student_info">
-        <menu>
-            <item
-                android:id="@+id/nav_student_terms"
-                android:title="@string/menu_student_terms"
-                android:icon="@drawable/ic_terms"
-                android:checkable="true"/>
-            <item
-                android:id="@+id/nav_student_share"
-                android:title="@string/menu_student_share"
-                android:icon="@drawable/ic_share"
-                android:checkable="true"/>
-        </menu>
-    </item>
-    <item android:title="@string/menu_student_support"
-        android:id="@+id/item_student_support">
-        <menu>
-            <item
-                android:id="@+id/nav_student_support"
-                android:title="@string/menu_student_support"
-                android:icon="@drawable/ic_support"
-                android:checkable="true"/>
-        </menu>
-    </item>
     <group android:checkableBehavior="single"
         android:id="@+id/group_teacher">
 
@@ -99,25 +74,25 @@
         </menu>
     </item>
     <item android:title="@string/menu_student_info"
-        android:id="@+id/item_teacher_info">
+        android:id="@+id/item_info">
         <menu>
             <item
-                android:id="@+id/nav_teacher_terms"
+                android:id="@+id/nav_terms"
                 android:title="@string/menu_student_terms"
                 android:icon="@drawable/ic_terms"
                 android:checkable="true"/>
             <item
-                android:id="@+id/nav_teacher_share"
+                android:id="@+id/nav_share"
                 android:title="@string/menu_student_share"
                 android:icon="@drawable/ic_share"
                 android:checkable="true"/>
         </menu>
     </item>
     <item android:title="@string/menu_student_support"
-        android:id="@+id/item_teacher_support">
+        android:id="@+id/item_support">
         <menu>
             <item
-                android:id="@+id/nav_teacher_support"
+                android:id="@+id/nav_support"
                 android:title="@string/menu_student_support"
                 android:icon="@drawable/ic_support"
                 android:checkable="true"/>

@@ -27,7 +27,22 @@
             app:destination="@id/homeStudentFragment" />
         <action
             android:id="@+id/action_loginFragment_to_homeTeacherFragment"
-            app:destination="@id/homeTeacherFragment" />
+            app:destination="@id/homeTeacherFragment" /><action
+        android:id="@+id/action_loginFragment_to_newPasswordFragment"
+        app:destination="@id/newPasswordFragment"
+        app:popUpTo="@id/loginFragment"
+        app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/newPasswordFragment"
+        android:name="com.pi.ativas.firstLogin.NewPasswordFragment"
+        android:label="NewPasswordFragment"
+        tools:layout="@layout/fragment_new_password">
+        <action
+            android:id="@+id/action_newPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/newPasswordFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/homeStudentFragment"
@@ -69,16 +84,6 @@
         android:label="fragment_taks_history_student"
         tools:layout="@layout/fragment_task_history_student" />
     <fragment
-        android:id="@+id/useTermsStudentFragment"
-        android:name="com.pi.ativas.student.UseTermsStudentFragment"
-        android:label="fragment_use_terms_student"
-        tools:layout="@layout/fragment_use_terms_student" />
-    <fragment
-        android:id="@+id/supportStudentFragment"
-        android:name="com.pi.ativas.student.SupportStudentFragment"
-        android:label="fragment_support_student"
-        tools:layout="@layout/fragment_support_student" />
-    <fragment
         android:id="@+id/classTeacherFragment"
         android:name="com.pi.ativas.teacher.ClassTeacherFragment"
         android:label="fragment_class_teacher"
@@ -102,16 +107,14 @@
         android:id="@+id/taskHistoryTeacherFragment"
         android:name="com.pi.ativas.teacher.TaskHistoryTeacherFragment"
         android:label="fragment_task_history_teacher"
-        tools:layout="@layout/fragment_task_history_teacher" />
-    <fragment
-        android:id="@+id/useTermsTeacherFragment"
-        android:name="com.pi.ativas.teacher.UseTermsTeacherFragment"
-        android:label="fragment_use_terms_teacher"
-        tools:layout="@layout/fragment_use_terms_teacher" />
-    <fragment
-        android:id="@+id/supportTeacherFragment"
-        android:name="com.pi.ativas.teacher.SupportTeacherFragment"
-        android:label="fragment_support_teacher"
-        tools:layout="@layout/fragment_support_teacher" />
+        tools:layout="@layout/fragment_task_history_teacher" /><fragment
+        android:id="@+id/supportFragment"
+        android:name="com.pi.ativas.support.SupportFragment"
+        android:label="fragment_support"
+        tools:layout="@layout/fragment_support" /><fragment
+        android:id="@+id/useTermsFragment"
+        android:name="com.pi.ativas.support.UseTermsFragment"
+        android:label="fragment_use_terms"
+        tools:layout="@layout/fragment_use_terms" />
 
 </navigation>

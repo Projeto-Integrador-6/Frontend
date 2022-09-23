@@ -1,5 +1,6 @@
 package com.pi.ativas
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
@@ -30,8 +31,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView: NavigationView = binding.navView
         binding.navView.menu.removeGroup(R.id.group_teacher)
         binding.navView.menu.removeItem(R.id.item_teacher_task)
-        binding.navView.menu.removeItem(R.id.item_teacher_info)
-        binding.navView.menu.removeItem(R.id.item_teacher_support)
         navigationView.setNavigationItemSelectedListener(this)
         //desbloqueia menu do estudante após login
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -42,8 +41,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView: NavigationView = binding.navView
         binding.navView.menu.removeGroup(R.id.group_student)
         binding.navView.menu.removeItem(R.id.item_student_task)
-        binding.navView.menu.removeItem(R.id.item_student_info)
-        binding.navView.menu.removeItem(R.id.item_student_support)
         navigationView.setNavigationItemSelectedListener(this)
         //desbloqueia menu do professor após login
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -73,17 +70,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_student_teacher -> binding.navHostFragment.findNavController().navigate(R.id.teacherStudentFragment)
             R.id.nav_student_task_pending -> binding.navHostFragment.findNavController().navigate(R.id.pendingTaskStudentFragment)
             R.id.nav_student_task_history -> binding.navHostFragment.findNavController().navigate(R.id.taskHistoryStudentFragment)
-            R.id.nav_student_terms -> binding.navHostFragment.findNavController().navigate(R.id.useTermsStudentFragment)
-            R.id.nav_student_support -> binding.navHostFragment.findNavController().navigate(R.id.supportStudentFragment)
             R.id.nav_teacher_home -> binding.navHostFragment.findNavController().navigate(R.id.homeTeacherFragment)
             R.id.nav_teacher_classes -> binding.navHostFragment.findNavController().navigate(R.id.classTeacherFragment)
             R.id.nav_teacher_profile -> binding.navHostFragment.findNavController().navigate(R.id.profileTeacherFragment)
             R.id.nav_teacher_new_task -> binding.navHostFragment.findNavController().navigate(R.id.newTaskTeacherFragment)
             R.id.nav_teacher_pending_task -> binding.navHostFragment.findNavController().navigate(R.id.pendingTaskTeacherFragment)
             R.id.nav_teacher_task_history -> binding.navHostFragment.findNavController().navigate(R.id.taskHistoryTeacherFragment)
-            R.id.nav_teacher_terms -> binding.navHostFragment.findNavController().navigate(R.id.useTermsTeacherFragment)
-            R.id.nav_teacher_support -> binding.navHostFragment.findNavController().navigate(R.id.supportTeacherFragment)
+            R.id.nav_support -> binding.navHostFragment.findNavController().navigate(R.id.supportFragment)
+            R.id.nav_terms -> binding.navHostFragment.findNavController().navigate(R.id.useTermsFragment)
+            R.id.nav_share -> share()
         }
+    }
+    fun share(){
+        val shareIntent = Intent()
+        shareIntent.type="text/plain"
+        shareIntent.putExtra(Intent.EXTRA_TEXT,R.string.link_do_app)
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT,"subject here")
+        startActivity(Intent.createChooser(shareIntent,"Compartilhar aplicativo"))
     }
     override fun onBackPressed() {
         finishAffinity()
