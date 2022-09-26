@@ -20,4 +20,15 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:background="@color/bacgroundApp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation">
+    </androidx.fragment.app.FragmentContainerView>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -22,14 +22,7 @@ class HomeTeacherFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeTeacherBinding.inflate(layoutInflater)
-        loadMenu()
         return binding.root
-    }
-    //chama o método para desbloquear menu do usuário estudante
-    private fun loadMenu() {
-        val activity: MainActivity = getActivity() as MainActivity
-        activity.getDrawerTeacher()
-        activity.setNavHeader("Carlos Alexandre Gouveia","carlosgouveia@unifacear.org.br")
     }
 
 }

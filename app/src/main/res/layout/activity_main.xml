@@ -8,18 +8,6 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:background="@color/bacgroundApp"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/navigation">
-
-
-    </androidx.fragment.app.FragmentContainerView>
     <include
         android:id="@+id/app_bar_main"
         layout="@layout/app_bar_main"
