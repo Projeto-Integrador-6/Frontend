@@ -8,6 +8,10 @@
     <string name="log_in">Entrar</string>
     <string name="password">Senha</string>
     <string name="options_log_in">E-mail ou Matrícula</string>
+    <string name="nova_senha">Nova senha</string>
+    <string name="confirmar_nova_senha">Confirmar nova senha</string>
+    <string name="definir_nova_senha">Definir nova senha</string>
+    <string name="confirmar">confirmar</string>
 
     <!-- Menu Student-->
     <string name="menu_student_home">Início</string>

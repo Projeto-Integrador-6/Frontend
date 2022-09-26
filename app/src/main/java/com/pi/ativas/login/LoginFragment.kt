@@ -1,23 +1,27 @@
 package com.pi.ativas.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
-import com.pi.ativas.MainActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.R
+import com.pi.ativas.base.BaseFragment
+import com.pi.ativas.data.bodys.LoginBody
+import com.pi.ativas.data.bodys.TokenBody
+import com.pi.ativas.data.responses.LoginResponse
 import com.pi.ativas.databinding.FragmentLoginBinding
+import com.pi.ativas.firstLogin.NewPasswordFragment
+import com.pi.ativas.firstLogin.NewPasswordFragmentDirections
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
 
     private lateinit var binding: FragmentLoginBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val loginViewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,49 +29,96 @@ class LoginFragment : Fragment() {
     ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater)
         initViews()
+        initObservers()
         return binding.root
     }
 
-    private fun initViews() {
+    override fun initViews() {
         with(binding) {
             btnLogar.setOnClickListener {
-                checkLogin()
+                checkfields()
+                progressBarLogin.visibility = View.VISIBLE
             }
         }
     }
 
-    private fun checkLogin() {
+    override fun initObservers() {
+        with(loginViewModel) {
+            invalidCredential.observe(viewLifecycleOwner) {
+                if (it) {
+                    alertDialog(
+                        "credencias inválida",
+                        "Email ou senha incorretos, favor verifique e tente novamente!"
+                    )
+                    binding.progressBarLogin.visibility = View.GONE
+                }
+            }
+
+            inactiveAccount.observe(viewLifecycleOwner) {
+                if (it) {
+                    alertDialog(
+                        "Conta inativa",
+                        "Sua conta está inativada, favor contade sua instituição!"
+                    )
+                    binding.progressBarLogin.visibility = View.GONE
+                }
+            }
+
+            newPassword.observe(viewLifecycleOwner) {
+                if (it) {
+                    binding.progressBarLogin.visibility = View.GONE
+                    dataLogin.value?.let { bodyLogin ->
+                        this@LoginFragment.newPassword(bodyLogin)
+                    }
+                }
+            }
+
+            user.observe(viewLifecycleOwner) {
+                binding.progressBarLogin.visibility = View.GONE
+                val x = it
+                binding.logo.text = x.telephone
+            }
+        }
+    }
+
+    private fun checkfields() {
         // TODO: Deixar o botão "Entrar" clicavel apenas se login e senha inseridos!
         with(binding) {
-            if ((txtLogin.text.toString().isNotEmpty()) && (txtSenha.text.toString()
-                    .isNotEmpty())
-            ) {
+            val login = txtLogin.text.toString()
+            val password = txtSenha.text.toString()
+
+            if (login.isNotEmpty() && password.isNotEmpty()) {
+                loginViewModel.newLogin(login, password)
+            } else {
                 Toast.makeText(requireContext(), "Favor inserir login e senha!", Toast.LENGTH_SHORT)
                     .show()
-                //fazia login como professor apenas para testar
-                goToHomeTeacher()
-            } else {
-                goToHomeStudent()
-//                Toast.makeText(requireContext(), "Login ou senha incorreto!", Toast.LENGTH_SHORT).show()
-                //fazia login como estudante apenas para testar
-
             }
         }
-
     }
 
-    private fun goToHomeStudent() {
-        val activity: MainActivity = activity as MainActivity
-        activity.getDrawerStudent()
-        activity.setNavHeader("Vinicius crispim de Azevedo", "vinicrispim02@hotmail.com")
-        findNavController().navigate(R.id.action_loginFragment_to_homeStudentFragment)
+    private fun alertDialog(
+        title: String,
+        message: String,
+        positiveButton: String = "Ok"
+    ) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(positiveButton) { dialog, which ->
+            }
+            .show()
     }
 
-    private fun goToHomeTeacher() {
-        val activity: MainActivity = activity as MainActivity
-        activity.getDrawerTeatcher()
-        activity.setNavHeader("Carlos Alexandre Gouveia", "carlosgouveia@unifacear.org.br")
-        findNavController().navigate(R.id.action_loginFragment_to_homeTeacherFragment)
+    private fun newPassword(dataLogin: LoginBody) {
+        val action = LoginFragmentDirections.actionLoginFragmentToNewPasswordFragment(dataLogin.getArray())
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("NOVA SENHA")
+            .setMessage("Por ser seu primeiro acesso ao UNI-Rank, você deve defenir uma nova senha!")
+            .setPositiveButton("OK") { dialog, which ->
+                findNavController().navigate(action)
+            }
+            .show()
     }
 
 }
+
