@@ -4,42 +4,42 @@ import com.google.gson.annotations.SerializedName
 import java.util.Date
 
 data class User(
-    @SerializedName("id")
+    //@SerializedName("id")
     val id: Int?,
 
-    @SerializedName("name")
+    //@SerializedName("name")
     val name: String?,
 
-    @SerializedName("birthday")
+    //@SerializedName("birthday")
     val birthday: String?,
 
-    @SerializedName("token")
+    //@SerializedName("token")
     val token: String?,
 
-    @SerializedName("token_date")
+    //@SerializedName("token_date")
     val token_date: String?,
 
-    @SerializedName("photo")
+    //@SerializedName("photo")
     val photo: String?,
 
-    @SerializedName("registration")
+    //@SerializedName("registration")
     val registration: String?,
 
-    @SerializedName("password")
+    //@SerializedName("password")
     val password: String?,
 
-    @SerializedName("telephone")
+    //@SerializedName("telephone")
     val telephone: String?,
 
-    @SerializedName("email")
+    //@SerializedName("email")
     val email: String?,
 
-    @SerializedName("address")
+    //@SerializedName("address")
     val address: String?,
 
-    @SerializedName("status")
+    //@SerializedName("status")
     val status: Int?,
 
-    @SerializedName("cod")
+    //@SerializedName("cod")
     val cod: String?
 )

@@ -5,17 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.pi.ativas.MainActivity
 import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.LoginBody
-import com.pi.ativas.data.bodys.TokenBody
-import com.pi.ativas.data.responses.LoginResponse
 import com.pi.ativas.databinding.FragmentLoginBinding
-import com.pi.ativas.firstLogin.NewPasswordFragment
-import com.pi.ativas.firstLogin.NewPasswordFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment() {
@@ -37,7 +33,6 @@ class LoginFragment : BaseFragment() {
         with(binding) {
             btnLogar.setOnClickListener {
                 checkfields()
-                progressBarLogin.visibility = View.VISIBLE
             }
         }
     }
@@ -88,6 +83,7 @@ class LoginFragment : BaseFragment() {
             val password = txtSenha.text.toString()
 
             if (login.isNotEmpty() && password.isNotEmpty()) {
+                progressBarLogin.visibility = View.VISIBLE
                 loginViewModel.newLogin(login, password)
             } else {
                 Toast.makeText(requireContext(), "Favor inserir login e senha!", Toast.LENGTH_SHORT)
@@ -118,6 +114,20 @@ class LoginFragment : BaseFragment() {
                 findNavController().navigate(action)
             }
             .show()
+    }
+
+    private fun goToHomeStudent() {
+        val activity: MainActivity = activity as MainActivity
+        activity.getDrawerStudent()
+        activity.setNavHeader("Vinicius crispim de Azevedo", "vinicrispim02@hotmail.com")
+        findNavController().navigate(R.id.action_loginFragment_to_homeStudentFragment)
+    }
+
+    private fun goToHomeTeacher() {
+        val activity: MainActivity = activity as MainActivity
+        activity.getDrawerTeatcher()
+        activity.setNavHeader("Carlos Alexandre Gouveia", "carlosgouveia@unifacear.org.br")
+        findNavController().navigate(R.id.action_loginFragment_to_homeTeacherFragment)
     }
 
 }

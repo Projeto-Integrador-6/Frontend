@@ -88,6 +88,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        /** O que está dentro do with não necessita ser repetido,
+         * no caso "binding.appBarMain.navHostFragment.findNavController()"
+         * se não colocar desta maneira todos os "navigate(R.id.xxxxxx)"
+         * teriam que ter esse trecho de cod antes */
+
         with(binding.appBarMain.navHostFragment.findNavController()) {
             when (item.itemId) {
                 R.id.nav_student_home -> navigate(R.id.homeStudentFragment)
@@ -106,7 +111,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.nav_terms -> navigate(R.id.useTermsFragment)
                 R.id.nav_share -> share()
                 else -> super.onOptionsItemSelected(item)
-                //R.id.nav_share -> share()
             }
         }
         val drawer = binding.drawerLayout
