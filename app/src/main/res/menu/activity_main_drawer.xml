@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_student">
+
+        <item android:id="@+id/nav_student_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_student_home" />
+
+        <item android:id="@+id/nav_student_rank"
+            android:icon="@drawable/ic_rank"
+            android:title="@string/menu_student_rank" />
+
+        <item android:id="@+id/nav_student_discipline"
+            android:icon="@drawable/ic_discipline"
+            android:title="@string/menu_student_discipline" />
+
+        <item android:id="@+id/nav_student_teacher"
+            android:icon="@drawable/ic_teacher"
+            android:title="@string/menu_student_teacher" />
+
+    </group>
+    <item android:title="@string/menu_student_task"
+        android:id="@+id/item_student_task">
+        <menu>
+            <item
+                android:id="@+id/nav_student_task_pending"
+                android:title="@string/menu_student_task_pending"
+                android:icon="@drawable/ic_task"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/nav_student_task_history"
+                android:title="@string/menu_student_task_history"
+                android:icon="@drawable/ic_history"
+                android:checkable="true"/>
+        </menu>
+    </item>
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_teacher">
+
+        <item android:id="@+id/nav_teacher_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_student_home" />
+
+        <item android:id="@+id/nav_teacher_classes"
+            android:icon="@drawable/ic_teacher"
+            android:title="@string/menu_teacher_class" />
+        <item android:id="@+id/nav_teacher_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="@string/menu_teacher_profile" />
+
+    </group>
+    <item android:title="@string/menu_student_task"
+        android:id="@+id/item_teacher_task">
+        <menu>
+            <item
+                android:id="@+id/nav_teacher_new_task"
+                android:title="@string/menu_teacher_new_task"
+                android:icon="@drawable/ic_new_task_24"
+                android:checkable="true"/>
+            <item
+            android:id="@+id/nav_teacher_pending_task"
+            android:title="@string/menu_student_task_pending"
+            android:icon="@drawable/ic_task"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/nav_teacher_task_history"
+                android:title="@string/menu_student_task_history"
+                android:icon="@drawable/ic_history"
+                android:checkable="true"/>
+        </menu>
+    </item>
+    <item android:title="@string/menu_student_info"
+        android:id="@+id/item_info">
+        <menu>
+            <item
+                android:id="@+id/nav_terms"
+                android:title="@string/menu_student_terms"
+                android:icon="@drawable/ic_terms"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/nav_share"
+                android:title="@string/menu_student_share"
+                android:icon="@drawable/ic_share"
+                android:checkable="true"/>
+        </menu>
+    </item>
+    <item android:title="@string/menu_student_support"
+        android:id="@+id/item_support">
+        <menu>
+            <item
+                android:id="@+id/nav_support"
+                android:title="@string/menu_student_support"
+                android:icon="@drawable/ic_support"
+                android:checkable="true"/>
+        </menu>
+    </item>
+
+</menu>

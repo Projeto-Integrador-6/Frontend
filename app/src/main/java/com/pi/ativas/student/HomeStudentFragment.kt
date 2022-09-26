@@ -1,11 +1,16 @@
 package com.pi.ativas.student
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import com.google.android.material.navigation.NavigationView
+import com.pi.ativas.MainActivity
+import com.pi.ativas.R
 import com.pi.ativas.databinding.FragmentHomeStudentBinding
+import com.pi.ativas.util.LoadToggle
 
 class HomeStudentFragment : Fragment() {
 
@@ -22,4 +27,5 @@ class HomeStudentFragment : Fragment() {
         binding = FragmentHomeStudentBinding.inflate(layoutInflater)
         return binding.root
     }
+
 }

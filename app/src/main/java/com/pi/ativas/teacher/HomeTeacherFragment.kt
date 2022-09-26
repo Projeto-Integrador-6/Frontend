@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.drawerlayout.widget.DrawerLayout
+import com.pi.ativas.MainActivity
 import com.pi.ativas.databinding.FragmentHomeTeacherBinding
 
 class HomeTeacherFragment : Fragment() {
@@ -22,4 +24,5 @@ class HomeTeacherFragment : Fragment() {
         binding = FragmentHomeTeacherBinding.inflate(layoutInflater)
         return binding.root
     }
+
 }

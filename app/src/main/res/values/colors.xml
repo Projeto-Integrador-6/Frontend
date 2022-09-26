@@ -18,6 +18,9 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
 
+    <!--Cor dos títulos-->
+    <color name="textColorGreen">#BF268029</color>
+
     <!-- background app -->
     <color name="bacgroundApp">#DAEAEAEA</color>
 

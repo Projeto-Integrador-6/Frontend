@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="app_name">Uni-Rank</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -9,4 +12,61 @@
     <string name="confirmar_nova_senha">Confirmar nova senha</string>
     <string name="definir_nova_senha">Definir nova senha</string>
     <string name="confirmar">confirmar</string>
+
+    <!-- Menu Student-->
+    <string name="menu_student_home">Início</string>
+    <string name="menu_student_rank">Rank</string>
+    <string name="menu_student_discipline">Disciplinas</string>
+    <string name="menu_student_teacher">Professores</string>
+    <string name="menu_student_profile">Perfil</string>
+    <string name="menu_student_task">Atividade</string>
+    <string name="menu_student_task_pending">Atividades Pendentes</string>
+    <string name="menu_student_task_history">Histórico de Atividades</string>
+    <string name="menu_student_info">Informações</string>
+    <string name="menu_student_support">Suporte</string>
+    <string name="menu_student_terms">Termos de Uso</string>
+    <string name="menu_student_share">Compartilhar</string>
+
+
+    <!-- Menu Teacher-->
+    <string name="menu_teacher_home">Início</string>
+    <string name="menu_teacher_class">Turmas</string>
+    <string name="menu_teacher_task">Atividade</string>
+    <string name="menu_teacher_rank">Rank</string>
+    <string name="menu_teacher_new_task">Criar Atividade</string>
+    <string name="menu_teacher_profile">Perfil</string>
+    <string name="menu_teacher_support">Suporte</string>
+    <string name="menu_teacher_share">Compartilhar</string>
+    <string name="menu_teacher_terms">Termos de Uso</string>
+
+    <!--Suporte-->
+    <string name="suporte">Caso você queira relatar um problema, pedir ajuda com relação ao aplicativo ou qualquer solicitação de suporte, favor entrar em contato através do nosso email: <a>vinicrispim02@hotmail.com</a></string>
+    <string name="link_do_app">Link para divulgação do app></string>
+    <string name="suporte_titulo">Suporte</string>
+    <string name="use_terms_titulo">Seja Bem-Vindo(a) ao Uni-Rank</string>
+    <string name="use_terms">Estes Termos de Uso do aplicativo Uni-Rank, exceto quando afirmamos que outros termos (e não estes) se aplicam, e fornecem informações sobre o serviço do Uni-Rank, descritas abaixo. Ao usar ou criar uma conta no Uni-Rank, você concorda com estes termos.\n\n
+<b><big>O Serviço é composto pelos seguintes aspectos.</big>\n
+- Oferecer a proposta de gaficicação do ensino.</b>\n
+Atualmente a tecnologia está presente em tudo nas nossas vidas, e no ensino não seria diferentes, porém é visível que é um grande desafio para os docente manterem seus estudantes empenhados e interessados no aprendizado, portanto a gameficação do ensino propõe que através dela os alunos possam ficar mais interessados em aprender.\n
+<b>- Promover um ambiente seguro e amigável</b>\n
+Através das nossas ferramentas, conseguimos proporcionar ao usuário uma experiência positiva e inclusiva, inclusive quando for preciso ajuda, estaremos dispostos a receber através do nosso suporte. Utilizamos diversas formas para proteger os seus dados, seguindo a Lei Geral de Proteção de Dados Pessoais (LGPD), criptografando os seus dados mais importantes e sensiveis para evitar problemas.\n
+<b>- Ambiente de Aprendizado</b>\n
+O nosso aplicativo possui diversas ferramentas que estão dispostas aos discentes e aos docentes e são extremamente úteis no ensino, somente com o aplicativo o discente poderá ver suas turmas, adicionar informações no seu perfil, como o currículo lattes, criar novas atividades para suas turmas, definir como será essa atividade, entre outras atividades relacionadas ao professor, já para o aluno, nós oferecemos a capacidade de responder as atividades, que podem ou não serem em equipe, usando anexos como pdf, foto ou áudio, visualizar correções, sua posição no rank, fazendo a gameficação do ensino.\n\n
+<b><big>Seus Compromissos</big></b>\n
+Em troca de nosso compromisso em fornecer o produto, exigimos que você se comprometa com o exposto a seguir.
+\n\n
+<b>Quem pode usar o Uni-Rank?</b>\n
+Queremos que nosso serviço seja o mais aberto e acessível possível, mas também desejamos que ele seja seguro e esteja em conformidade com a lei. Por isso, precisamos que você se comprometa em relação a algumas restrições para uilizar o Uni-Rank.\n
+. Você deve ter pelo menos 13 anosou a idade minima legal para usar Uni-Rank.
+\n. Sua conta pode ter sido desativada por nós por violação de alguma lei ou de qualquer uma das nossas políticas.
+\n. Você não pode ter sido condenado por crime e não deve enviar nenhum conteúdo pornográfico através do aplicativo.
+\n. Você não pode se passar por outras pessoas ou fornecer informações imprecisas.
+\n. Você não pode fazer algo ilícito, enganoso ou fraudulento com finalidade ilegal, não autorizada.
+\n. Você não pode fazer algo que interfira ou afete a operação pretendida do Uni-Rank.
+\n\n
+<b><big>Para usar o sistema, pedimos sua permissão para usar seu nome de usuário, foto de perfil e informações.</big></b>\n
+Portanto você nos concede permissão para usar seu nome ed usuário, foto de perfil e informaçõese sobre suas ações (como criar ou responder atividades), sendo assim, no caso do professor, poderemos mostrar aos alunos suas atividades criadas, e para os alunos as suas respostas serão enviadas para o professor.\n\n
+<b><big>Você concorda que podemos baixar e instalar atualizações de spftware em seu dispositivo.</big></b>\n\n
+Caso não concorde com algo ou esteja com dúvidas/problemas, favor entrar em contato com a sua instituição ou com o nosso suporte, através da aba suporte no menu lateral. Obrigado e faça bom uso do nosso serviço.</string>
+
 </resources>
