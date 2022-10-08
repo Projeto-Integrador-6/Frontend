@@ -8,13 +8,10 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.MainActivity
-import com.pi.ativas.R
-import com.pi.ativas.base.BaseBody
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.LoginBody
 import com.pi.ativas.databinding.FragmentLoginBinding
 import com.pi.ativas.model.User
-import com.pi.ativas.teacher.homeTeacher.HomeTeacherFragmentDirections
 import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

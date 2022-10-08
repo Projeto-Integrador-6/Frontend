@@ -53,7 +53,7 @@ class HomeTeacherFragment : Fragment() {
         binding.progressbar.visibility = View.GONE
 
         val onClickListener = ItemClickListener { classroom ->
-            val action = HomeTeacherFragmentDirections.actionHomeTeacherFragmentToClassTeacherFragment(classroom)
+            val action = HomeTeacherFragmentDirections.actionHomeTeacherFragmentToClassTeacherFragment(classroom, dataForRequirement)
             findNavController().navigate(action)
         }
 

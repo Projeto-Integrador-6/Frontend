@@ -119,6 +119,9 @@
         <argument
             android:name="classroom"
             app:argType="com.pi.ativas.model.Classroom" />
+        <argument
+            android:name="dataForRequirement"
+            app:argType="com.pi.ativas.teacher.model.DataForRequirement" />
     </fragment>
 
     <fragment
