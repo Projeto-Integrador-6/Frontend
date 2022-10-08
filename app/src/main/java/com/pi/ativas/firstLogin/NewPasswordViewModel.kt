@@ -32,7 +32,7 @@ class NewPasswordViewModel(): ViewModel() {
                 if (it) _success.postValue(it)
             }
 
-            checkCredencials?.let {
+            checkCredentials?.let {
                 _success1.postValue(it)
             }
             generateToken?.let {

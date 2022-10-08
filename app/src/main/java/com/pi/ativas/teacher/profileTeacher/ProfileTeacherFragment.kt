@@ -1,4 +1,4 @@
-package com.pi.ativas.teacher
+package com.pi.ativas.teacher.profileTeacher
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

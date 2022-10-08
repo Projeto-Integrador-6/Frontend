@@ -1,28 +1,24 @@
-package com.pi.ativas.teacher
+package com.pi.ativas.teacher.newTaskTeacher
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.drawerlayout.widget.DrawerLayout
-import com.pi.ativas.MainActivity
-import com.pi.ativas.databinding.FragmentHomeTeacherBinding
+import com.pi.ativas.databinding.FragmentNewTaskTeacherBinding
 
-class HomeTeacherFragment : Fragment() {
-
-    private lateinit var binding: FragmentHomeTeacherBinding
-
+class NewTaskTeacherFragment : Fragment() {
+    private lateinit var binding: FragmentNewTaskTeacherBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeTeacherBinding.inflate(layoutInflater)
+        binding = FragmentNewTaskTeacherBinding.inflate(layoutInflater)
         return binding.root
     }
-
 }

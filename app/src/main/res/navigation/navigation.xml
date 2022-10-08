@@ -67,9 +67,19 @@
 
     <fragment
         android:id="@+id/homeTeacherFragment"
-        android:name="com.pi.ativas.teacher.HomeTeacherFragment"
+        android:name="com.pi.ativas.teacher.homeTeacher.HomeTeacherFragment"
         android:label="fragment_home_teacher"
-        tools:layout="@layout/fragment_home_teacher" />
+        tools:layout="@layout/fragment_home_teacher" >
+        <argument
+            android:name="userTeacher"
+            app:argType="com.pi.ativas.model.User" />
+        <action
+            android:id="@+id/action_homeTeacherFragment_to_classTeacherFragment"
+            app:destination="@id/classTeacherFragment"/>
+        <argument
+            android:name="dataForRequirement"
+            app:argType="com.pi.ativas.teacher.model.DataForRequirement" />
+    </fragment>
 
     <fragment
         android:id="@+id/rankStudentFragment"
@@ -103,31 +113,35 @@
 
     <fragment
         android:id="@+id/classTeacherFragment"
-        android:name="com.pi.ativas.teacher.ClassTeacherFragment"
+        android:name="com.pi.ativas.teacher.classTeacher.ClassTeacherFragment"
         android:label="fragment_class_teacher"
-        tools:layout="@layout/fragment_class_teacher" />
+        tools:layout="@layout/fragment_class_teacher" >
+        <argument
+            android:name="classroom"
+            app:argType="com.pi.ativas.model.Classroom" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileTeacherFragment"
-        android:name="com.pi.ativas.teacher.ProfileTeacherFragment"
+        android:name="com.pi.ativas.teacher.profileTeacher.ProfileTeacherFragment"
         android:label="fragment_profile_teacher"
         tools:layout="@layout/fragment_profile_teacher" />
 
     <fragment
         android:id="@+id/newTaskTeacherFragment"
-        android:name="com.pi.ativas.teacher.NewTaskTeacherFragment"
+        android:name="com.pi.ativas.teacher.newTaskTeacher.NewTaskTeacherFragment"
         android:label="fragment_new_task_teacher"
         tools:layout="@layout/fragment_new_task_teacher" />
 
     <fragment
         android:id="@+id/pendingTaskTeacherFragment"
-        android:name="com.pi.ativas.teacher.PendingTaskTeacherFragment"
+        android:name="com.pi.ativas.teacher.pendingTask.PendingTaskTeacherFragment"
         android:label="fragment_pending_task_teacher"
         tools:layout="@layout/fragment_pending_task_teacher" />
 
     <fragment
         android:id="@+id/taskHistoryTeacherFragment"
-        android:name="com.pi.ativas.teacher.TaskHistoryTeacherFragment"
+        android:name="com.pi.ativas.teacher.taskHistoryTeacher.TaskHistoryTeacherFragment"
         android:label="fragment_task_history_teacher"
         tools:layout="@layout/fragment_task_history_teacher" />
 
