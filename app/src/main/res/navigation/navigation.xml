@@ -70,15 +70,9 @@
         android:name="com.pi.ativas.teacher.homeTeacher.HomeTeacherFragment"
         android:label="fragment_home_teacher"
         tools:layout="@layout/fragment_home_teacher" >
-        <argument
-            android:name="userTeacher"
-            app:argType="com.pi.ativas.model.User" />
         <action
             android:id="@+id/action_homeTeacherFragment_to_classTeacherFragment"
             app:destination="@id/classTeacherFragment"/>
-        <argument
-            android:name="dataForRequirement"
-            app:argType="com.pi.ativas.teacher.model.DataForRequirement" />
     </fragment>
 
     <fragment

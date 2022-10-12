@@ -1,5 +1,7 @@
 package com.pi.ativas.login
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.MainActivity
+import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.LoginBody
 import com.pi.ativas.databinding.FragmentLoginBinding
@@ -19,6 +22,12 @@ class LoginFragment : BaseFragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private val loginViewModel: LoginViewModel by viewModel()
+    private lateinit var sharedPref: SharedPreferences
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedPref = context?.getSharedPreferences("dataLogin", Context.MODE_PRIVATE)!!
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -145,11 +154,14 @@ class LoginFragment : BaseFragment() {
         val activity: MainActivity = activity as MainActivity
         activity.getDrawerTeatcher()
         activity.setNavHeader(teacher.name ?: "null", teacher.email ?: "null")
-        val action = LoginFragmentDirections.actionLoginFragmentToHomeTeacherFragment(
-            teacher,
-            dataForRequirement
-        )
-        findNavController().navigate(action)
+
+        sharedPref.edit()
+            .putString("email", dataForRequirement.email)
+            .putString("password", dataForRequirement.password)
+            .putString("token", dataForRequirement.token)
+            .apply()
+
+        findNavController().navigate(R.id.action_loginFragment_to_homeTeacherFragment)
     }
 
 }
