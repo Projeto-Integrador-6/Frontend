@@ -95,8 +95,8 @@ class LoginFragment : BaseFragment() {
     private fun checkFields() {
         // TODO: Deixar o botão "Entrar" clicavel apenas se login e senha inseridos!
         with(binding) {
-            val login = "teacher@teste.com"//txtLogin.text.toString()
-            val password = "Teste12@" //txtSenha.text.toString()
+            val login = txtLogin.text.toString()
+            val password = txtSenha.text.toString()
 
             if (login.isNotEmpty() && password.isNotEmpty()) {
                 progressBarLogin.visibility = View.VISIBLE
