@@ -13,7 +13,7 @@ data class TokenResponse(
     val token: String,
 
     @SerializedName("checkCredencials")
-    val checkCredencials: Boolean,
+    val checkCredentials: Boolean,
 
     @SerializedName("inactiveAccount")
     val inactiveAccount: Boolean

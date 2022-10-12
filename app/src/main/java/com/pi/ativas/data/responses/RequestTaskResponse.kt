@@ -1,8 +1,9 @@
 package com.pi.ativas.data.responses
 
 import com.google.gson.annotations.SerializedName
+import com.pi.ativas.model.Task
 
-data class NewPasswordResponse(
+data class RequestTaskResponse(
     @SerializedName("success")
     val success: Boolean,
 
@@ -15,9 +16,15 @@ data class NewPasswordResponse(
     @SerializedName("generateToken")
     val generateToken: Boolean?,
 
-    @SerializedName("validParameters")
-    val validParameters: Boolean?,
+    @SerializedName("inactiveAccount")
+    val inactiveAccount: Boolean?,
 
-    @SerializedName("weakPassword")
-    val weakPassword: Boolean?
+    @SerializedName("changePassword")
+    val changePassword: Boolean?,
+
+    @SerializedName("content")
+    val content: ArrayList<Task>?,
+
+    @SerializedName("total")
+    val total: Int?
 )

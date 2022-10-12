@@ -8,10 +8,11 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.MainActivity
-import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.LoginBody
 import com.pi.ativas.databinding.FragmentLoginBinding
+import com.pi.ativas.model.User
+import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment() {
@@ -32,7 +33,7 @@ class LoginFragment : BaseFragment() {
     override fun initViews() {
         with(binding) {
             btnLogar.setOnClickListener {
-                checkfields()
+                checkFields()
             }
         }
     }
@@ -68,15 +69,30 @@ class LoginFragment : BaseFragment() {
                 }
             }
 
-            user.observe(viewLifecycleOwner) {
-                binding.progressBarLogin.visibility = View.GONE
-                val x = it
-                binding.logo.text = x.telephone
+            user.observe(viewLifecycleOwner) { user ->
+                userIsStudent.observe(viewLifecycleOwner) { isUser ->
+                    dataRequisition.observe(viewLifecycleOwner) { dataLogin ->
+                        binding.progressBarLogin.visibility = View.GONE
+                        if (isUser) {
+                            goToHomeStudent(user)
+                        } else {
+                            goToHomeTeacher(
+                                user,
+                                DataForRequirement(
+                                    email = dataLogin.email,
+                                    password = dataLogin.password,
+                                    token = dataLogin.token
+                                )
+                            )
+                        }
+                    }
+
+                }
             }
         }
     }
 
-    private fun checkfields() {
+    private fun checkFields() {
         // TODO: Deixar o botão "Entrar" clicavel apenas se login e senha inseridos!
         with(binding) {
             val login = txtLogin.text.toString()
@@ -106,7 +122,8 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun newPassword(dataLogin: LoginBody) {
-        val action = LoginFragmentDirections.actionLoginFragmentToNewPasswordFragment(dataLogin.getArray())
+        val action =
+            LoginFragmentDirections.actionLoginFragmentToNewPasswordFragment(dataLogin.getArray())
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("NOVA SENHA")
             .setMessage("Por ser seu primeiro acesso ao UNI-Rank, você deve defenir uma nova senha!")
@@ -116,18 +133,23 @@ class LoginFragment : BaseFragment() {
             .show()
     }
 
-    private fun goToHomeStudent() {
+    private fun goToHomeStudent(student: User) {
         val activity: MainActivity = activity as MainActivity
         activity.getDrawerStudent()
         activity.setNavHeader("Vinicius crispim de Azevedo", "vinicrispim02@hotmail.com")
-        findNavController().navigate(R.id.action_loginFragment_to_homeStudentFragment)
+        val action = LoginFragmentDirections.actionLoginFragmentToHomeStudentFragment()
+        findNavController().navigate(action)
     }
 
-    private fun goToHomeTeacher() {
+    private fun goToHomeTeacher(teacher: User, dataForRequirement: DataForRequirement) {
         val activity: MainActivity = activity as MainActivity
         activity.getDrawerTeatcher()
-        activity.setNavHeader("Carlos Alexandre Gouveia", "carlosgouveia@unifacear.org.br")
-        findNavController().navigate(R.id.action_loginFragment_to_homeTeacherFragment)
+        activity.setNavHeader(teacher.name ?: "null", teacher.email ?: "null")
+        val action = LoginFragmentDirections.actionLoginFragmentToHomeTeacherFragment(
+            teacher,
+            dataForRequirement
+        )
+        findNavController().navigate(action)
     }
 
 }

@@ -28,9 +28,14 @@ class LoginViewModel() : ViewModel() {
     private val _dataLogin = MutableLiveData<LoginBody>()
     val dataLogin: LiveData<LoginBody> = _dataLogin
 
-    // OBSERVAVEIS APENAS PARA MOSTRAR OQUE ESTÁ VOLTANDO DA API
+    private val _dataRequisition = MutableLiveData<LoginBody>()
+    val dataRequisition: LiveData<LoginBody> = _dataRequisition
+
     private val _user = MutableLiveData<User>()
     val user: LiveData<User> = _user
+
+    private val _userIsStudent = MutableLiveData<Boolean>()
+    val userIsStudent: LiveData<Boolean> = _userIsStudent
 
     private var credentialsLogin: LoginBody = LoginBody("", "", "")
     private var isStudent: Boolean = true
@@ -50,8 +55,8 @@ class LoginViewModel() : ViewModel() {
 
     private fun checkLogin(loginResponse: LoginResponse) {
         with(loginResponse) {
-            checkCredencials?.let {
-                checkCredencials(it)
+            checkCredentials?.let {
+                checkCredentials(it)
             }
             generateToken?.let {
                 getNewToken()
@@ -64,12 +69,14 @@ class LoginViewModel() : ViewModel() {
                 _newPassword.postValue(it)
             }
             user?.let {
+                _userIsStudent.postValue(isStudent)
+                _dataRequisition.postValue(credentialsLogin)
                 _user.postValue(it)
             }
         }
     }
 
-    private fun checkCredencials(it: Boolean) {
+    private fun checkCredentials(it: Boolean) {
         if (it && isStudent) {
             isStudent = false
             setNewLoginTeacher(credentialsLogin)

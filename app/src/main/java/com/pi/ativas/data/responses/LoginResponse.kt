@@ -11,7 +11,7 @@ data class LoginResponse(
     val message: String,
 
     @SerializedName("checkCredencials")
-    val checkCredencials: Boolean?,
+    val checkCredentials: Boolean?,
 
     @SerializedName("generateToken")
     val generateToken: Boolean?,

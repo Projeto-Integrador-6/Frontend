@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".teacher.ClassTeacherFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".teacher.classTeacher.ClassTeacherFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleview_class_teacher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Classes Teacher"
-        android:textSize="20sp"
-        android:textAllCaps="true"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_task"/>
 </FrameLayout>

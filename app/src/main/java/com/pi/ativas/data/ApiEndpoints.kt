@@ -1,11 +1,7 @@
 package com.pi.ativas.data
 
-import com.pi.ativas.data.bodys.LoginBody
-import com.pi.ativas.data.bodys.NewPasswordBody
-import com.pi.ativas.data.bodys.TokenBody
-import com.pi.ativas.data.responses.LoginResponse
-import com.pi.ativas.data.responses.NewPasswordResponse
-import com.pi.ativas.data.responses.TokenResponse
+import com.pi.ativas.data.bodys.*
+import com.pi.ativas.data.responses.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Headers
@@ -27,5 +23,15 @@ interface ApiEndpoints {
         @Headers("Content-Type: application/json")
         @POST("changepassword")
         suspend fun getNewPassword(@Body body : NewPasswordBody): Response<NewPasswordResponse>
+    }
+
+    interface TeacherService{
+        @Headers("Content-Type: application/json")
+        @POST("getmyclasses")
+        suspend fun getClassroom(@Body body : RequestClassroomBody): Response<RequestClassroomResponse>
+
+        @Headers("Content-Type: application/json")
+        @POST("getmyclasstasks")
+        suspend fun getClassroomTasks(@Body body : RequestTaskBody): Response<RequestTaskResponse>
     }
 }
