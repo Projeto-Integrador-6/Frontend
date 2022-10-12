@@ -9,8 +9,8 @@ import retrofit2.create
 
 object Retrofit {
 
-    private const val TEACHER_BASE_URL = "http://unirank-env.eba-5suep9zs.sa-east-1.elasticbeanstalk.com/api/teacher/"
-    private const val STUDENT_BASE_URL = "http://unirank-env.eba-5suep9zs.sa-east-1.elasticbeanstalk.com/api/student/"
+    private const val TEACHER_BASE_URL = "https://unirank-ativas.000webhostapp.com/api/teacher/"
+    private const val STUDENT_BASE_URL = "https://unirank-ativas.000webhostapp.com/api/student/"
 
     private fun getRetrofit(baseURL: String): Retrofit {
         val gsonBuilder = GsonBuilder()

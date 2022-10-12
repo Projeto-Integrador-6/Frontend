@@ -83,10 +83,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         startActivity(Intent.createChooser(shareIntent, "Compartilhar aplicativo"))
     }
 
-    override fun onBackPressed() {
-        finishAffinity()
-    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         /** O que está dentro do with não necessita ser repetido,
          * no caso "binding.appBarMain.navHostFragment.findNavController()"
