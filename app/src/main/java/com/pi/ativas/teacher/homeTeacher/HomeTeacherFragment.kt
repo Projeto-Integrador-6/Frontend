@@ -3,12 +3,10 @@ package com.pi.ativas.teacher.homeTeacher
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.databinding.FragmentHomeTeacherBinding
@@ -24,14 +22,14 @@ class HomeTeacherFragment : BaseFragment() {
     private lateinit var dataForRequirement: DataForRequirement
     private lateinit var classroomList: List<Classroom>
     private val homeTeacherViewModel: HomeTeacherViewModel by viewModel()
-    private lateinit var sharedPref: SharedPreferences
+    private lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPref = context?.getSharedPreferences("dataLogin", Context.MODE_PRIVATE)!!
+        sharedPreferences = requireContext().getSharedPreferences("dataLogin", Context.MODE_PRIVATE)
 
-        with(sharedPref) {
+        with(sharedPreferences) {
             getString("email", "")?.let { email ->
                 getString("password", "")?.let { password ->
                     getString("token", "")?.let { token ->

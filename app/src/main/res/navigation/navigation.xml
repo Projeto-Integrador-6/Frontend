@@ -16,6 +16,12 @@
             app:exitAnim="@android:anim/fade_out"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeTeacherFragment"
+            app:destination="@id/homeTeacherFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeStudentFragment"
+            app:destination="@id/homeStudentFragment" />
     </fragment>
 
     <fragment
