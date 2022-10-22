@@ -64,7 +64,7 @@ class HomeTeacherFragment : BaseFragment() {
 
         val onClickListener = ItemClickListener { classroom ->
             val action =
-                HomeTeacherFragmentDirections.actionHomeTeacherFragmentToClassTeacherFragment(
+                HomeTeacherFragmentDirections.actionHomeTeacherFragmentToTaskClassTeacherFragment(
                     classroom,
                     dataForRequirement
                 )

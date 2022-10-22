@@ -77,8 +77,8 @@
         android:label="fragment_home_teacher"
         tools:layout="@layout/fragment_home_teacher" >
         <action
-            android:id="@+id/action_homeTeacherFragment_to_classTeacherFragment"
-            app:destination="@id/classTeacherFragment"/>
+            android:id="@+id/action_homeTeacherFragment_to_taskClassTeacherFragment"
+            app:destination="@id/taskClassTeacherFragment"/>
     </fragment>
 
     <fragment
@@ -112,10 +112,10 @@
         tools:layout="@layout/fragment_task_history_student" />
 
     <fragment
-        android:id="@+id/classTeacherFragment"
-        android:name="com.pi.ativas.teacher.classTeacher.ClassTeacherFragment"
+        android:id="@+id/taskClassTeacherFragment"
+        android:name="com.pi.ativas.teacher.tasksClassTeacher.TasksClassTeacherFragment"
         android:label="fragment_class_teacher"
-        tools:layout="@layout/fragment_class_teacher" >
+        tools:layout="@layout/fragment_task_class_teacher" >
         <argument
             android:name="classroom"
             app:argType="com.pi.ativas.teacher.model.Classroom" />

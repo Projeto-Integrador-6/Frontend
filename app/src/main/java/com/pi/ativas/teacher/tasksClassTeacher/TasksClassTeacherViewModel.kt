@@ -1,4 +1,4 @@
-package com.pi.ativas.teacher.classTeacher
+package com.pi.ativas.teacher.tasksClassTeacher
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,10 +11,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ClassTeacherViewModel(): ViewModel() {
+class TasksClassTeacherViewModel(): ViewModel() {
 
     private val _listTask = MutableLiveData<List<Task>>()
     val listTask: LiveData<List<Task>> = _listTask
+
+    private val _taskButtonClick = MutableLiveData<Task>()
+    val taskButtonClick: LiveData<Task> = _taskButtonClick
 
     fun getClassroomTasks(requestTaskBody: RequestTaskBody){
         getClassroom(requestTaskBody)
@@ -30,5 +33,9 @@ class ClassTeacherViewModel(): ViewModel() {
                 }
             }
         }
+    }
+
+    fun taskButtonClick(task: Task){
+        _taskButtonClick.postValue(task)
     }
 }

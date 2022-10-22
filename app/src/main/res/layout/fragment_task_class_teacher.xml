@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".teacher.classTeacher.ClassTeacherFragment">
+    tools:context=".teacher.tasksClassTeacher.TasksClassTeacherFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleview_class_teacher"
@@ -27,5 +28,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/opaqueBG"
-        android:elevation="5dp"/>
-</FrameLayout>
+        android:elevation="5dp"
+        android:visibility="gone"/>
+
+    <include
+        android:id="@+id/bottomSheet"
+        layout="@layout/bottom_sheet_task"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
