@@ -122,6 +122,19 @@
         <argument
             android:name="dataForRequirement"
             app:argType="com.pi.ativas.teacher.model.DataForRequirement" />
+        <action
+            android:id="@+id/action_taskClassTeacherFragment_to_taskTeamsFragment"
+            app:destination="@id/taskTeamsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskTeamsFragment"
+        android:name="com.pi.ativas.teacher.taskTeams.TaskTeamsFragment"
+        android:label="TaskTeamsFragment"
+        tools:layout="@layout/fragment_task_teams">
+        <argument
+            android:name="idTask"
+            app:argType="string" />
     </fragment>
 
     <fragment

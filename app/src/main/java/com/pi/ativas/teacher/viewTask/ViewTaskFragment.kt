@@ -5,15 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.pi.ativas.base.BaseFragment
+import com.pi.ativas.databinding.FragmentViewTaskBinding
 
 class ViewTaskFragment: BaseFragment() {
 
+
+    private lateinit var binding: FragmentViewTaskBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+    ): View {
+
+        binding = FragmentViewTaskBinding.inflate(layoutInflater)
+
+        return binding.root
     }
 }

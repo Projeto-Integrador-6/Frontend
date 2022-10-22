@@ -1,6 +1,5 @@
 package com.pi.ativas.teacher.tasksClassTeacher
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,11 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -31,12 +28,12 @@ class TasksClassTeacherFragment : Fragment() {
     private lateinit var dataForRequirement: DataForRequirement
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
     private val tasksClassTeacherViewModel: TasksClassTeacherViewModel by viewModel()
-    private val classTeacherFragmentArgs: TasksClassTeacherFragmentArgs by navArgs()
+    private val tasksClassTeacherFragmentArgs: TasksClassTeacherFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        classroom = classTeacherFragmentArgs.classroom
-        dataForRequirement = classTeacherFragmentArgs.dataForRequirement
+        classroom = tasksClassTeacherFragmentArgs.classroom
+        dataForRequirement = tasksClassTeacherFragmentArgs.dataForRequirement
     }
 
     override fun onCreateView(
@@ -84,11 +81,10 @@ class TasksClassTeacherFragment : Fragment() {
     }
 
     private fun recycleView() {
-        //binding.progressbar.visibility = View.GONE
 
         val onClickListener = ItemClickListener { task ->
-/*            val action = ClassT
-            findNavController().navigate(action)*/
+            val action = TasksClassTeacherFragmentDirections.actionTaskClassTeacherFragmentToTaskTeamsFragment(task.id.toString())
+            findNavController().navigate(action)
         }
 
         val recyclerView = binding.recycleviewClassTeacher
