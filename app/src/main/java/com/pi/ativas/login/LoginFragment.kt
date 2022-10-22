@@ -3,20 +3,25 @@ package com.pi.ativas.login
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.EditText
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.MainActivity
 import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
+import com.pi.ativas.common.TextChangedListener
 import com.pi.ativas.data.bodys.LoginBody
 import com.pi.ativas.databinding.FragmentLoginBinding
 import com.pi.ativas.model.User
 import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class LoginFragment : BaseFragment() {
 
@@ -36,13 +41,33 @@ class LoginFragment : BaseFragment() {
         binding = FragmentLoginBinding.inflate(layoutInflater)
         initViews()
         initObservers()
+        checkFields()
         return binding.root
     }
 
     override fun initViews() {
         with(binding) {
+            txtLogin.addTextChangedListener(object :
+                TextChangedListener<EditText>(txtLogin) {
+                override fun onTextChanged(target: EditText, p0: Editable?) {
+                    loginInputLayout.error = null
+                    checkFields()
+                }
+            })
+
+            txtSenha.addTextChangedListener(object :
+                TextChangedListener<EditText>(txtSenha) {
+                override fun onTextChanged(target: EditText, p0: Editable?) {
+                    checkFields()
+                }
+            })
+
             btnLogar.setOnClickListener {
-                checkFields()
+                progressBarLogin.visibility = View.VISIBLE
+                loginViewModel.newLogin(
+                    txtLogin.text.toString(),
+                    txtSenha.text.toString()
+                )
             }
         }
     }
@@ -51,6 +76,7 @@ class LoginFragment : BaseFragment() {
         with(loginViewModel) {
             invalidCredential.observe(viewLifecycleOwner) {
                 if (it) {
+                    binding.loginInputLayout.error = "Email ou senha incorretos"
                     alertDialog(
                         "credencias inválida",
                         "Email ou senha incorretos, favor verifique e tente novamente!"
@@ -61,6 +87,7 @@ class LoginFragment : BaseFragment() {
 
             inactiveAccount.observe(viewLifecycleOwner) {
                 if (it) {
+                    binding.loginInputLayout.error = "Sua conta está inativada"
                     alertDialog(
                         "Conta inativa",
                         "Sua conta está inativada, favor contade sua instituição!"
@@ -73,7 +100,7 @@ class LoginFragment : BaseFragment() {
                 if (it) {
                     binding.progressBarLogin.visibility = View.GONE
                     dataLogin.value?.let { bodyLogin ->
-                        this@LoginFragment.newPassword(bodyLogin)
+                        newPassword(bodyLogin)
                     }
                 }
             }
@@ -108,17 +135,13 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun checkFields() {
-        // TODO: Deixar o botão "Entrar" clicavel apenas se login e senha inseridos!
         with(binding) {
-            val login = txtLogin.text.toString()
-            val password = txtSenha.text.toString()
-
-            if (login.isNotEmpty() && password.isNotEmpty()) {
-                progressBarLogin.visibility = View.VISIBLE
-                loginViewModel.newLogin(login, password)
+            if (txtLogin.text.isNullOrBlank() || txtSenha.text.isNullOrBlank()) {
+                btnLogar.isClickable = false
+                btnLogar.background.setTint(resources.getColor(R.color.gray_100))
             } else {
-                Toast.makeText(requireContext(), "Favor inserir login e senha!", Toast.LENGTH_SHORT)
-                    .show()
+                btnLogar.isClickable = true
+                btnLogar.background.setTint(resources.getColor(R.color.backgroundBottom))
             }
         }
     }
@@ -180,6 +203,5 @@ class LoginFragment : BaseFragment() {
 
         findNavController().navigate(R.id.action_loginFragment_to_homeTeacherFragment)
     }
-
 }
 
