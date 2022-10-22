@@ -1,33 +1,43 @@
 package com.pi.ativas.teacher.homeTeacher
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.databinding.FragmentHomeTeacherBinding
 import com.pi.ativas.model.Classroom
 import com.pi.ativas.model.User
 import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeTeacherFragment : Fragment() {
+class HomeTeacherFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeTeacherBinding
     private lateinit var teacher: User
     private lateinit var dataForRequirement: DataForRequirement
     private lateinit var classroomList: List<Classroom>
     private val homeTeacherViewModel: HomeTeacherViewModel by viewModel()
-    private val homeTeacherFragmentArgs: HomeTeacherFragmentArgs by navArgs()
+    private lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        teacher = homeTeacherFragmentArgs.userTeacher
-        dataForRequirement = homeTeacherFragmentArgs.dataForRequirement
+        sharedPreferences = requireContext().getSharedPreferences("dataLogin", Context.MODE_PRIVATE)
+
+        with(sharedPreferences) {
+            getString("email", "")?.let { email ->
+                getString("password", "")?.let { password ->
+                    getString("token", "")?.let { token ->
+                        dataForRequirement = DataForRequirement(email, password, token)
+                    }
+                }
+            }
+        }
     }
 
     override fun onCreateView(
@@ -42,8 +52,8 @@ class HomeTeacherFragment : Fragment() {
     }
 
 
-    private fun initObservers(){
-        homeTeacherViewModel.listClassroom.observe(viewLifecycleOwner){
+    override fun initObservers() {
+        homeTeacherViewModel.listClassroom.observe(viewLifecycleOwner) {
             classroomList = it
             recycleView()
         }
@@ -53,13 +63,18 @@ class HomeTeacherFragment : Fragment() {
         binding.progressbar.visibility = View.GONE
 
         val onClickListener = ItemClickListener { classroom ->
-            val action = HomeTeacherFragmentDirections.actionHomeTeacherFragmentToClassTeacherFragment(classroom, dataForRequirement)
+            val action =
+                HomeTeacherFragmentDirections.actionHomeTeacherFragmentToClassTeacherFragment(
+                    classroom,
+                    dataForRequirement
+                )
             findNavController().navigate(action)
         }
 
         val recyclerView = binding.recycleViewHomeTeacher
         val adapter = ClassroomAdapter(classroomList, onClickListener)
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
