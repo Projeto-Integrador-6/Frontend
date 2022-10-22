@@ -32,12 +32,10 @@ class TaskViewHolder(private val view: View): RecyclerView.ViewHolder(view){
 
     fun bind(task: Task, onItemClickListener: ItemClickListener){
         view.apply {
-            setOnClickListener{
-                setOnClickListener{ onItemClickListener.onClick(task)} }
+                setOnClickListener{ onItemClickListener.onClick(task)}
             with(binding){
                 tvNameTask.text = task.question
             }
-
         }
     }
 }

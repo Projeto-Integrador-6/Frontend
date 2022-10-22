@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.databinding.FragmentHomeTeacherBinding
-import com.pi.ativas.model.Classroom
+import com.pi.ativas.teacher.model.Classroom
 import com.pi.ativas.model.User
 import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,7 +18,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeTeacherFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeTeacherBinding
-    private lateinit var teacher: User
     private lateinit var dataForRequirement: DataForRequirement
     private lateinit var classroomList: List<Classroom>
     private val homeTeacherViewModel: HomeTeacherViewModel by viewModel()
@@ -61,6 +60,7 @@ class HomeTeacherFragment : BaseFragment() {
 
     private fun recycleView() {
         binding.progressbar.visibility = View.GONE
+        binding.bottomSheetBG.visibility = View.GONE
 
         val onClickListener = ItemClickListener { classroom ->
             val action =

@@ -71,10 +71,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/backgroundBottom"
-        app:layout_constraintTop_toBottomOf="@id/loginInputLayout"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="10dp"
         android:visibility="gone"/>
 
     <com.google.android.material.button.MaterialButton
@@ -90,5 +91,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <View
+        android:id="@+id/bottomSheetBG"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/opaqueBG"
+        android:elevation="5dp"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

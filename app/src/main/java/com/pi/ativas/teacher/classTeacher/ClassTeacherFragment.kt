@@ -5,15 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pi.ativas.data.bodys.RequestTaskBody
 import com.pi.ativas.databinding.FragmentClassTeacherBinding
-import com.pi.ativas.model.Classroom
+import com.pi.ativas.teacher.model.Classroom
 import com.pi.ativas.model.Task
-import com.pi.ativas.teacher.homeTeacher.ClassroomAdapter
-import com.pi.ativas.teacher.homeTeacher.HomeTeacherFragmentDirections
 import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,6 +47,8 @@ class ClassTeacherFragment : Fragment() {
 
     private fun initObservers(){
         classTeacherViewModel.listTask.observe(viewLifecycleOwner){
+            binding.progressBar.visibility = View.GONE
+            binding.bottomSheetBG.visibility = View.GONE
             taskList = it
             recycleView()
         }

@@ -1,7 +1,7 @@
 package com.pi.ativas.data.responses
 
 import com.google.gson.annotations.SerializedName
-import com.pi.ativas.model.Classroom
+import com.pi.ativas.teacher.model.Classroom
 
 data class RequestClassroomResponse(
     @SerializedName("success")

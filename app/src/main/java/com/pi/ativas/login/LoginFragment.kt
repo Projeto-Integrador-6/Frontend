@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -64,6 +65,7 @@ class LoginFragment : BaseFragment() {
 
             btnLogar.setOnClickListener {
                 progressBarLogin.visibility = View.VISIBLE
+                bottomSheetBG.visibility = View.VISIBLE
                 loginViewModel.newLogin(
                     txtLogin.text.toString(),
                     txtSenha.text.toString()
@@ -82,6 +84,7 @@ class LoginFragment : BaseFragment() {
                         "Email ou senha incorretos, favor verifique e tente novamente!"
                     )
                     binding.progressBarLogin.visibility = View.GONE
+                    binding.bottomSheetBG.visibility = View.GONE
                 }
             }
 
@@ -93,12 +96,14 @@ class LoginFragment : BaseFragment() {
                         "Sua conta está inativada, favor contade sua instituição!"
                     )
                     binding.progressBarLogin.visibility = View.GONE
+                    binding.bottomSheetBG.visibility = View.GONE
                 }
             }
 
             newPassword.observe(viewLifecycleOwner) {
                 if (it) {
                     binding.progressBarLogin.visibility = View.GONE
+                    binding.bottomSheetBG.visibility = View.GONE
                     dataLogin.value?.let { bodyLogin ->
                         newPassword(bodyLogin)
                     }
@@ -109,6 +114,7 @@ class LoginFragment : BaseFragment() {
                 userIsStudent.observe(viewLifecycleOwner) { isUser ->
                     dataRequisition.observe(viewLifecycleOwner) { dataLogin ->
                         binding.progressBarLogin.visibility = View.GONE
+                        binding.bottomSheetBG.visibility = View.GONE
                         if (isUser) {
                             goToHomeStudent(
                                 user, DataForRequirement(

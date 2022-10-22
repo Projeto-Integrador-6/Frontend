@@ -28,4 +28,7 @@
     <!--    Colors Tela Login-->
     <color name="backgroundtxt">#DAC5C5C5</color>
     <color name="backgroundBottom">#268029</color>
+
+    <!-- Cor do backgroud -->
+    <color name="opaqueBG">#61000000</color>
 </resources>
