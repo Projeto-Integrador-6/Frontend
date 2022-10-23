@@ -34,4 +34,10 @@ interface ApiEndpoints {
         @POST("getmyclasstasks")
         suspend fun getClassroomTasks(@Body body : RequestTaskBody): Response<RequestTaskResponse>
     }
+
+    interface StudentService{
+        @Headers("Content-Type: application/json")
+        @POST("getmytasks")
+        suspend fun getTasks(@Body body : RequestTaskBody): Response<RequestTaskResponse>
+    }
 }

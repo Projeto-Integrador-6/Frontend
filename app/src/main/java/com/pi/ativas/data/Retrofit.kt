@@ -27,6 +27,7 @@ object Retrofit {
     //STUDENT FUNCTIONS
     val tokenApiStudent: TokenService = getRetrofit(STUDENT_BASE_URL).create(TokenService::class.java)
     val loginApiStudent: LoginService = getRetrofit(STUDENT_BASE_URL).create(LoginService::class.java)
+    val studentService: StudentService = getRetrofit(STUDENT_BASE_URL).create(StudentService::class.java)
 
     //TEACHER FUNCTION
     val tokenApiTeacher: TokenService = getRetrofit(TEACHER_BASE_URL).create(TokenService::class.java)
