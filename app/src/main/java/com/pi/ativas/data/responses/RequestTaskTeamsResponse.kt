@@ -1,9 +1,9 @@
 package com.pi.ativas.data.responses
 
 import com.google.gson.annotations.SerializedName
-import com.pi.ativas.teacher.model.Classroom
+import com.pi.ativas.teacher.model.Team
 
-data class RequestClassroomResponse(
+data class RequestTaskTeamsResponse(
     @SerializedName("success")
     val success: Boolean,
 
@@ -23,7 +23,7 @@ data class RequestClassroomResponse(
     val changePassword: Boolean?,
 
     @SerializedName("content")
-    val content: ArrayList<Classroom>?,
+    val content: ArrayList<Team>?,
 
     @SerializedName("total")
     val total: Int?

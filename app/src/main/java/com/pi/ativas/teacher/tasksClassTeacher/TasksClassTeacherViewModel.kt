@@ -1,23 +1,23 @@
-package com.pi.ativas.teacher.classTeacher
+package com.pi.ativas.teacher.tasksClassTeacher
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pi.ativas.data.Retrofit
-import com.pi.ativas.data.bodys.RequestClassroomBody
 import com.pi.ativas.data.bodys.RequestTaskBody
-import com.pi.ativas.model.Classroom
 import com.pi.ativas.model.Task
-import com.pi.ativas.teacher.model.DataForRequirement
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ClassTeacherViewModel(): ViewModel() {
+class TasksClassTeacherViewModel(): ViewModel() {
 
     private val _listTask = MutableLiveData<List<Task>>()
     val listTask: LiveData<List<Task>> = _listTask
+
+    private val _taskButtonClick = MutableLiveData<Task>()
+    val taskButtonClick: LiveData<Task> = _taskButtonClick
 
     fun getClassroomTasks(requestTaskBody: RequestTaskBody){
         getClassroom(requestTaskBody)
@@ -33,5 +33,9 @@ class ClassTeacherViewModel(): ViewModel() {
                 }
             }
         }
+    }
+
+    fun taskButtonClick(task: Task){
+        _taskButtonClick.postValue(task)
     }
 }

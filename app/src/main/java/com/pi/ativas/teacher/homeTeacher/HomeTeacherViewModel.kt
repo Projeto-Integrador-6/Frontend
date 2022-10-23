@@ -4,11 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.pi.ativas.data.Retrofit
 import com.pi.ativas.data.bodys.RequestClassroomBody
-import com.pi.ativas.model.Classroom
-import com.pi.ativas.model.User
+import com.pi.ativas.teacher.model.Classroom
 import com.pi.ativas.teacher.model.DataForRequirement
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
