@@ -69,4 +69,6 @@ Portanto você nos concede permissão para usar seu nome ed usuário, foto de pe
 <b><big>Você concorda que podemos baixar e instalar atualizações de spftware em seu dispositivo.</big></b>\n\n
 Caso não concorde com algo ou esteja com dúvidas/problemas, favor entrar em contato com a sua instituição ou com o nosso suporte, através da aba suporte no menu lateral. Obrigado e faça bom uso do nosso serviço.</string>
 
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non mi eget enim tincidunt finibus sed at nisi. Nunc et laoreet arcu. Morbi libero ex, porttitor non volutpat ac, cursus iaculis erat. Vestibulum mattis turpis a velit hendrerit, nec ornare nisi semper. Phasellus feugiat consequat justo eu consequat. Curabitur faucibus, purus in vulputate finibus, est sapien ornare nunc, vel pharetra lectus erat nec orci. Mauris imperdiet mauris nec mauris sagittis.</string>
+
 </resources>
