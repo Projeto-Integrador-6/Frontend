@@ -14,7 +14,7 @@ class TeamAdapter(
 ) : RecyclerView.Adapter<TeamViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_teams, parent, false)
         return TeamViewHolder(view)
     }
 
@@ -34,7 +34,7 @@ class TeamViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         view.apply {
             setOnClickListener { onItemClickListener.onClick(team) }
             with(binding) {
-                tvNameTeam.text = team.id
+                tvNameTeam.text = team.name
             }
         }
     }

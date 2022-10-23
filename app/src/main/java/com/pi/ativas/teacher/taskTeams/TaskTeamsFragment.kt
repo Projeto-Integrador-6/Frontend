@@ -33,10 +33,10 @@ class TaskTeamsFragment : BaseFragment() {
                     getString("token", "")?.let { token ->
                         taskTeamsViewModel.getTaskTeams(
                             RequestTaskTeamsBody(
-                                email,
-                                password,
-                                token,
-                                taskTeamsFragmentArgs.idTask
+                                email = email,
+                                password = password,
+                                token = token,
+                                taskId = taskTeamsFragmentArgs.idTask
                             )
                         )
                     }
@@ -58,6 +58,8 @@ class TaskTeamsFragment : BaseFragment() {
 
     override fun initObservers() {
         taskTeamsViewModel.listTeams.observe(viewLifecycleOwner){
+            binding.progressBar.visibility = View.GONE
+            binding.bottomSheetBG.visibility = View.GONE
             recycleView(it)
         }
     }
