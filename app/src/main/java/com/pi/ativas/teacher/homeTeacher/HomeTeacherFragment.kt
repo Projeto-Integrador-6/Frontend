@@ -18,7 +18,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeTeacherFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeTeacherBinding
-    private lateinit var teacher: User
     private lateinit var dataForRequirement: DataForRequirement
     private lateinit var classroomList: List<Classroom>
     private val homeTeacherViewModel: HomeTeacherViewModel by viewModel()

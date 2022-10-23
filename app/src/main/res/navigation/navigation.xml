@@ -63,7 +63,7 @@
 
     <fragment
         android:id="@+id/homeStudentFragment"
-        android:name="com.pi.ativas.student.HomeStudentFragment"
+        android:name="com.pi.ativas.student.ui.HomeStudentFragment"
         android:label="fragment_home_student"
         tools:layout="@layout/fragment_home_student">
         <action
@@ -83,31 +83,31 @@
 
     <fragment
         android:id="@+id/rankStudentFragment"
-        android:name="com.pi.ativas.student.RankStudentFragment"
+        android:name="com.pi.ativas.student.ui.RankStudentFragment"
         android:label="fragment_rank_student"
         tools:layout="@layout/fragment_rank_student" />
 
     <fragment
         android:id="@+id/disciplineStudentFragment"
-        android:name="com.pi.ativas.student.DisciplineStudentFragment"
+        android:name="com.pi.ativas.student.ui.DisciplineStudentFragment"
         android:label="fragment_discipline_student"
         tools:layout="@layout/fragment_discipline_student" />
 
     <fragment
         android:id="@+id/teacherStudentFragment"
-        android:name="com.pi.ativas.student.TeacherStudentFragment"
+        android:name="com.pi.ativas.student.ui.TeacherStudentFragment"
         android:label="fragment_teacher_student"
         tools:layout="@layout/fragment_teacher_student" />
 
     <fragment
         android:id="@+id/pendingTaskStudentFragment"
-        android:name="com.pi.ativas.student.PendingTaskStudentFragment"
+        android:name="com.pi.ativas.student.ui.PendingTaskStudentFragment"
         android:label="fragment_pending_taks_student"
         tools:layout="@layout/fragment_pending_task_student" />
 
     <fragment
         android:id="@+id/taskHistoryStudentFragment"
-        android:name="com.pi.ativas.student.TaskHistoryStudentFragment"
+        android:name="com.pi.ativas.student.ui.TaskHistoryStudentFragment"
         android:label="fragment_taks_history_student"
         tools:layout="@layout/fragment_task_history_student" />
 

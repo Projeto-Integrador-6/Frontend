@@ -8,8 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.MainActivity
@@ -18,13 +16,9 @@ import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.common.TextChangedListener
 import com.pi.ativas.data.bodys.LoginBody
 import com.pi.ativas.databinding.FragmentLoginBinding
-import com.pi.ativas.model.User
-import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class LoginFragment : BaseFragment() {
-
     private lateinit var binding: FragmentLoginBinding
     private val loginViewModel: LoginViewModel by viewModel()
     private lateinit var sharedPreferences: SharedPreferences
@@ -106,29 +100,30 @@ class LoginFragment : BaseFragment() {
             }
 
             user.observe(viewLifecycleOwner) { user ->
-                userIsStudent.observe(viewLifecycleOwner) { isUser ->
+                userIsStudent.observe(viewLifecycleOwner) { isStudent ->
                     dataRequisition.observe(viewLifecycleOwner) { dataLogin ->
                         binding.progressBarLogin.visibility = View.GONE
-                        if (isUser) {
-                            goToHomeStudent(
-                                user, DataForRequirement(
-                                    email = dataLogin.email,
-                                    password = dataLogin.password,
-                                    token = dataLogin.token
-                                )
-                            )
+
+                        (activity as MainActivity).setNavHeader(user.name ?: "null", user.email ?: "null")
+
+                        sharedPreferences.edit()
+                            .putBoolean("isLoggedUser", true)
+                            .putBoolean("isStudent", isStudent)
+                            .putString("email", dataLogin.email)
+                            .putString("password", dataLogin.password)
+                            .putString("token", dataLogin.token)
+                            .putString("userName", user.name)
+                            .putString("userEmail", user.email)
+                            .apply()
+
+                        if (isStudent) {
+                            (activity as MainActivity).getDrawerStudent()
+                            findNavController().navigate(R.id.action_loginFragment_to_homeStudentFragment)
                         } else {
-                            goToHomeTeacher(
-                                user,
-                                DataForRequirement(
-                                    email = dataLogin.email,
-                                    password = dataLogin.password,
-                                    token = dataLogin.token
-                                )
-                            )
+                            (activity as MainActivity).getDrawerTeatcher()
+                            findNavController().navigate(R.id.action_loginFragment_to_homeTeacherFragment)
                         }
                     }
-
                 }
             }
         }
@@ -169,39 +164,6 @@ class LoginFragment : BaseFragment() {
                 findNavController().navigate(action)
             }
             .show()
-    }
-
-    private fun goToHomeStudent(student: User, dataForRequirement: DataForRequirement) {
-        val activity: MainActivity = activity as MainActivity
-        activity.getDrawerStudent()
-        activity.setNavHeader("Vinicius crispim de Azevedo", "vinicrispim02@hotmail.com")
-
-        sharedPreferences.edit()
-            .putBoolean("isLoggedUser", true)
-            .putBoolean("isStudent", false)
-            .putString("email", dataForRequirement.email)
-            .putString("password", dataForRequirement.password)
-            .putString("token", dataForRequirement.token)
-            .apply()
-
-        val action = LoginFragmentDirections.actionLoginFragmentToHomeStudentFragment()
-        findNavController().navigate(action)
-    }
-
-    private fun goToHomeTeacher(teacher: User, dataForRequirement: DataForRequirement) {
-        val activity: MainActivity = activity as MainActivity
-        activity.getDrawerTeatcher()
-        activity.setNavHeader(teacher.name ?: "null", teacher.email ?: "null")
-
-        sharedPreferences.edit()
-            .putBoolean("isLoggedUser", true)
-            .putBoolean("isStudent", false)
-            .putString("email", dataForRequirement.email)
-            .putString("password", dataForRequirement.password)
-            .putString("token", dataForRequirement.token)
-            .apply()
-
-        findNavController().navigate(R.id.action_loginFragment_to_homeTeacherFragment)
     }
 }
 
