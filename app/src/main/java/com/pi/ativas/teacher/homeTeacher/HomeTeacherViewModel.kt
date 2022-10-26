@@ -28,7 +28,7 @@ class HomeTeacherViewModel(): ViewModel() {
             withContext(Dispatchers.Default) {
                 Retrofit.teacherService.getClassroom(requestClassroomBody).let { response ->
                     response.body()?.let { requestClassroomResponse ->
-                        _listClassroom.postValue(requestClassroomResponse.content as List<Classroom>)
+                        _listClassroom?.postValue(requestClassroomResponse?.content as List<Classroom>)
                     }
                 }
             }

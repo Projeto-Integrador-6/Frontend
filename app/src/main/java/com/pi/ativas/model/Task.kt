@@ -2,6 +2,7 @@ package com.pi.ativas.model
 
 data class Task(
     val id: Int,
+    val question_title: String,
     val question: String,
     val file: String,
     val answer: String,

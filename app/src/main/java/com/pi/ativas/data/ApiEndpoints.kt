@@ -33,5 +33,9 @@ interface ApiEndpoints {
         @Headers("Content-Type: application/json")
         @POST("getmyclasstasks")
         suspend fun getClassroomTasks(@Body body : RequestTaskBody): Response<RequestTaskResponse>
+
+        @Headers("Content-Type: application/json")
+        @POST("insertTask")
+        suspend fun getInsertTask(@Body body : InsertTaskBody): Response<InsertTaskResponse>
     }
 }
