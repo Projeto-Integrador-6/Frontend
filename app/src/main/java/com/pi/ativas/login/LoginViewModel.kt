@@ -37,6 +37,9 @@ class LoginViewModel() : ViewModel() {
     private val _userIsStudent = MutableLiveData<Boolean>()
     val userIsStudent: LiveData<Boolean> = _userIsStudent
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
+
     private var credentialsLogin: LoginBody = LoginBody("", "", "")
     private var isStudent: Boolean = true
 
@@ -108,8 +111,12 @@ class LoginViewModel() : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
                 Retrofit.loginApiStudent.getLogin(loginBody).let { response ->
-                    response.body()?.let { loginResponseBody ->
-                        checkLogin(loginResponseBody)
+                    if (response.isSuccessful) {
+                        response.body()?.let { loginResponseBody ->
+                            checkLogin(loginResponseBody)
+                        }
+                    } else {
+                        _error.postValue(response.raw().code.toString())
                     }
                 }
             }
@@ -120,8 +127,12 @@ class LoginViewModel() : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
                 Retrofit.loginApiTeacher.getLogin(loginBody).let { response ->
-                    response.body()?.let { loginResponseBody ->
-                        checkLogin(loginResponseBody)
+                    if (response.isSuccessful) {
+                        response.body()?.let { loginResponseBody ->
+                            checkLogin(loginResponseBody)
+                        }
+                    } else {
+                        _error.postValue(response.raw().code.toString())
                     }
                 }
             }
@@ -132,8 +143,12 @@ class LoginViewModel() : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
                 Retrofit.tokenApiStudent.getNewToken(tokenBody).let { response ->
-                    response.body()?.let { tokenResponseBody ->
-                        newLogin(tokenResponseBody)
+                    if (response.isSuccessful) {
+                        response.body()?.let { tokenResponseBody ->
+                            newLogin(tokenResponseBody)
+                        }
+                    } else {
+                        _error.postValue(response.raw().code.toString())
                     }
                 }
             }
@@ -144,8 +159,12 @@ class LoginViewModel() : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
                 Retrofit.tokenApiTeacher.getNewToken(tokenBody).let { response ->
-                    response.body()?.let { tokenResponseBody ->
-                        newLogin(tokenResponseBody)
+                    if (response.isSuccessful) {
+                        response.body()?.let { tokenResponseBody ->
+                            newLogin(tokenResponseBody)
+                        }
+                    } else {
+                        _error.postValue(response.raw().code.toString())
                     }
                 }
             }

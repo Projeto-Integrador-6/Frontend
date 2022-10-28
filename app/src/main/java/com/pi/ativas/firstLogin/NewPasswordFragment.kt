@@ -63,9 +63,13 @@ class NewPasswordFragment : BaseFragment() {
                             password = args.loginData[1],
                             token = args.loginData[2],
                             oldPassword = args.loginData[1],
-                            newPassword =  txtNewPassword.text.toString().trim()
+                            newPassword = txtNewPassword.text.toString().trim()
                         )
-                        newPasswordViewModel.newPassword(newPasswordBody)
+                        if (args.isStudent) {
+                            newPasswordViewModel.newPasswordStudent(newPasswordBody)
+                        } else {
+                            newPasswordViewModel.newPasswordTeacher(newPasswordBody)
+                        }
                     } else {
                         confirmNewPasswordLayout.error = "Confirmação de senha incorreta!"
                     }
@@ -81,8 +85,8 @@ class NewPasswordFragment : BaseFragment() {
         newPasswordViewModel.success.observe(viewLifecycleOwner) {
             callNewPassword()
         }
-        newPasswordViewModel.success1.observe(viewLifecycleOwner) {
-            callNewPassword1()
+        newPasswordViewModel.error.observe(viewLifecycleOwner) {
+            error(it)
         }
     }
 
@@ -97,10 +101,10 @@ class NewPasswordFragment : BaseFragment() {
             .show()
     }
 
-    private fun callNewPassword1() {
+    private fun error(erro: String) {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("ERRO")
-            .setMessage("Ocorreu um erro, tente novamente!")
+            .setMessage(erro)
             .setPositiveButton("OK") { dialog, which ->
 
             }

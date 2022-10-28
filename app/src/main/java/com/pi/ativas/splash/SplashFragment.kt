@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.pi.ativas.MainActivity
 import com.pi.ativas.R
 import com.pi.ativas.databinding.FragmentSplashBinding
+import com.pi.ativas.util.DATA_USER
 
 class SplashFragment : Fragment() {
 
@@ -21,7 +22,7 @@ class SplashFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = requireContext().getSharedPreferences("dataLogin", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences(DATA_USER, Context.MODE_PRIVATE)
     }
 
     override fun onCreateView(
