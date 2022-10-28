@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.databinding.FragmentHomeTeacherBinding
 import com.pi.ativas.teacher.model.Classroom
@@ -55,6 +56,17 @@ class HomeTeacherFragment : BaseFragment() {
         homeTeacherViewModel.listClassroom.observe(viewLifecycleOwner) {
             classroomList = it
             recycleView()
+        }
+
+        homeTeacherViewModel.error.observe(viewLifecycleOwner){
+            binding.progressbar.visibility = View.GONE
+            binding.bottomSheetBG.visibility = View.GONE
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Erro $it")
+                .setMessage("Ocorreu um erro inesperado!")
+                .setPositiveButton("Ok") { dialog, which ->
+                }
+                .show()
         }
     }
 

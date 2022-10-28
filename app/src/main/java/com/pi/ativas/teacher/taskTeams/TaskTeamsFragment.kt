@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.RequestTaskTeamsBody
 import com.pi.ativas.databinding.FragmentTaskTeamsBinding
@@ -61,6 +62,17 @@ class TaskTeamsFragment : BaseFragment() {
             binding.progressBar.visibility = View.GONE
             binding.bottomSheetBG.visibility = View.GONE
             recycleView(it)
+        }
+
+        taskTeamsViewModel.error.observe(viewLifecycleOwner){
+            binding.progressBar.visibility = View.GONE
+            binding.bottomSheetBG.visibility = View.GONE
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Erro $it")
+                .setMessage("Ocorreu um erro inesperado!")
+                .setPositiveButton("Ok") { dialog, which ->
+                }
+                .show()
         }
     }
 

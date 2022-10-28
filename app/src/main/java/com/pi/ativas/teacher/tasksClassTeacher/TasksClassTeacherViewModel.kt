@@ -19,6 +19,9 @@ class TasksClassTeacherViewModel(): ViewModel() {
     private val _taskButtonClick = MutableLiveData<Task>()
     val taskButtonClick: LiveData<Task> = _taskButtonClick
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
+
     fun getClassroomTasks(requestTaskBody: RequestTaskBody){
         getClassroom(requestTaskBody)
     }
@@ -27,8 +30,12 @@ class TasksClassTeacherViewModel(): ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
                 Retrofit.teacherService.getClassroomTasks(requestTaskBody).let { response ->
-                    response.body()?.let { requestTaskResponse ->
-                        _listTask.postValue(requestTaskResponse.content as List<Task>)
+                    if (response.isSuccessful){
+                        response.body()?.let { requestTaskResponse ->
+                            _listTask.postValue(requestTaskResponse.content as List<Task>)
+                        }
+                    }else{
+                        _error.postValue(response.raw().code.toString())
                     }
                 }
             }

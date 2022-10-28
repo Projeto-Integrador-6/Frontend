@@ -12,22 +12,27 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeTeacherViewModel(): ViewModel() {
+class HomeTeacherViewModel() : ViewModel() {
 
     private val _listClassroom = MutableLiveData<List<Classroom>>()
     val listClassroom: LiveData<List<Classroom>> = _listClassroom
 
-    fun getClassroom(dataForRequirement: DataForRequirement){
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
+
+    fun getClassroom(dataForRequirement: DataForRequirement) {
         getClassroom(dataForRequirement.toRequestClassroomBody())
     }
 
     private fun getClassroom(requestClassroomBody: RequestClassroomBody) {
         viewModelScope.launch {
-            withContext(Dispatchers.Default) {
-                Retrofit.teacherService.getClassroom(requestClassroomBody).let { response ->
+            Retrofit.teacherService.getClassroom(requestClassroomBody).let { response ->
+                if (response.isSuccessful) {
                     response.body()?.let { requestClassroomResponse ->
                         _listClassroom.postValue(requestClassroomResponse.content as List<Classroom>)
                     }
+                } else {
+                    _error.postValue(response.raw().code.toString())
                 }
             }
         }

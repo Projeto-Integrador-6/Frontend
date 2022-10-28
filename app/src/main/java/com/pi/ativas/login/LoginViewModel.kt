@@ -109,15 +109,13 @@ class LoginViewModel() : ViewModel() {
 
     private fun setNewLoginStudent(loginBody: LoginBody) {
         viewModelScope.launch {
-            withContext(Dispatchers.Default) {
-                Retrofit.loginApiStudent.getLogin(loginBody).let { response ->
-                    if (response.isSuccessful) {
-                        response.body()?.let { loginResponseBody ->
-                            checkLogin(loginResponseBody)
-                        }
-                    } else {
-                        _error.postValue(response.raw().code.toString())
+            Retrofit.loginApiStudent.getLogin(loginBody).let { response ->
+                if (response.isSuccessful) {
+                    response.body()?.let { loginResponseBody ->
+                        checkLogin(loginResponseBody)
                     }
+                } else {
+                    _error.postValue(response.raw().code.toString())
                 }
             }
         }
@@ -125,15 +123,13 @@ class LoginViewModel() : ViewModel() {
 
     private fun setNewLoginTeacher(loginBody: LoginBody) {
         viewModelScope.launch {
-            withContext(Dispatchers.Default) {
-                Retrofit.loginApiTeacher.getLogin(loginBody).let { response ->
-                    if (response.isSuccessful) {
-                        response.body()?.let { loginResponseBody ->
-                            checkLogin(loginResponseBody)
-                        }
-                    } else {
-                        _error.postValue(response.raw().code.toString())
+            Retrofit.loginApiTeacher.getLogin(loginBody).let { response ->
+                if (response.isSuccessful) {
+                    response.body()?.let { loginResponseBody ->
+                        checkLogin(loginResponseBody)
                     }
+                } else {
+                    _error.postValue(response.raw().code.toString())
                 }
             }
         }
@@ -141,15 +137,13 @@ class LoginViewModel() : ViewModel() {
 
     private fun setNewTokenStudent(tokenBody: TokenBody) {
         viewModelScope.launch {
-            withContext(Dispatchers.Default) {
-                Retrofit.tokenApiStudent.getNewToken(tokenBody).let { response ->
-                    if (response.isSuccessful) {
-                        response.body()?.let { tokenResponseBody ->
-                            newLogin(tokenResponseBody)
-                        }
-                    } else {
-                        _error.postValue(response.raw().code.toString())
+            Retrofit.tokenApiStudent.getNewToken(tokenBody).let { response ->
+                if (response.isSuccessful) {
+                    response.body()?.let { tokenResponseBody ->
+                        newLogin(tokenResponseBody)
                     }
+                } else {
+                    _error.postValue(response.raw().code.toString())
                 }
             }
         }
@@ -157,15 +151,13 @@ class LoginViewModel() : ViewModel() {
 
     private fun setNewTokenTeacher(tokenBody: TokenBody) {
         viewModelScope.launch {
-            withContext(Dispatchers.Default) {
-                Retrofit.tokenApiTeacher.getNewToken(tokenBody).let { response ->
-                    if (response.isSuccessful) {
-                        response.body()?.let { tokenResponseBody ->
-                            newLogin(tokenResponseBody)
-                        }
-                    } else {
-                        _error.postValue(response.raw().code.toString())
+            Retrofit.tokenApiTeacher.getNewToken(tokenBody).let { response ->
+                if (response.isSuccessful) {
+                    response.body()?.let { tokenResponseBody ->
+                        newLogin(tokenResponseBody)
                     }
+                } else {
+                    _error.postValue(response.raw().code.toString())
                 }
             }
         }
