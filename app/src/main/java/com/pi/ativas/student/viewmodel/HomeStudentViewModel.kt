@@ -14,11 +14,18 @@ class HomeStudentViewModel : ViewModel() {
     private val _listTask = MutableLiveData<List<Task>>()
     val listTask: LiveData<List<Task>> = _listTask
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
+
     fun getTask(requestTaskBody: RequestTaskBody) {
         viewModelScope.launch {
             Retrofit.studentService.getTasks(requestTaskBody).let { response ->
-                response.body()?.let { requestTaskResponse ->
-                    _listTask.postValue(requestTaskResponse.content as List<Task>)
+                if (response.isSuccessful) {
+                    response.body()?.let { requestTaskResponse ->
+                        _listTask.postValue(requestTaskResponse.content as List<Task>)
+                    }
+                } else {
+                    _error.postValue(response.raw().code.toString())
                 }
             }
         }

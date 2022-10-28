@@ -11,20 +11,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class NewPasswordViewModel(): ViewModel() {
+class NewPasswordViewModel() : ViewModel() {
 
     private val _success = MutableLiveData<Boolean>()
     val success: LiveData<Boolean> = _success
 
-    // OBSERVAVEIS APENAS PARA MOSTRAR OQUE ESTÁ VOLTANDO DA API
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
 
-    private val _success1 = MutableLiveData<Boolean>()
-    val success1: LiveData<Boolean> = _success1
-
-    fun newPassword(newPasswordBody: NewPasswordBody) {
+    fun newPasswordStudent(newPasswordBody: NewPasswordBody) {
         setNewPasswordStudent(newPasswordBody)
     }
 
+    fun newPasswordTeacher(newPasswordBody: NewPasswordBody) {
+        setNewPasswordTeacher(newPasswordBody)
+    }
 
     private fun checkNewPassword(newPasswordResponse: NewPasswordResponse) {
         with(newPasswordResponse) {
@@ -33,18 +34,17 @@ class NewPasswordViewModel(): ViewModel() {
             }
 
             checkCredentials?.let {
-                _success1.postValue(it)
+                _error.postValue("CREDENCIAS ERRADAS")
             }
             generateToken?.let {
-                _success1.postValue(it)
+                _error.postValue("TOKEN INVALIDO")
             }
             validParameters.let {
-                _success1.postValue(it)
+                _error.postValue("PARAMETROS INVALIDOS")
             }
             weakPassword?.let {
-                _success1.postValue(it)
+                _error.postValue("SENHA INVALIDA")
             }
-
         }
     }
 
@@ -60,7 +60,13 @@ class NewPasswordViewModel(): ViewModel() {
         }
     }
 
-    private fun setNewPasswordTeacher() {
-
+    private fun setNewPasswordTeacher(newPasswordBody: NewPasswordBody) {
+        viewModelScope.launch {
+            Retrofit.loginApiTeacher.getNewPassword(newPasswordBody).let { response ->
+                response.body()?.let { newPasswordResponse ->
+                    checkNewPassword(newPasswordResponse)
+                }
+            }
+        }
     }
 }

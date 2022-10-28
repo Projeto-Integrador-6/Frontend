@@ -19,6 +19,7 @@ import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.common.TextChangedListener
 import com.pi.ativas.data.bodys.LoginBody
 import com.pi.ativas.databinding.FragmentLoginBinding
+import com.pi.ativas.util.DATA_USER
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment() {
@@ -28,7 +29,7 @@ class LoginFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPreferences = requireContext().getSharedPreferences("dataLogin", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences(DATA_USER, Context.MODE_PRIVATE)
     }
 
     override fun onCreateView(
@@ -72,6 +73,16 @@ class LoginFragment : BaseFragment() {
 
     override fun initObservers() {
         with(loginViewModel) {
+
+            error.observe(viewLifecycleOwner) {
+                alertDialog(
+                    "Erro $it!",
+                    "Ocorreu um erro inesperado! Tente novamente!"
+                )
+                binding.progressBarLogin.visibility = View.GONE
+                binding.bottomSheetBG.visibility = View.GONE
+            }
+
             invalidCredential.observe(viewLifecycleOwner) {
                 if (it) {
                     binding.loginInputLayout.error = "Email ou senha incorretos"
@@ -96,12 +107,14 @@ class LoginFragment : BaseFragment() {
                 }
             }
 
-            newPassword.observe(viewLifecycleOwner) {
-                if (it) {
-                    binding.progressBarLogin.visibility = View.GONE
-                    binding.bottomSheetBG.visibility = View.GONE
-                    dataLogin.value?.let { bodyLogin ->
-                        newPassword(bodyLogin)
+            newPassword.observe(viewLifecycleOwner) { newPassword ->
+                userIsStudent.observe(viewLifecycleOwner) { isStudent ->
+                    if (newPassword) {
+                        binding.progressBarLogin.visibility = View.GONE
+                        binding.bottomSheetBG.visibility = View.GONE
+                        dataLogin.value?.let { bodyLogin ->
+                            newPassword(bodyLogin, isStudent)
+                        }
                     }
                 }
             }
@@ -111,7 +124,10 @@ class LoginFragment : BaseFragment() {
                     dataRequisition.observe(viewLifecycleOwner) { dataLogin ->
                         binding.progressBarLogin.visibility = View.GONE
 
-                        (activity as MainActivity).setNavHeader(user.name ?: "null", user.email ?: "null")
+                        (activity as MainActivity).setNavHeader(
+                            user.name ?: "null",
+                            user.email ?: "null"
+                        )
 
                         sharedPreferences.edit()
                             .putBoolean("isLoggedUser", true)
@@ -162,9 +178,12 @@ class LoginFragment : BaseFragment() {
             .show()
     }
 
-    private fun newPassword(dataLogin: LoginBody) {
+    private fun newPassword(dataLogin: LoginBody, isStudent: Boolean) {
         val action =
-            LoginFragmentDirections.actionLoginFragmentToNewPasswordFragment(dataLogin.getArray())
+            LoginFragmentDirections.actionLoginFragmentToNewPasswordFragment(
+                dataLogin.getArray(),
+                isStudent
+            )
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("NOVA SENHA")
             .setMessage("Por ser seu primeiro acesso ao UNI-Rank, você deve defenir uma nova senha!")

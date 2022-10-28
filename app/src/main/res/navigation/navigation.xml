@@ -59,6 +59,9 @@
         <argument
             android:name="loginData"
             app:argType="string[]" />
+        <argument
+            android:name="isStudent"
+            app:argType="boolean" />
     </fragment>
 
     <fragment

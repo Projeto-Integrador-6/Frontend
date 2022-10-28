@@ -5,16 +5,15 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.pi.ativas.databinding.FragmentHomeStudentBinding
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.RequestTaskBody
-import com.pi.ativas.databinding.FragmentHomeStudentBinding
 import com.pi.ativas.model.Task
 import com.pi.ativas.student.adapter.ItemClickListener
 import com.pi.ativas.student.adapter.TaskAdapter
 import com.pi.ativas.student.viewmodel.HomeStudentViewModel
-import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeStudentFragment : BaseFragment() {
@@ -59,11 +58,22 @@ class HomeStudentFragment : BaseFragment() {
         viewModel.listTask.observe(viewLifecycleOwner){
             recycleView(it)
             binding.progressbar.visibility = View.GONE
+            binding.bottomSheetBG.visibility = View.GONE
+        }
+
+        viewModel.error.observe(viewLifecycleOwner){
+            binding.progressbar.visibility = View.GONE
+            binding.bottomSheetBG.visibility = View.GONE
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Erro $it")
+                .setMessage("Ocorreu um erro inesperado!")
+                .setPositiveButton("Ok") { dialog, which ->
+                }
+                .show()
         }
     }
 
     private fun recycleView(taskList: List<Task>) {
-        binding.progressbar.visibility = View.GONE
 
         val onClickListener = ItemClickListener { task ->
             Toast.makeText(requireContext(), task.toString(), Toast.LENGTH_SHORT).show()
@@ -77,5 +87,4 @@ class HomeStudentFragment : BaseFragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
     }
-
 }
