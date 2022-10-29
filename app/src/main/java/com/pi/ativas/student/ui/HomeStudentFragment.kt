@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.databinding.FragmentHomeStudentBinding
@@ -36,7 +37,7 @@ class HomeStudentFragment : BaseFragment() {
                                 password = password,
                                 token = token,
                                 classId = 0,
-                                taskType = null
+                                taskType = 3
                             )
                         )
                     }
@@ -55,13 +56,13 @@ class HomeStudentFragment : BaseFragment() {
     }
 
     override fun initObservers() {
-        viewModel.listTask.observe(viewLifecycleOwner){
+        viewModel.listTask.observe(viewLifecycleOwner) {
             recycleView(it)
             binding.progressbar.visibility = View.GONE
             binding.bottomSheetBG.visibility = View.GONE
         }
 
-        viewModel.error.observe(viewLifecycleOwner){
+        viewModel.error.observe(viewLifecycleOwner) {
             binding.progressbar.visibility = View.GONE
             binding.bottomSheetBG.visibility = View.GONE
             MaterialAlertDialogBuilder(requireContext())
@@ -76,7 +77,11 @@ class HomeStudentFragment : BaseFragment() {
     private fun recycleView(taskList: List<Task>) {
 
         val onClickListener = ItemClickListener { task ->
-            Toast.makeText(requireContext(), task.toString(), Toast.LENGTH_SHORT).show()
+            val action =
+                HomeStudentFragmentDirections.actionHomeStudentFragmentToViewTaskStudentFragment(
+                    task
+                )
+            findNavController().navigate(action)
         }
 
         val recyclerView = binding.recycleViewHomeStudent

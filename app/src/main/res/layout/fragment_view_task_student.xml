@@ -44,5 +44,33 @@
         app:layout_constraintTop_toBottomOf="@id/title_task"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non mi eget enim tincidunt finibus sed at nisi. Nunc et laoreet arcu. Morbi libero ex, porttitor non volutpat ac, cursus iaculis erat. Vestibulum mattis turpis a velit hendrerit, nec ornare nisi semper. Phasellus feugiat consequat justo eu consequat. Curabitur faucibus, purus in vulputate finibus, est sapien ornare nunc, vel pharetra lectus erat nec orci. Mauris imperdiet mauris nec mauris sagittis sagittis." />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/responseLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Resposta..."
+        app:layout_constraintTop_toBottomOf="@id/question_task"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnPhoto">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/responseEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/btnPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00000000"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintBottom_toBottomOf="@+id/responseLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/responseLayout"
+        app:layout_constraintTop_toTopOf="@+id/responseLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

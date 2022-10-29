@@ -70,8 +70,8 @@
         android:label="fragment_home_student"
         tools:layout="@layout/fragment_home_student">
         <action
-            android:id="@+id/action_homeStudent_to_rankStudent"
-            app:destination="@id/rankStudentFragment" />
+            android:id="@+id/action_homeStudentFragment_to_viewTaskStudentFragment"
+            app:destination="@id/viewTaskStudentFragment" />
     </fragment>
 
     <fragment
@@ -175,4 +175,13 @@
         android:name="com.pi.ativas.support.UseTermsFragment"
         android:label="fragment_use_terms"
         tools:layout="@layout/fragment_use_terms" />
+    <fragment
+        android:id="@+id/viewTaskStudentFragment"
+        android:name="com.pi.ativas.student.ui.ViewTaskStudentFragment"
+        android:label="ViewTaskStudentFragment"
+        tools:layout="@layout/fragment_view_task_student">
+        <argument
+            android:name="task"
+            app:argType="com.pi.ativas.model.Task" />
+    </fragment>
 </navigation>
