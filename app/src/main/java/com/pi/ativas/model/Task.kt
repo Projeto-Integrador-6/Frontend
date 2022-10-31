@@ -12,7 +12,7 @@ data class Task(
     val rank: Int,
     val reduction_factor: Float,
     val grouped: Int,
-    val member_limiti: Int,
+    val member_limit: Int,
     val correction: Int,
     val class_id: Int
 )

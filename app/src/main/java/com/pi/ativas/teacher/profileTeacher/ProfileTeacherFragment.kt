@@ -1,19 +1,45 @@
 package com.pi.ativas.teacher.profileTeacher
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import com.pi.ativas.base.BaseFragment
+import com.pi.ativas.data.bodys.LoginBody
 import com.pi.ativas.databinding.FragmentProfileTeacherBinding
+import com.pi.ativas.teacher.model.DataForRequirement
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProfileTeacherFragment : Fragment() {
 
-   private lateinit var binding: FragmentProfileTeacherBinding
+class ProfileTeacherFragment : BaseFragment() {
+
+    private lateinit var binding: FragmentProfileTeacherBinding
+    private val profileTeacherViewModel: ProfileTeacherViewModel by viewModel()
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var dataForRequirement: DataForRequirement
+    //private lateinit var teacherProfile: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPreferences = requireContext().getSharedPreferences("dataLogin", Context.MODE_PRIVATE)
 
+        with(sharedPreferences) {
+            getString("email", "")?.let { email ->
+                getString("password", "")?.let { password ->
+                    getString("token", "")?.let { token ->
+                        dataForRequirement = DataForRequirement(email, password, token)
+                    }
+                }
+            }
+        }
     }
 
     override fun onCreateView(
@@ -21,8 +47,57 @@ class ProfileTeacherFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileTeacherBinding.inflate(layoutInflater)
+
+        initObservers()
+        initViews()
         return binding.root
     }
 
+    override fun initObservers() {
+        with(binding) {
+            btnVerCurriculo.setOnClickListener{
+                if (!txtSeusDadosCurriculo.text?.startsWith("http://")!! && !txtSeusDadosCurriculo.text?.startsWith(
+                        "https://"
+                    )!!
+                ) {
+                    txtSeusDadosCurriculo.setText("http://" + txtSeusDadosCurriculo.text.toString())
+                }
+                val i = Intent(Intent.ACTION_VIEW)
+                i.data = Uri.parse(txtSeusDadosCurriculo.text.toString())
+                startActivity(i)
+            }
+        }
+    }
+
+    override fun initViews() {
+        with(binding) {
+
+        val loginBody = LoginBody(
+            email = dataForRequirement.email,
+            password = dataForRequirement.password,
+            token = dataForRequirement.token
+        )
+        progressBarLogin.visibility = View.VISIBLE
+        profileTeacherViewModel.getProfile(loginBody)
+        profileTeacherViewModel.profileTeacher.observe(viewLifecycleOwner) {
+            Log.i("TESTE", "initObservers: " + it)
+                txtSeusDadosNome.setText(it.name)
+                txtSeusDadosEmail.setText(it.email)
+                txtSeusDadosContato.setText(it.phone)
+                txtSeusDadosCurriculo.setText(it.lattes)
+                txtSeusDadosAniversario.setText(it.birthday)
+            Log.i("TESTE", "initViews: "+it.phone)
+
+            val imagemBites: ByteArray
+            imagemBites =Base64.decode(it.photo?.substring(22),Base64.DEFAULT)
+            val imagemdecodificada = BitmapFactory.decodeByteArray(imagemBites, 0, imagemBites.size)
+            val bitmapRound = RoundedBitmapDrawableFactory.create(resources, imagemdecodificada)
+            bitmapRound.cornerRadius = 1000f
+            imgFoto.setImageDrawable(bitmapRound)
+            progressBarLogin.visibility = View.GONE
+
+        }
+        }
+    }
 
 }

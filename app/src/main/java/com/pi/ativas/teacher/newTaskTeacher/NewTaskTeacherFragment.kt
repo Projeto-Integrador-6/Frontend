@@ -28,7 +28,7 @@ class NewTaskTeacherFragment : BaseFragment() {
     private val newTaskViewModel: NewTaskViewModel by viewModel()
     private lateinit var dataForRequirement: DataForRequirement
     private lateinit var sharedPreferences: SharedPreferences
-    private var classroom=0
+    private lateinit var classroom:Classroom
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +73,7 @@ class NewTaskTeacherFragment : BaseFragment() {
                     position: Int,
                     id: Long
                 ) {
-                    classroom = binding.spnClass.selectedItemPosition
+                    classroom = binding.spnClass.selectedItem as Classroom
                 }
 
                 override fun onNothingSelected(adapterView: AdapterView<*>?) {}
@@ -81,7 +81,6 @@ class NewTaskTeacherFragment : BaseFragment() {
             newTaskViewModel.success.observe(viewLifecycleOwner) {
                 MaterialAlertDialogBuilder(requireContext())
                     .setTitle("NOVA ATIVIDADE CRIADA COM SUCESSO")
-                    .setMessage(newTaskViewModel.success.toString())
                     .setPositiveButton("OK") { dialog, which ->
                     }
                     .show()
@@ -106,7 +105,7 @@ class NewTaskTeacherFragment : BaseFragment() {
                     email = dataForRequirement.email,
                     password = dataForRequirement.password,
                     token = dataForRequirement.token,
-                    class_id = classroom+1,
+                    class_id = classroom.id,
                     grouped = radioGrupo,
                     rank = radioRank,
                     limit_date = txtTaskLimitDate2.text.toString(),
@@ -116,10 +115,9 @@ class NewTaskTeacherFragment : BaseFragment() {
                     question = txtTaskDescription.text.toString(),
                     correction = radioCorrigir,
                     file = "dsadas",
-                    member_limiti = memberInt,
+                    member_limit = memberInt,
                     reduction_factor = txtTaksReductionFactor.text.toString().toFloat()
                 )
-                Log.i("TESTE", "initViews: "+insertTaskBody)
                 newTaskViewModel.newTask(insertTaskBody)
             }
         }

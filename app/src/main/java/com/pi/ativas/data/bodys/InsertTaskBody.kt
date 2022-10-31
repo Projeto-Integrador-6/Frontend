@@ -40,8 +40,8 @@ data class InsertTaskBody(
     @SerializedName("grouped")
     val grouped:Int,
 
-    @SerializedName("member_limiti")
-    val member_limiti:Int,
+    @SerializedName("member_limit")
+    val member_limit:Int,
 
     @SerializedName("correction")
     val correction:Int,

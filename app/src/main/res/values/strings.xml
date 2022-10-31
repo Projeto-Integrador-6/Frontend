@@ -68,5 +68,12 @@ Queremos que nosso serviço seja o mais aberto e acessível possível, mas tamb�
 Portanto você nos concede permissão para usar seu nome ed usuário, foto de perfil e informaçõese sobre suas ações (como criar ou responder atividades), sendo assim, no caso do professor, poderemos mostrar aos alunos suas atividades criadas, e para os alunos as suas respostas serão enviadas para o professor.\n\n
 <b><big>Você concorda que podemos baixar e instalar atualizações de spftware em seu dispositivo.</big></b>\n\n
 Caso não concorde com algo ou esteja com dúvidas/problemas, favor entrar em contato com a sua instituição ou com o nosso suporte, através da aba suporte no menu lateral. Obrigado e faça bom uso do nosso serviço.</string>
+    <string name="descriçãoImagemPerfil">Imagem de perdil do professor</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="telefone">Telefone</string>
+    <string name="anivers_rio">Aniversário</string>
+    <string name="curriculo_lattes">Curriculo Lattes</string>
+    <string name="ver_curriculo">Ver Currículo</string>
 
 </resources>
