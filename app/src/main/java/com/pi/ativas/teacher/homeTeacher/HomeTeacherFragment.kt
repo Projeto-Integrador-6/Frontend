@@ -3,11 +3,13 @@ package com.pi.ativas.teacher.homeTeacher
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pi.ativas.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.databinding.FragmentHomeTeacherBinding
@@ -45,6 +47,8 @@ class HomeTeacherFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeTeacherBinding.inflate(layoutInflater)
+        val activity: MainActivity = activity as MainActivity
+        activity.getDrawerTeatcher()
         initObservers()
         homeTeacherViewModel.getClassroom(dataForRequirement)
 

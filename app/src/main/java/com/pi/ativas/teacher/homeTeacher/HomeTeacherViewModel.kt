@@ -1,5 +1,6 @@
 package com.pi.ativas.teacher.homeTeacher
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,7 +30,8 @@ class HomeTeacherViewModel() : ViewModel() {
             Retrofit.teacherService.getClassroom(requestClassroomBody).let { response ->
                 if (response.isSuccessful) {
                     response.body()?.let { requestClassroomResponse ->
-                        _listClassroom.postValue(requestClassroomResponse.content as List<Classroom>)
+                        _listClassroom?.postValue(requestClassroomResponse?.content as List<Classroom>)
+                        Log.i("TESTE", "getClassroom: "+requestClassroomResponse.content as List<Classroom>)
                     }
                 } else {
                     _error.postValue(response.raw().code.toString())

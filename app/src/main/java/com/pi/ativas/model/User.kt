@@ -13,9 +13,10 @@ data class User(
     val photo: String?,
     val registration: String?,
     val password: String?,
-    val telephone: String?,
+    val phone: String?,
     val email: String?,
     val address: String?,
     val status: Int?,
+    val lattes: String?,
     val cod: String?
 ): Parcelable

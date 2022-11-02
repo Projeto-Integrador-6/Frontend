@@ -1,16 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".teacher.newTaskTeacher.NewTaskTeacherFragment">
+    tools:context=".MainActivity">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="New Task Teacher"
-        android:textSize="20sp"
-        android:textAllCaps="true"/>
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Criar Nova Atividade"
+            android:textColor="@color/textColorGreen"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.017" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtTaskTitleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:hint="* Titulo da atividade"
+            app:hintTextColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.055">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtTaskTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtTaskDescriptionLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:hint="* Descrição da atividade"
+            app:hintTextColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTaskTitleLayout"
+            app:layout_constraintVertical_bias="0.026"
+            app:startIconDrawable="@drawable/ic_description">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtTaskDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/btndata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data"
+            app:layout_constraintBottom_toTopOf="@+id/txtTaskPontuationLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.077"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTaskDescriptionLayout"
+            app:layout_constraintVertical_bias="0.333" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtTaskLimitDateLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            app:hintTextColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.936"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTaskDescriptionLayout"
+            app:layout_constraintVertical_bias="0.026"
+            app:startIconDrawable="@drawable/ic_calendar">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtTaskLimitDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:text="* Prazo "
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtTaskPontuationLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:hint="* Pontuação"
+            app:hintTextColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTaskLimitDateLayout"
+            app:layout_constraintVertical_bias="0.039"
+            app:startIconDrawable="@drawable/ic_pontuation">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtTaskPontuation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtTaksReductionFactorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:hint="* Pontos reduzidos por dia de atraso"
+            app:hintTextColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTaskPontuationLayout"
+            app:layout_constraintVertical_bias="0.044">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtTaksReductionFactor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtTaskAnswerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:hint="Resposta Correta"
+            app:hintTextColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTaksReductionFactorLayout"
+            app:layout_constraintVertical_bias="0.003">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtTaskAnswer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtRadioPrecisaCorrigir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A Atividade Deverá Ser Corrigida?"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTaskAnswerLayout"
+            app:layout_constraintVertical_bias="0.069" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupCorrigir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtRadioPrecisaCorrigir"
+            android:checkedButton="@id/radio_sim"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtRadioPrecisaCorrigir"
+            app:layout_constraintVertical_bias="0.0">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radio_sim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="75dp"
+                android:text="Sim"
+                android:textSize="16sp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radio_nao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Não"
+                android:textSize="16sp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtRadio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A Atividade Deverá Ser Realizada?"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupCorrigir"
+            app:layout_constraintVertical_bias="0.078" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupGrouped"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtRadio2"
+            android:checkedButton="@id/radioIndividual"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtRadio2"
+            app:layout_constraintVertical_bias="0.0">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioIndividual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="75dp"
+                android:text="Individualmente"
+                android:textSize="16sp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radio_grupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Em Grupo"
+                android:textSize="16sp" />
+        </RadioGroup>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtGroupLimitLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:hint="Máximo de alunos por grupo"
+            app:hintTextColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupGrouped"
+            app:layout_constraintVertical_bias="0.003">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtMemberLimit"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/txtRadioRank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A Atividade Deverá Contabilizar para o Rank?"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtGroupLimitLayout"
+            app:layout_constraintVertical_bias="0.078" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupRank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radioGroupGrouped"
+            android:checkedButton="@id/radioSimRank"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtRadioRank"
+            app:layout_constraintVertical_bias="0.0">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioSimRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="75dp"
+                android:text="Sim"
+                android:textSize="16sp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/radioNaoRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Não"
+                android:textSize="16sp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtTurmas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecione a Turma"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupRank"
+            app:layout_constraintVertical_bias="0.125" />
+
+        <Spinner
+            android:id="@+id/spnClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnCriarAtividade"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTurmas"
+            app:layout_constraintVertical_bias="0.203" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCriarAtividade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/backgroundBottom"
+            android:text="Enviar Atividade"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            app:layout_goneMarginBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spnClass" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

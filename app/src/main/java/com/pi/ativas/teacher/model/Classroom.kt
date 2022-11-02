@@ -8,4 +8,9 @@ data class Classroom(
     val id: Int,
     val name: String,
     val cod: Int
-): Parcelable
+
+): Parcelable {
+    override fun toString(): String {
+        return name
+    }
+}
