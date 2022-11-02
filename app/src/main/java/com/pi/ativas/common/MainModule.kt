@@ -23,7 +23,6 @@ val mainModule = module {
 
     /** Student viewModel flow */
     viewModel { HomeStudentViewModel() }
-    viewModel { ClassTeacherViewModel() }
     viewModel {NewTaskViewModel()}
     viewModel { ProfileTeacherViewModel() }
 }

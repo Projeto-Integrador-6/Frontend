@@ -37,7 +37,7 @@ class HomeStudentFragment : BaseFragment() {
                                 password = password,
                                 token = token,
                                 classId = 0,
-                                taskType = 3
+                                taskType = 0
                             )
                         )
                     }

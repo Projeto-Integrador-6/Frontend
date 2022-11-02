@@ -55,7 +55,7 @@ class ProfileTeacherFragment : BaseFragment() {
 
     override fun initObservers() {
         with(binding) {
-            btnVerCurriculo.setOnClickListener{
+            btnVerCurriculo.setOnClickListener {
                 if (!txtSeusDadosCurriculo.text?.startsWith("http://")!! && !txtSeusDadosCurriculo.text?.startsWith(
                         "https://"
                     )!!
@@ -72,31 +72,32 @@ class ProfileTeacherFragment : BaseFragment() {
     override fun initViews() {
         with(binding) {
 
-        val loginBody = LoginBody(
-            email = dataForRequirement.email,
-            password = dataForRequirement.password,
-            token = dataForRequirement.token
-        )
-        progressBarLogin.visibility = View.VISIBLE
-        profileTeacherViewModel.getProfile(loginBody)
-        profileTeacherViewModel.profileTeacher.observe(viewLifecycleOwner) {
-            Log.i("TESTE", "initObservers: " + it)
+            val loginBody = LoginBody(
+                email = dataForRequirement.email,
+                password = dataForRequirement.password,
+                token = dataForRequirement.token
+            )
+            progressBarLogin.visibility = View.VISIBLE
+            profileTeacherViewModel.getProfile(loginBody)
+            profileTeacherViewModel.profileTeacher.observe(viewLifecycleOwner) {
+                Log.i("TESTE", "initObservers: " + it)
                 txtSeusDadosNome.setText(it.name)
                 txtSeusDadosEmail.setText(it.email)
                 txtSeusDadosContato.setText(it.phone)
                 txtSeusDadosCurriculo.setText(it.lattes)
                 txtSeusDadosAniversario.setText(it.birthday)
-            Log.i("TESTE", "initViews: "+it.phone)
+                Log.i("TESTE", "initViews: " + it.phone)
 
-            val imagemBites: ByteArray
-            imagemBites =Base64.decode(it.photo?.substring(22),Base64.DEFAULT)
-            val imagemdecodificada = BitmapFactory.decodeByteArray(imagemBites, 0, imagemBites.size)
-            val bitmapRound = RoundedBitmapDrawableFactory.create(resources, imagemdecodificada)
-            bitmapRound.cornerRadius = 1000f
-            imgFoto.setImageDrawable(bitmapRound)
-            progressBarLogin.visibility = View.GONE
+                val imagemBites: ByteArray
+                imagemBites = Base64.decode(it.photo?.substring(22), Base64.DEFAULT)
+                val imagemdecodificada =
+                    BitmapFactory.decodeByteArray(imagemBites, 0, imagemBites.size)
+                val bitmapRound = RoundedBitmapDrawableFactory.create(resources, imagemdecodificada)
+                bitmapRound.cornerRadius = 1000f
+                imgFoto.setImageDrawable(bitmapRound)
+                progressBarLogin.visibility = View.GONE
 
-        }
+            }
         }
     }
 

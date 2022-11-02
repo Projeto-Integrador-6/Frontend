@@ -1,4 +1,4 @@
-package com.pi.ativas.teacher.model
+package com.pi.ativas.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
