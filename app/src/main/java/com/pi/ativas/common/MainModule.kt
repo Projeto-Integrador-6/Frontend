@@ -3,6 +3,7 @@ package com.pi.ativas.common
 import com.pi.ativas.firstLogin.NewPasswordViewModel
 import com.pi.ativas.login.LoginViewModel
 import com.pi.ativas.student.viewmodel.HomeStudentViewModel
+import com.pi.ativas.student.viewmodel.ViewTaskStudentViewModel
 import com.pi.ativas.teacher.tasksClassTeacher.TasksClassTeacherViewModel
 import com.pi.ativas.teacher.homeTeacher.HomeTeacherViewModel
 import com.pi.ativas.teacher.taskTeams.TaskTeamsViewModel
@@ -23,6 +24,7 @@ val mainModule = module {
 
     /** Student viewModel flow */
     viewModel { HomeStudentViewModel() }
-    viewModel {NewTaskViewModel()}
+    viewModel { NewTaskViewModel() }
     viewModel { ProfileTeacherViewModel() }
+    viewModel { ViewTaskStudentViewModel() }
 }

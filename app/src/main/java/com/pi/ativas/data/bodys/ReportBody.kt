@@ -1,6 +1,5 @@
 package com.pi.ativas.data.bodys
 
-import android.util.Base64
 import com.google.gson.annotations.SerializedName
 
 data class ReportBody(
@@ -22,7 +21,7 @@ data class ReportBody(
     @SerializedName("anexo")
     var anexo: String?,
 
-    @SerializedName("team_id")
+    @SerializedName("task_id")
     var teamId: Int
 
 )

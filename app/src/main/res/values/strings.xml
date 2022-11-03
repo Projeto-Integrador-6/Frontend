@@ -77,5 +77,6 @@ Caso não concorde com algo ou esteja com dúvidas/problemas, favor entrar em co
     <string name="ver_curriculo">Ver Currículo</string>
 
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non mi eget enim tincidunt finibus sed at nisi. Nunc et laoreet arcu. Morbi libero ex, porttitor non volutpat ac, cursus iaculis erat. Vestibulum mattis turpis a velit hendrerit, nec ornare nisi semper. Phasellus feugiat consequat justo eu consequat. Curabitur faucibus, purus in vulputate finibus, est sapien ornare nunc, vel pharetra lectus erat nec orci. Mauris imperdiet mauris nec mauris sagittis.</string>
+    <string name="enviar">Enviar atividade</string>
 
 </resources>

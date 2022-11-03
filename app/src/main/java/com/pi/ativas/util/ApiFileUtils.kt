@@ -10,7 +10,8 @@ import java.io.ByteArrayOutputStream
 class ApiFileUtils {
     fun encode(context: Context, imageUri: Uri): String {
         val input = context.getContentResolver().openInputStream(imageUri)
-        val image = BitmapFactory.decodeStream(input , null, null)
+        val imageOriginal = BitmapFactory.decodeStream(input , null, null)
+        val image = Bitmap.createScaledBitmap(imageOriginal!!, 600, 600, true)
 
         // Encode image to base64 string
         val baos = ByteArrayOutputStream()

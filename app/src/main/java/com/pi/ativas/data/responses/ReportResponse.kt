@@ -2,6 +2,7 @@ package com.pi.ativas.data.responses
 
 import com.google.gson.annotations.SerializedName
 import com.pi.ativas.model.User
+import com.pi.ativas.student.model.ReportCreated
 
 data class ReportResponse(
     @SerializedName("success")
@@ -20,5 +21,5 @@ data class ReportResponse(
     val inactiveAccount: Boolean?,
 
     @SerializedName("object")
-    val user: User?
+    val reportCreated: ReportCreated?
 )
