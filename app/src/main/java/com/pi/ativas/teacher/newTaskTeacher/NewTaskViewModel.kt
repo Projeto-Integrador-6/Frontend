@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pi.ativas.MainActivity
 import com.pi.ativas.data.Retrofit
 import com.pi.ativas.data.bodys.InsertTaskBody
 import com.pi.ativas.data.bodys.NewPasswordBody
@@ -23,12 +24,13 @@ class NewTaskViewModel(): ViewModel() {
     val success: LiveData<Boolean> = _success
     private val _listClassroom = MutableLiveData<List<Classroom>>()
     val listClassroom: LiveData<List<Classroom>> = _listClassroom
+    private val _id = MutableLiveData<Int>()
+    val id: LiveData<Int> = _id
 
     private val _success1 = MutableLiveData<Boolean>()
     val success1: LiveData<Boolean> = _success1
-
-    fun newTask(insertTaskBody: InsertTaskBody) {
-        setTask(insertTaskBody)
+    fun newTask(insertTaskBody: InsertTaskBody, activity: MainActivity, memberlimit:Int) {
+        setTask(insertTaskBody, activity, memberlimit)
     }
 
     fun getClassroom(dataForRequirement: DataForRequirement){
@@ -54,12 +56,14 @@ class NewTaskViewModel(): ViewModel() {
         }
     }
 
-    private fun setTask(insertTaskBody: InsertTaskBody) {
+    private fun setTask(insertTaskBody: InsertTaskBody,activity: MainActivity, memberlimit: Int) {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
                 Retrofit.teacherService.getInsertTask(insertTaskBody).let { response ->
                     response.body()?.let { insertTaskResponse ->
                         checkInsertTask(insertTaskResponse)
+                        activity.guardIdsLimit(insertTaskResponse.task!!.id,memberlimit,insertTaskResponse.task.class_id)
+                        _id.postValue(insertTaskResponse.task?.id as Int)
                     }
                 }
             }

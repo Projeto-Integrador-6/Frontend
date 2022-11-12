@@ -89,7 +89,7 @@ class ProfileTeacherFragment : BaseFragment() {
             Log.i("TESTE", "initViews: "+it.phone)
 
             val imagemBites: ByteArray
-            imagemBites =Base64.decode(it.photo?.substring(22),Base64.DEFAULT)
+            imagemBites =Base64.decode(it.photo,Base64.DEFAULT)
             val imagemdecodificada = BitmapFactory.decodeByteArray(imagemBites, 0, imagemBites.size)
             val bitmapRound = RoundedBitmapDrawableFactory.create(resources, imagemdecodificada)
             bitmapRound.cornerRadius = 1000f

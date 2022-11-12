@@ -3,6 +3,7 @@ package com.pi.ativas.common
 import com.pi.ativas.firstLogin.NewPasswordViewModel
 import com.pi.ativas.login.LoginViewModel
 import com.pi.ativas.teacher.classTeacher.ClassTeacherViewModel
+import com.pi.ativas.teacher.createGroup.CreateGroupViewModel
 import com.pi.ativas.teacher.homeTeacher.HomeTeacherViewModel
 import com.pi.ativas.teacher.newTaskTeacher.NewTaskViewModel
 import com.pi.ativas.teacher.profileTeacher.ProfileTeacherViewModel
@@ -16,4 +17,5 @@ val mainModule = module {
     viewModel { ClassTeacherViewModel() }
     viewModel {NewTaskViewModel()}
     viewModel { ProfileTeacherViewModel() }
+    viewModel {CreateGroupViewModel()}
 }

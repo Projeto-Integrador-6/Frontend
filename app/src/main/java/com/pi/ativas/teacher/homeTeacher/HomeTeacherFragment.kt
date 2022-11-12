@@ -26,7 +26,6 @@ class HomeTeacherFragment : BaseFragment() {
     private val homeTeacherViewModel: HomeTeacherViewModel by viewModel()
     private lateinit var sharedPreferences: SharedPreferences
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = requireContext().getSharedPreferences("dataLogin", Context.MODE_PRIVATE)
@@ -49,9 +48,10 @@ class HomeTeacherFragment : BaseFragment() {
         binding = FragmentHomeTeacherBinding.inflate(layoutInflater)
         val activity: MainActivity = activity as MainActivity
         activity.getDrawerTeatcher()
+        activity.setNavHeader("Walter White",dataForRequirement.email)
         initObservers()
         homeTeacherViewModel.getClassroom(dataForRequirement)
-
+        Log.i("TESTE", "onCreateView: "+dataForRequirement.token)
         return binding.root
     }
 
@@ -65,6 +65,7 @@ class HomeTeacherFragment : BaseFragment() {
 
     private fun recycleView() {
         binding.progressbar.visibility = View.GONE
+
 
         val onClickListener = ItemClickListener { classroom ->
             val action =

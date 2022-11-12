@@ -41,7 +41,7 @@ class LoginFragment : BaseFragment() {
 
     override fun initViews() {
         with(binding) {
-            btnLogar.setOnClickListener {
+           btnLogar.setOnClickListener {
                 checkFields()
             }
         }

@@ -246,7 +246,7 @@
                 android:textSize="16sp" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radio_grupo"
+                android:id="@+id/radioEmGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Em Grupo"
