@@ -1,17 +1,22 @@
 package com.pi.ativas
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.google.android.material.navigation.NavigationView
 import com.pi.ativas.databinding.ActivityMainBinding
+import com.pi.ativas.util.DATA_USER
 import com.pi.ativas.util.LoadToggle
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -54,8 +59,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun getDrawerStudent() {
         LoadToggle.loadMenu(binding.drawerLayout, this, binding.appBarMain.toolbar)
-        binding.navView.menu.removeGroup(R.id.group_teacher)
-        binding.navView.menu.removeItem(R.id.item_teacher_task)
+        binding.navView.menu.setGroupVisible(R.id.group_teacher, false)
+        binding.navView.menu.setGroupVisible(R.id.group_student, true)
+        //binding.navView.menu.removeItem(R.id.item_teacher_task)
+
+        binding.appBarMain.toolbar.visibility = View.VISIBLE
 
         //desbloqueia menu do estudante após login
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -63,8 +71,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun getDrawerTeatcher() {
         LoadToggle.loadMenu(binding.drawerLayout, this, binding.appBarMain.toolbar)
-        binding.navView.menu.removeGroup(R.id.group_student)
-        binding.navView.menu.removeItem(R.id.item_student_task)
+        binding.navView.menu.setGroupVisible(R.id.group_student, false)
+        binding.navView.menu.setGroupVisible(R.id.group_teacher, true)
+        //binding.navView.menu.removeItem(R.id.item_student_task)
+
+        binding.appBarMain.toolbar.visibility = View.VISIBLE
 
         //desbloqueia menu do estudante após login
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -106,12 +117,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.nav_support -> navigate(R.id.supportFragment)
                 R.id.nav_terms -> navigate(R.id.useTermsFragment)
                 R.id.nav_share -> share()
+                R.id.nav_exit -> logOff()
                 else -> super.onOptionsItemSelected(item)
             }
         }
         val drawer = binding.drawerLayout
         drawer.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun logOff() {
+        val sharedPreferences = getSharedPreferences(DATA_USER, Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+        binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        binding.appBarMain.toolbar.visibility = View.INVISIBLE
+
+        binding.appBarMain.navHostFragment.findNavController().navigate(
+            R.id.loginFragment, null,
+            NavOptions.Builder().setPopUpTo(
+                binding.appBarMain.navHostFragment.findNavController().graph.startDestinationId,
+                true
+            ).build()
+        )
     }
 
 }

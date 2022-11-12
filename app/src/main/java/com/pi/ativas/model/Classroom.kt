@@ -1,4 +1,4 @@
-package com.pi.ativas.teacher.model
+package com.pi.ativas.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -8,4 +8,9 @@ data class Classroom(
     val id: Int,
     val name: String,
     val cod: Int
-): Parcelable
+
+): Parcelable {
+    override fun toString(): String {
+        return name
+    }
+}

@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pi.ativas.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.databinding.FragmentHomeTeacherBinding
-import com.pi.ativas.teacher.model.Classroom
-import com.pi.ativas.model.User
+import com.pi.ativas.model.Classroom
 import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -45,6 +45,8 @@ class HomeTeacherFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeTeacherBinding.inflate(layoutInflater)
+        val activity: MainActivity = activity as MainActivity
+        activity.getDrawerTeatcher()
         initObservers()
         homeTeacherViewModel.getClassroom(dataForRequirement)
 

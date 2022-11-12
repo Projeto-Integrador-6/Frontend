@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pi.ativas.R
 import com.pi.ativas.databinding.ItemClassroomBinding
-import com.pi.ativas.teacher.model.Classroom
+import com.pi.ativas.model.Classroom
 
 class ClassroomAdapter(
     private val list: List<Classroom>,

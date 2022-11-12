@@ -16,7 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.data.bodys.RequestTaskBody
 import com.pi.ativas.databinding.FragmentTaskClassTeacherBinding
-import com.pi.ativas.teacher.model.Classroom
+import com.pi.ativas.model.Classroom
 import com.pi.ativas.model.Task
 import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
