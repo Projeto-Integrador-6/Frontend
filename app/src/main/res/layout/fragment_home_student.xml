@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".student.HomeStudentFragment"
-    tools:openDrawer="start">
-        <TextView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".teacher.homeTeacher.HomeTeacherFragment">
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/backgroundBottom"
+            android:layout_gravity="center"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewHomeStudent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Home Student"
-            android:textSize="20sp"
-            android:textAllCaps="true"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_classroom"/>
+
+        <View
+            android:id="@+id/bottomSheetBG"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/opaqueBG"
+            android:elevation="5dp"/>
 
 </FrameLayout>

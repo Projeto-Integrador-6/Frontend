@@ -40,6 +40,7 @@
     <string name="menu_teacher_terms">Termos de Uso</string>
 
     <!--Suporte-->
+    <string name="menu_exit">Sair</string>
     <string name="suporte">Caso você queira relatar um problema, pedir ajuda com relação ao aplicativo ou qualquer solicitação de suporte, favor entrar em contato através do nosso email: <a>vinicrispim02@hotmail.com</a></string>
     <string name="link_do_app">Link para divulgação do app></string>
     <string name="suporte_titulo">Suporte</string>
@@ -75,5 +76,8 @@ Caso não concorde com algo ou esteja com dúvidas/problemas, favor entrar em co
     <string name="anivers_rio">Aniversário</string>
     <string name="curriculo_lattes">Curriculo Lattes</string>
     <string name="ver_curriculo">Ver Currículo</string>
+
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non mi eget enim tincidunt finibus sed at nisi. Nunc et laoreet arcu. Morbi libero ex, porttitor non volutpat ac, cursus iaculis erat. Vestibulum mattis turpis a velit hendrerit, nec ornare nisi semper. Phasellus feugiat consequat justo eu consequat. Curabitur faucibus, purus in vulputate finibus, est sapien ornare nunc, vel pharetra lectus erat nec orci. Mauris imperdiet mauris nec mauris sagittis.</string>
+    <string name="enviar">Enviar atividade</string>
 
 </resources>

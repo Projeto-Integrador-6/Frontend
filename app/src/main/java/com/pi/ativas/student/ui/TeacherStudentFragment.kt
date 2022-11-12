@@ -1,14 +1,15 @@
-package com.pi.ativas.student
+package com.pi.ativas.student.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.pi.ativas.databinding.FragmentDisciplineStudentBinding
+import com.pi.ativas.databinding.FragmentTeacherStudentBinding
 
-class DisciplineStudentFragment : Fragment() {
-    private lateinit var binding: FragmentDisciplineStudentBinding
+class TeacherStudentFragment : Fragment() {
+
+    private lateinit var binding: FragmentTeacherStudentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +20,7 @@ class DisciplineStudentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDisciplineStudentBinding.inflate(layoutInflater)
+        binding = FragmentTeacherStudentBinding.inflate(layoutInflater)
         return binding.root
     }
 

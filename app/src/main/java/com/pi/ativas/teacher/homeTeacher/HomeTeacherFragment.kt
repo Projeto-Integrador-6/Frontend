@@ -3,24 +3,22 @@ package com.pi.ativas.teacher.homeTeacher
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pi.ativas.MainActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.databinding.FragmentHomeTeacherBinding
 import com.pi.ativas.model.Classroom
-import com.pi.ativas.model.User
 import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeTeacherFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeTeacherBinding
-    private lateinit var teacher: User
     private lateinit var dataForRequirement: DataForRequirement
     private lateinit var classroomList: List<Classroom>
     private val homeTeacherViewModel: HomeTeacherViewModel by viewModel()
@@ -61,15 +59,27 @@ class HomeTeacherFragment : BaseFragment() {
             classroomList = it
             recycleView()
         }
+
+        homeTeacherViewModel.error.observe(viewLifecycleOwner){
+            binding.progressbar.visibility = View.GONE
+            binding.bottomSheetBG.visibility = View.GONE
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Erro $it")
+                .setMessage("Ocorreu um erro inesperado!")
+                .setPositiveButton("Ok") { dialog, which ->
+                }
+                .show()
+        }
     }
 
     private fun recycleView() {
         binding.progressbar.visibility = View.GONE
+        binding.bottomSheetBG.visibility = View.GONE
 
 
         val onClickListener = ItemClickListener { classroom ->
             val action =
-                HomeTeacherFragmentDirections.actionHomeTeacherFragmentToClassTeacherFragment(
+                HomeTeacherFragmentDirections.actionHomeTeacherFragmentToTaskClassTeacherFragment(
                     classroom,
                     dataForRequirement
                 )

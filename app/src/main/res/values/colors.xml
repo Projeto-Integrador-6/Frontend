@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray_100">#999999</color>
 
     <!-- Cores do APP-->
     <color name="primaryColor">#1b5e20</color>
@@ -17,6 +18,7 @@
     <color name="secondaryDarkColor">#ac0800</color>
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
+    <color name="gray_900">#252525</color>
 
     <!--Cor dos títulos-->
     <color name="textColorGreen">#BF268029</color>
@@ -27,4 +29,7 @@
     <!--    Colors Tela Login-->
     <color name="backgroundtxt">#DAC5C5C5</color>
     <color name="backgroundBottom">#268029</color>
+
+    <!-- Cor do backgroud -->
+    <color name="opaqueBG">#61000000</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.pi.ativas.student
+package com.pi.ativas.student.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
