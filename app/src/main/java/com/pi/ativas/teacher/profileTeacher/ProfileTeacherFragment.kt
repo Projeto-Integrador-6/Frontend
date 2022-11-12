@@ -90,7 +90,6 @@ class ProfileTeacherFragment : BaseFragment() {
                 txtSeusDadosCurriculo.setText(it.lattes)
                 txtSeusDadosAniversario.setText(it.birthday)
                 Log.i("TESTE", "initViews: " + it.phone)
-
                 try {
                     it.photo?.let { photo ->
                         val imagemBites: ByteArray

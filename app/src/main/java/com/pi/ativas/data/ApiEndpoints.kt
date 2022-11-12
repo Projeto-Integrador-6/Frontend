@@ -39,6 +39,13 @@ interface ApiEndpoints {
         suspend fun getInsertTask(@Body body : InsertTaskBody): Response<InsertTaskResponse>
 
         @Headers("Content-Type: application/json")
+        @POST("createteam")
+        suspend fun getCreateTeam(@Body body : CreateTeamBody): Response<CreateTeamResponse>
+
+        @Headers("Content-Type: application/json")
+        @POST("getstudentsinclass")
+        suspend fun getStudentsInClass(@Body body : StudentsInClassBody): Response<StudentsInClassResponse>
+       
         @POST("getTeamsinTask")
         suspend fun getTaskTeams(@Body body : RequestTaskTeamsBody): Response<RequestTaskTeamsResponse>
     }

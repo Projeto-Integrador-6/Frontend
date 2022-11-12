@@ -151,10 +151,23 @@
         android:name="com.pi.ativas.teacher.newTaskTeacher.NewTaskTeacherFragment"
         android:label="fragment_new_task_teacher"
         tools:layout="@layout/fragment_new_task_teacher" >
+        <action
+            android:id="@+id/action_newTaskTeacher_to_createGroup"
+            app:destination="@id/createGroupTeacherFragment" />
         <argument
             android:name="dataForRequirement"
             app:argType="com.pi.ativas.teacher.model.DataForRequirement" />
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/createGroupTeacherFragment"
+        android:name="com.pi.ativas.teacher.createGroup.CreateGroupFragment"
+        android:label="fragment_create_group_fragment"
+        tools:layout="@layout/fragment_create_group">
+        <action
+            android:id="@+id/action_createGroup_to_newTaskTeacher"
+            app:destination="@id/newTaskTeacherFragment" />
     </fragment>
 
     <fragment

@@ -3,6 +3,7 @@ package com.pi.ativas
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.google.android.material.navigation.NavigationView
+import com.pi.ativas.data.bodys.InsertTaskBody
 import com.pi.ativas.databinding.ActivityMainBinding
 import com.pi.ativas.util.DATA_USER
 import com.pi.ativas.util.LoadToggle
@@ -124,6 +126,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val drawer = binding.drawerLayout
         drawer.closeDrawer(GravityCompat.START)
         return true
+    }
+    //lateinit var insertTaskBody2:InsertTaskBody
+    var id:Int=0
+    var limit:Int =0
+    var classid:Int =0
+    /*fun guardTask(insertTaskBody: InsertTaskBody){
+        insertTaskBody2 = insertTaskBody
+  }*/
+    fun guardIdsLimit(idTask:Int, limitMember: Int, classId:Int){
+        id=idTask
+        limit=limitMember
+        classid=classId
+        Log.i("TESTE", "guardIdTask: "+id)
+        Log.i("TESTE", "guardIdTask: "+classid)
+        Log.i("TESTE", "guardIdTask: "+limitMember)
+    }
+    fun getTaskId2():Int{
+        return id
+    }
+    fun getTaskLimit():Int{
+        return limit
+    }
+    fun getClassId():Int{
+        return classid
     }
 
     private fun logOff() {

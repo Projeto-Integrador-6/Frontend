@@ -4,6 +4,8 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +13,12 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.pi.ativas.MainActivity
 import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.InsertTaskBody
 import com.pi.ativas.databinding.FragmentNewTaskTeacherBinding
 import com.pi.ativas.model.Classroom
-import com.pi.ativas.teacher.homeTeacher.HomeTeacherViewModel
 import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
@@ -28,7 +30,7 @@ class NewTaskTeacherFragment : BaseFragment() {
     private val newTaskViewModel: NewTaskViewModel by viewModel()
     private lateinit var dataForRequirement: DataForRequirement
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var classroom:Classroom
+    private lateinit var classroom: Classroom
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +44,8 @@ class NewTaskTeacherFragment : BaseFragment() {
                         dataForRequirement = DataForRequirement(email, password, token)
                     }
                 }
-            }}
+            }
+        }
 
     }
 
@@ -57,6 +60,7 @@ class NewTaskTeacherFragment : BaseFragment() {
 
         return binding.root
     }
+
     override fun initObservers() {
         newTaskViewModel.listClassroom.observe(viewLifecycleOwner) {
             val adpter: ArrayAdapter<Classroom> = ArrayAdapter<Classroom>(
@@ -89,67 +93,106 @@ class NewTaskTeacherFragment : BaseFragment() {
 
 
     }
+
     override fun initViews() {
         with(binding) {
-
+            var radioRank: Int = 0
+            var radioGrupo2: Int = 0
             val txtTaskLimitDate2: TextView = txtTaskLimitDate
-            var (radioGrupo: Int, radioRank: Int, radioCorrigir: Int) = setRadios()
+            radioEmGrupo.setOnClickListener {
+                txtMemberLimit.visibility = View.VISIBLE
+                radioGrupo2 = 1
+            }
+            radioIndividual.setOnClickListener {
+                txtMemberLimit.visibility = View.GONE
+                radioGrupo2 = 0
+            }
+            radioSimRank.setOnClickListener {
+                radioRank = 1
+            }
+            radioNaoRank.setOnClickListener {
+                radioRank = 0
+            }
+            var radioCorrigir: Int = 1
+
+            radioSim.setOnClickListener {
+                radioCorrigir = 1
+            }
+            radioNao.setOnClickListener {
+                radioCorrigir = 0
+            }
             setDate(txtTaskLimitDate2)
             spnClass.adapter
-            btnCriarAtividade.setOnClickListener{
-                var memberInt =1
-                if(!txtMemberLimit.text.toString().equals("")){
-                    memberInt = txtMemberLimit.text.toString().toInt()
+            btnCriarAtividade.setOnClickListener {
+                if (txtTaskTitle.equals("") || txtTaskDescription.text.toString()
+                        .equals("") || txtTaskLimitDate.text.toString().equals("")
+                    || txtTaksReductionFactor.text.toString()
+                        .equals("") || txtTaskPontuation.equals("")
+                ) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Favor inserir todos os valores obrigatórios!",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                } else {
+                    var memberInt = 1
+                    if (!txtMemberLimit.text.toString().equals("")) {
+                        memberInt = txtMemberLimit.text.toString().toInt()
+                    }
+                    val insertTaskBody = InsertTaskBody(
+                        email = dataForRequirement.email,
+                        password = dataForRequirement.password,
+                        token = dataForRequirement.token,
+                        class_id = classroom.id,
+                        grouped = radioGrupo2,
+                        rank = radioRank,
+                        limit_date = txtTaskLimitDate2.text.toString(),
+                        pontuation = txtTaskPontuation.text.toString().toInt(),
+                        answer = txtTaskAnswer.text.toString(),
+                        question_title = txtTaskTitle.text.toString(),
+                        question = txtTaskDescription.text.toString(),
+                        correction = radioCorrigir,
+                        file = "dsadas",
+                        member_limit = memberInt,
+                        reduction_factor = txtTaksReductionFactor.text.toString().toFloat()
+                    )
+                    if (radioGrupo2 == 1) {
+                        newTaskGroup(insertTaskBody, memberInt)
+                    } else {
+                        insertNewTask(insertTaskBody, memberInt)
+
+                    }
                 }
-                val insertTaskBody = InsertTaskBody(
-                    email = dataForRequirement.email,
-                    password = dataForRequirement.password,
-                    token = dataForRequirement.token,
-                    class_id = classroom.id,
-                    grouped = radioGrupo,
-                    rank = radioRank,
-                    limit_date = txtTaskLimitDate2.text.toString(),
-                    pontuation = txtTaskPontuation?.text.toString().toInt(),
-                    answer = txtTaskAnswer?.text.toString(),
-                    question_title = txtTaskTitle?.text.toString(),
-                    question = txtTaskDescription.text.toString(),
-                    correction = radioCorrigir,
-                    file = "dsadas",
-                    member_limit = memberInt,
-                    reduction_factor = txtTaksReductionFactor.text.toString().toFloat()
-                )
-                newTaskViewModel.newTask(insertTaskBody)
             }
         }
     }
 
-    private fun FragmentNewTaskTeacherBinding.setRadios(): Triple<Int, Int, Int> {
-        radioGrupo.setOnClickListener {
-            txtMemberLimit.visibility = View.VISIBLE
-        }
-        radioIndividual.setOnClickListener {
-            txtMemberLimit.visibility = View.GONE
-        }
-        var radioGrupo : Int = 0
-        var radioRank : Int = 0
-        var radioCorrigir: Int = 0
-        if (radioSimRank.isChecked) {
-            radioRank = 1
-        } else {
-            radioRank = 0
-        }
-        if (radioIndividual.isChecked) {
-            radioGrupo = 0
-        } else {
-            radioGrupo = 1
-        }
-        if (radioSim.isChecked) {
-            radioCorrigir = 0
-        } else {
-            radioCorrigir = 1
-        }
-        return Triple(radioGrupo, radioRank, radioCorrigir)
+    private fun newTaskGroup(
+        insertTaskBody: InsertTaskBody,
+        memberInt: Int
+    ) {
+        val activity: MainActivity = activity as MainActivity
+        newTaskViewModel.newTask(insertTaskBody, activity, memberInt)
+        Handler(Looper.myLooper()!!).postDelayed({
+            findNavController().navigate(R.id.action_newTaskTeacher_to_createGroup)
+        }, 3000)
     }
+
+    private fun FragmentNewTaskTeacherBinding.insertNewTask(
+        insertTaskBody: InsertTaskBody,
+        memberInt: Int
+    ) {
+        val activity: MainActivity = activity as MainActivity
+        newTaskViewModel.newTask(insertTaskBody, activity, memberInt)
+        txtTaskTitle.setText("")
+        txtTaskAnswer.setText("")
+        txtTaskDescription.setText("")
+        txtTaskLimitDate.setText("")
+        txtTaksReductionFactor.setText("")
+        txtTaskPontuation.setText("")
+    }
+
 
     private fun FragmentNewTaskTeacherBinding.setDate(txtTaskLimitDate2: TextView) {
         val dateSetListener = object : DatePickerDialog.OnDateSetListener {
