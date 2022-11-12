@@ -22,22 +22,24 @@
             android:icon="@drawable/ic_teacher"
             android:title="@string/menu_student_teacher" />
 
+        <item android:title="@string/menu_student_task"
+            android:id="@+id/item_student_task">
+            <menu>
+                <item
+                    android:id="@+id/nav_student_task_pending"
+                    android:title="@string/menu_student_task_pending"
+                    android:icon="@drawable/ic_task"
+                    android:checkable="true"/>
+                <item
+                    android:id="@+id/nav_student_task_history"
+                    android:title="@string/menu_student_task_history"
+                    android:icon="@drawable/ic_history"
+                    android:checkable="true"/>
+            </menu>
+        </item>
     </group>
-    <item android:title="@string/menu_student_task"
-        android:id="@+id/item_student_task">
-        <menu>
-            <item
-                android:id="@+id/nav_student_task_pending"
-                android:title="@string/menu_student_task_pending"
-                android:icon="@drawable/ic_task"
-                android:checkable="true"/>
-            <item
-                android:id="@+id/nav_student_task_history"
-                android:title="@string/menu_student_task_history"
-                android:icon="@drawable/ic_history"
-                android:checkable="true"/>
-        </menu>
-    </item>
+
+
     <group android:checkableBehavior="single"
         android:id="@+id/group_teacher">
 
@@ -52,27 +54,28 @@
             android:icon="@drawable/ic_profile"
             android:title="@string/menu_teacher_profile" />
 
+        <item android:title="@string/menu_student_task"
+            android:id="@+id/item_teacher_task">
+            <menu>
+                <item
+                    android:id="@+id/nav_teacher_new_task"
+                    android:title="@string/menu_teacher_new_task"
+                    android:icon="@drawable/ic_new_task_24"
+                    android:checkable="true"/>
+                <item
+                    android:id="@+id/nav_teacher_pending_task"
+                    android:title="@string/menu_student_task_pending"
+                    android:icon="@drawable/ic_task"
+                    android:checkable="true"/>
+                <item
+                    android:id="@+id/nav_teacher_task_history"
+                    android:title="@string/menu_student_task_history"
+                    android:icon="@drawable/ic_history"
+                    android:checkable="true"/>
+            </menu>
+        </item>
     </group>
-    <item android:title="@string/menu_student_task"
-        android:id="@+id/item_teacher_task">
-        <menu>
-            <item
-                android:id="@+id/nav_teacher_new_task"
-                android:title="@string/menu_teacher_new_task"
-                android:icon="@drawable/ic_new_task_24"
-                android:checkable="true"/>
-            <item
-            android:id="@+id/nav_teacher_pending_task"
-            android:title="@string/menu_student_task_pending"
-            android:icon="@drawable/ic_task"
-                android:checkable="true"/>
-            <item
-                android:id="@+id/nav_teacher_task_history"
-                android:title="@string/menu_student_task_history"
-                android:icon="@drawable/ic_history"
-                android:checkable="true"/>
-        </menu>
-    </item>
+
     <item android:title="@string/menu_student_info"
         android:id="@+id/item_info">
         <menu>

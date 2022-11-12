@@ -3,7 +3,9 @@ package com.pi.ativas
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -57,8 +59,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun getDrawerStudent() {
         LoadToggle.loadMenu(binding.drawerLayout, this, binding.appBarMain.toolbar)
-        binding.navView.menu.removeGroup(R.id.group_teacher)
-        binding.navView.menu.removeItem(R.id.item_teacher_task)
+        binding.navView.menu.setGroupVisible(R.id.group_teacher, false)
+        binding.navView.menu.setGroupVisible(R.id.group_student, true)
+        //binding.navView.menu.removeItem(R.id.item_teacher_task)
+
+        binding.appBarMain.toolbar.visibility = View.VISIBLE
 
         //desbloqueia menu do estudante após login
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -66,8 +71,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun getDrawerTeatcher() {
         LoadToggle.loadMenu(binding.drawerLayout, this, binding.appBarMain.toolbar)
-        binding.navView.menu.removeGroup(R.id.group_student)
-        binding.navView.menu.removeItem(R.id.item_student_task)
+        binding.navView.menu.setGroupVisible(R.id.group_student, false)
+        binding.navView.menu.setGroupVisible(R.id.group_teacher, true)
+        //binding.navView.menu.removeItem(R.id.item_student_task)
+
+        binding.appBarMain.toolbar.visibility = View.VISIBLE
 
         //desbloqueia menu do estudante após login
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -117,12 +125,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer.closeDrawer(GravityCompat.START)
         return true
     }
-    private fun logOff(){
+
+    private fun logOff() {
         val sharedPreferences = getSharedPreferences(DATA_USER, Context.MODE_PRIVATE)
         sharedPreferences.edit().clear().apply()
+        binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        binding.appBarMain.toolbar.visibility = View.INVISIBLE
 
-        binding.appBarMain.navHostFragment.findNavController().navigate(R.id.loginFragment,null,
-            NavOptions.Builder().setPopUpTo(binding.appBarMain.navHostFragment.findNavController().graph.startDestinationId, true).build())
+        binding.appBarMain.navHostFragment.findNavController().navigate(
+            R.id.loginFragment, null,
+            NavOptions.Builder().setPopUpTo(
+                binding.appBarMain.navHostFragment.findNavController().graph.startDestinationId,
+                true
+            ).build()
+        )
     }
 
 }
