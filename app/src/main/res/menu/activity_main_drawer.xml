@@ -96,6 +96,11 @@
                 android:title="@string/menu_student_support"
                 android:icon="@drawable/ic_support"
                 android:checkable="true"/>
+            <item
+                android:id="@+id/nav_exit"
+                android:title="@string/menu_exit"
+                android:icon="@drawable/ic_round_exit"
+                android:checkable="true"/>
         </menu>
     </item>
 

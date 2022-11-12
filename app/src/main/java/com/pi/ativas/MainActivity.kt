@@ -1,5 +1,6 @@
 package com.pi.ativas
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -9,9 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.google.android.material.navigation.NavigationView
 import com.pi.ativas.databinding.ActivityMainBinding
+import com.pi.ativas.util.DATA_USER
 import com.pi.ativas.util.LoadToggle
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -106,12 +109,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.nav_support -> navigate(R.id.supportFragment)
                 R.id.nav_terms -> navigate(R.id.useTermsFragment)
                 R.id.nav_share -> share()
+                R.id.nav_exit -> logOff()
                 else -> super.onOptionsItemSelected(item)
             }
         }
         val drawer = binding.drawerLayout
         drawer.closeDrawer(GravityCompat.START)
         return true
+    }
+    private fun logOff(){
+        val sharedPreferences = getSharedPreferences(DATA_USER, Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+
+        binding.appBarMain.navHostFragment.findNavController().navigate(R.id.loginFragment,null,
+            NavOptions.Builder().setPopUpTo(binding.appBarMain.navHostFragment.findNavController().graph.startDestinationId, true).build())
     }
 
 }

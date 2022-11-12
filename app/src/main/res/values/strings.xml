@@ -40,6 +40,7 @@
     <string name="menu_teacher_terms">Termos de Uso</string>
 
     <!--Suporte-->
+    <string name="menu_exit">Sair</string>
     <string name="suporte">Caso você queira relatar um problema, pedir ajuda com relação ao aplicativo ou qualquer solicitação de suporte, favor entrar em contato através do nosso email: <a>vinicrispim02@hotmail.com</a></string>
     <string name="link_do_app">Link para divulgação do app></string>
     <string name="suporte_titulo">Suporte</string>
