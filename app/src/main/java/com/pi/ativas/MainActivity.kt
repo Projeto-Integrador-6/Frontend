@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.nav_student_task_pending -> navigate(R.id.pendingTaskStudentFragment)
                 R.id.nav_student_task_history -> navigate(R.id.taskHistoryStudentFragment)
                 R.id.nav_teacher_home -> navigate(R.id.homeTeacherFragment)
-                R.id.nav_teacher_classes -> navigate(R.id.taskClassTeacherFragment)
+                R.id.nav_teacher_classes -> navigate(R.id.homeTeacherFragment)
                 R.id.nav_teacher_profile -> navigate(R.id.profileTeacherFragment)
                 R.id.nav_teacher_new_task -> navigate(R.id.newTaskTeacherFragment)
                 R.id.nav_teacher_pending_task -> navigate(R.id.pendingTaskTeacherFragment)

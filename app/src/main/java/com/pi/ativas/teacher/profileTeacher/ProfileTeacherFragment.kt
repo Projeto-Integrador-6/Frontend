@@ -3,6 +3,7 @@ package com.pi.ativas.teacher.profileTeacher
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -11,7 +12,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.RoundedBitmapDrawable
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.LoginBody
 import com.pi.ativas.databinding.FragmentProfileTeacherBinding
@@ -88,13 +91,21 @@ class ProfileTeacherFragment : BaseFragment() {
                 txtSeusDadosAniversario.setText(it.birthday)
                 Log.i("TESTE", "initViews: " + it.phone)
 
-                val imagemBites: ByteArray
-                imagemBites = Base64.decode(it.photo?.substring(22), Base64.DEFAULT)
-                val imagemdecodificada =
-                    BitmapFactory.decodeByteArray(imagemBites, 0, imagemBites.size)
-                val bitmapRound = RoundedBitmapDrawableFactory.create(resources, imagemdecodificada)
-                bitmapRound.cornerRadius = 1000f
-                imgFoto.setImageDrawable(bitmapRound)
+                try {
+                    it.photo?.let { photo ->
+                        val imagemBites: ByteArray
+                        imagemBites = Base64.decode(photo, Base64.DEFAULT)
+                        val imagemdecodificada =
+                            BitmapFactory.decodeByteArray(imagemBites, 0, imagemBites.size)
+                        val bitmapRound =
+                            RoundedBitmapDrawableFactory.create(resources, imagemdecodificada)
+                        bitmapRound.cornerRadius = 1000f
+                        imgFoto.setImageDrawable(bitmapRound)
+                    } ?: imgFoto.setImageResource(R.drawable.image_example)
+                }catch (e: java.lang.Exception){
+                    imgFoto.setImageResource(R.drawable.image_example)
+                }
+
                 progressBarLogin.visibility = View.GONE
 
             }
