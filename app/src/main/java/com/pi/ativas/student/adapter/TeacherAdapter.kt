@@ -15,7 +15,7 @@ class TeacherAdapter (
 ) : RecyclerView.Adapter<TeacherViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeacherViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_teacher, parent, false)
         return TeacherViewHolder(view)
     }
 
