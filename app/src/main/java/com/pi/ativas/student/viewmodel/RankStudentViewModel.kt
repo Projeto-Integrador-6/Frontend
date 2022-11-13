@@ -7,13 +7,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pi.ativas.data.Retrofit
 import com.pi.ativas.data.bodys.RequestRankingBody
+import com.pi.ativas.data.responses.RequestRankingResponse
 import com.pi.ativas.model.RankingStudent
 import kotlinx.coroutines.launch
 
 class RankStudentViewModel: ViewModel() {
 
-    private val _response = MutableLiveData<List<RankingStudent>>()
-    val response: LiveData<List<RankingStudent>> = _response
+    private val _response = MutableLiveData<RequestRankingResponse>()
+    val response: LiveData<RequestRankingResponse> = _response
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
@@ -31,7 +32,7 @@ class RankStudentViewModel: ViewModel() {
                 if (response.isSuccessful) {
                     response.body()?.let { reportResponse ->
                         if (reportResponse.success) {
-                            _response.postValue(reportResponse.content)
+                            _response.postValue(reportResponse)
                         } else {
                             _error.postValue(reportResponse.message)
                         }

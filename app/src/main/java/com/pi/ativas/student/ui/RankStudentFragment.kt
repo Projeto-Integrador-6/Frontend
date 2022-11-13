@@ -6,14 +6,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.RequestRankingBody
+import com.pi.ativas.data.responses.RequestRankingResponse
 import com.pi.ativas.databinding.FragmentRankStudentBinding
 import com.pi.ativas.model.RankingStudent
 import com.pi.ativas.student.adapter.ItemClickListenerRA
 import com.pi.ativas.student.adapter.RankingAdapter
+import com.pi.ativas.student.model.DataViewRanking
 import com.pi.ativas.student.viewmodel.RankStudentViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -58,7 +61,7 @@ class RankStudentFragment : BaseFragment() {
         super.initObservers()
 
         viewModel.response.observe(viewLifecycleOwner) {
-            recycleView(it)
+            verifyResponse(it)
             binding.progressbar.visibility = View.GONE
             binding.bottomSheetBG.visibility = View.GONE
         }
@@ -90,5 +93,25 @@ class RankStudentFragment : BaseFragment() {
         recyclerView.adapter = adapter
     }
 
-
+    private fun verifyResponse(requestRankingResponse: RequestRankingResponse) {
+        requestRankingResponse.content?.let { list ->
+            if (list.size > 1) {
+                recycleView(requestRankingResponse.content)
+            } else {
+                val content = requestRankingResponse.content[0]
+                val action =
+                    RankStudentFragmentDirections.actionRankStudentFragmentToViewRankingStudentFragment(
+                        DataViewRanking(
+                            studentName = content.student_name,
+                            pontuation = content.pontuation.toString(),
+                            porcentage = content.porcentage.toString(),
+                            numberTasks = requestRankingResponse.numberOfTasks.toString(),
+                            numberStudents = requestRankingResponse.numberOfStudents.toString(),
+                            studentPosition = requestRankingResponse.studentPosition.toString()
+                        )
+                    )
+                findNavController().navigate(action)
+            }
+        }
+    }
 }

@@ -23,5 +23,14 @@ data class RequestRankingResponse(
     val changePassword: Boolean?,
 
     @SerializedName("content")
-    val content: List<RankingStudent>
+    val content: List<RankingStudent>?,
+
+    @SerializedName("numberOfTasks")
+    val numberOfTasks: Int?,
+
+    @SerializedName("numberOfStudents")
+    val numberOfStudents: Int?,
+
+    @SerializedName("studentPosition")
+    val studentPosition: Int?
 )
