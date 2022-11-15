@@ -207,9 +207,9 @@
         tools:layout="@layout/fragment_use_terms" />
     <fragment
         android:id="@+id/viewTaskStudentFragment"
-        android:name="com.pi.ativas.student.ui.ViewTaskStudentFragment"
+        android:name="com.pi.ativas.student.ui.ResponseTaskStudentFragment"
         android:label="ViewTaskStudentFragment"
-        tools:layout="@layout/fragment_view_task_student">
+        tools:layout="@layout/fragment_response_task_student">
         <argument
             android:name="task"
             app:argType="com.pi.ativas.model.Task" />
