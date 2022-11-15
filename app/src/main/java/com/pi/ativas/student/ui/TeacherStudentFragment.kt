@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.pi.ativas.MainActivity
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.GetTeachersBody
 import com.pi.ativas.data.bodys.RequestTaskBody
@@ -53,6 +54,7 @@ class TeacherStudentFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as MainActivity).setTittleAppBar("Professores")
         binding = FragmentTeacherStudentBinding.inflate(layoutInflater)
         initObservers()
         return binding.root

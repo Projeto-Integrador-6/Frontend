@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.pi.ativas.MainActivity
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.RequestTaskBody
 import com.pi.ativas.databinding.FragmentHomeStudentBinding
@@ -52,6 +53,7 @@ class HomeStudentFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         initObservers()
+        (activity as MainActivity).setTittleAppBar("Tela Inicial")
         binding = FragmentHomeStudentBinding.inflate(layoutInflater)
         return binding.root
     }

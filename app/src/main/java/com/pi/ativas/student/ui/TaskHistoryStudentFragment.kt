@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.pi.ativas.MainActivity
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.RequestTaskBody
 import com.pi.ativas.databinding.FragmentTaskHistoryStudentBinding
@@ -53,6 +54,7 @@ class TaskHistoryStudentFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as MainActivity).setTittleAppBar("Histórico")
         binding=FragmentTaskHistoryStudentBinding.inflate(layoutInflater)
         initObservers()
         return binding.root

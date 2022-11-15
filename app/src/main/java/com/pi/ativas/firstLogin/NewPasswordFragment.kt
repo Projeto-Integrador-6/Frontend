@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.pi.ativas.MainActivity
 import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.common.TextChangedListener
@@ -31,7 +32,7 @@ class NewPasswordFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        (activity as MainActivity).setTittleAppBar("Nova Senha")
         binding = FragmentNewPasswordBinding.inflate(layoutInflater)
         initObservers()
         initViews()

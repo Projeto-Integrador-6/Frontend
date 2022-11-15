@@ -36,6 +36,7 @@ class LoginFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as MainActivity).setTittleAppBar("Login")
         binding = FragmentLoginBinding.inflate(layoutInflater)
         initViews()
         initObservers()

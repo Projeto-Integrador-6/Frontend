@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.pi.ativas.MainActivity
 import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.databinding.FragmentViewTaskStudentBinding
@@ -19,6 +20,7 @@ class ViewTaskStudentFragment: BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as MainActivity).setTittleAppBar("Atividades")
         binding = FragmentViewTaskStudentBinding.inflate(layoutInflater)
         initObservers()
         initViews()

@@ -51,6 +51,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navView.setNavigationItemSelectedListener(this)
     }
 
+    fun setTittleAppBar(tittle: String){
+        binding.appBarMain.toolbar.title = tittle
+    }
+
     fun setNavHeader(nomeUsuario: String, emailUsuario: String) {
         val txtNameHeader: TextView = binding.navView.getHeaderView(0).findViewById(R.id.nameHeader)
         val txtEmailHeader: TextView =
