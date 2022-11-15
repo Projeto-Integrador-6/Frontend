@@ -110,13 +110,21 @@
         android:id="@+id/pendingTaskStudentFragment"
         android:name="com.pi.ativas.student.ui.PendingTaskStudentFragment"
         android:label="fragment_pending_taks_student"
-        tools:layout="@layout/fragment_pending_task_student" />
+        tools:layout="@layout/fragment_pending_task_student" >
+        <action
+            android:id="@+id/action_pendingTaskStudentFragment_to_viewTaskStudentFragment"
+            app:destination="@id/viewTaskStudentFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/taskHistoryStudentFragment"
         android:name="com.pi.ativas.student.ui.TaskHistoryStudentFragment"
         android:label="fragment_taks_history_student"
-        tools:layout="@layout/fragment_task_history_student" />
+        tools:layout="@layout/fragment_task_history_student" >
+        <action
+            android:id="@+id/action_taskHistoryStudentFragment_to_viewTaskStudentFragment"
+            app:destination="@id/viewTaskStudentFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/taskClassTeacherFragment"
