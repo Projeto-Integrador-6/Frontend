@@ -8,7 +8,7 @@ import com.pi.ativas.data.Retrofit
 import com.pi.ativas.data.bodys.ReportBody
 import kotlinx.coroutines.launch
 
-class ViewTaskStudentViewModel : ViewModel() {
+class ResponseTaskStudentViewModel : ViewModel() {
 
     private val _response = MutableLiveData<String>()
     val response: LiveData<String> = _response

@@ -84,9 +84,16 @@ class TaskHistoryStudentFragment : BaseFragment() {
     private fun recycleView(taskList: List<Task>) {
 
         val onClickListener = ItemClickListener { task ->
-            val action =
-                TaskHistoryStudentFragmentDirections.actionTaskHistoryStudentFragmentToViewTaskStudentFragment(task)
-            findNavController().navigate(action)
+            if (task.correction == 0){
+                val action =
+                    TaskHistoryStudentFragmentDirections.actionTaskHistoryStudentFragmentToResponseTaskStudentFragment(task)
+                findNavController().navigate(action)
+            } else {
+                val action =
+                    TaskHistoryStudentFragmentDirections.actionTaskHistoryStudentFragmentToViewTaskStudentFragment2(task)
+                findNavController().navigate(action)
+            }
+
         }
 
         val recyclerView = binding.recycleView

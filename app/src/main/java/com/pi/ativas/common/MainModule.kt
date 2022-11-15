@@ -27,7 +27,7 @@ val mainModule = module {
     viewModel { NewTaskViewModel() }
     viewModel { ProfileTeacherViewModel() }
     viewModel {CreateGroupViewModel()}
-    viewModel { ViewTaskStudentViewModel() }
+    viewModel { ResponseTaskStudentViewModel() }
     viewModel { RankStudentViewModel() }
     viewModel { DisciplineStudentViewModel() }
     viewModel { TeacherStudentViewModel() }

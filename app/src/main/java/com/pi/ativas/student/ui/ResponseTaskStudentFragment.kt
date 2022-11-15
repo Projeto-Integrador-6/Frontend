@@ -26,7 +26,7 @@ import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.ReportBody
 import com.pi.ativas.databinding.FragmentResponseTaskStudentBinding
-import com.pi.ativas.student.viewmodel.ViewTaskStudentViewModel
+import com.pi.ativas.student.viewmodel.ResponseTaskStudentViewModel
 import com.pi.ativas.util.ApiFileUtils
 import com.pi.ativas.util.DateUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -38,8 +38,8 @@ import java.util.*
 class ResponseTaskStudentFragment : BaseFragment() {
 
     private lateinit var binding: FragmentResponseTaskStudentBinding
-    private val viewTaskStudentViewModel: ViewTaskStudentViewModel by viewModel()
-    private val viewTaskStudentFragmentArgs: ResponseTaskStudentFragmentArgs by navArgs()
+    private val responseTaskStudentViewModel: ResponseTaskStudentViewModel by viewModel()
+    private val responseTaskStudentFragmentArgs: ResponseTaskStudentFragmentArgs by navArgs()
     private lateinit var sharedPreferences: SharedPreferences
     var photoFile: File? = null
     val CAPTURE_IMAGE_REQUEST = 1
@@ -65,7 +65,7 @@ class ResponseTaskStudentFragment : BaseFragment() {
     }
 
     override fun initObservers() {
-        with(viewTaskStudentViewModel) {
+        with(responseTaskStudentViewModel) {
             error.observe(viewLifecycleOwner) {
                 MaterialAlertDialogBuilder(requireContext())
                     .setTitle("Erro")
@@ -87,7 +87,7 @@ class ResponseTaskStudentFragment : BaseFragment() {
     }
 
     override fun initViews() {
-        with(viewTaskStudentFragmentArgs.task) {
+        with(responseTaskStudentFragmentArgs.task) {
             binding.titleTask.text = question_title
             binding.questionTask.text = question
             binding.btnMenu.setOnClickListener {
@@ -122,9 +122,9 @@ class ResponseTaskStudentFragment : BaseFragment() {
                         date = DateUtils().getDate(),
                         answer = binding.responseEditText.text.toString(),
                         anexo = getImageResponse(),
-                        teamId = viewTaskStudentFragmentArgs.task.id
+                        teamId = responseTaskStudentFragmentArgs.task.id
                     )
-                    viewTaskStudentViewModel.setResponse(reportBody)
+                    responseTaskStudentViewModel.setResponse(reportBody)
 
                 }
                 .setNegativeButton("Não") { dialog, which ->
@@ -139,9 +139,9 @@ class ResponseTaskStudentFragment : BaseFragment() {
                 date = DateUtils().getDate(),
                 answer = binding.responseEditText.text.toString(),
                 anexo = getImageResponse(),
-                teamId = viewTaskStudentFragmentArgs.task.id
+                teamId = responseTaskStudentFragmentArgs.task.id
             )
-            viewTaskStudentViewModel.setResponse(reportBody)
+            responseTaskStudentViewModel.setResponse(reportBody)
         }
     }
 

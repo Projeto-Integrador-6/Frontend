@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txt_tittle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="8dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/txt_question"
+            tools:text="Qual seu nome?"/>
+
+        <TextView
+            android:id="@+id/txt_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginHorizontal="8dp"
+            android:textAlignment="textStart"
+            app:layout_constraintTop_toBottomOf="@id/txt_tittle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/txt_deliveryDateLimitText"
+            tools:text="@string/lorem_ipsum"/>
+
+        <TextView
+            android:id="@+id/txt_deliveryDateLimitText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/txt_question"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Data limite de entrega: "/>
+        
+        <TextView
+            android:id="@+id/txt_deliveryDateLimit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txt_deliveryDateLimitText"
+            app:layout_constraintStart_toEndOf="@id/txt_deliveryDateLimitText"
+            tools:text="01/01/2022 23:59"/>
+
+        <TextView
+            android:id="@+id/txt_deliveryDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/txt_deliveryDateLimitText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Data entregue: "/>
+
+        <TextView
+            android:id="@+id/txt_deliveryDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txt_deliveryDateText"
+            app:layout_constraintStart_toEndOf="@id/txt_deliveryDateText"
+            tools:text="01/01/2022 23:59"/>
+
+        <TextView
+            android:id="@+id/txt_reductionFactorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/txt_deliveryDateText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Fator de redução: "/>
+
+        <TextView
+            android:id="@+id/txt_reductionFactor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txt_reductionFactorText"
+            app:layout_constraintStart_toEndOf="@id/txt_reductionFactorText"
+            tools:text="12"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_reductionFactorText"
+            app:layout_constraintBottom_toTopOf="@id/txt_youResponse"/>
+
+        <TextView
+            android:id="@+id/txt_youResponse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            android:text="SUA RESPOSTA"/>
+
+        <TextView
+            android:id="@+id/txt_questionResponse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:textAlignment="textStart"
+            app:layout_constraintTop_toBottomOf="@id/txt_youResponse"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/lorem_ipsum"/>
+
+        <ImageView
+            android:id="@+id/imageResponse"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_margin="16dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_questionResponse"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            android:src="@drawable/image_example"
+            tools:visibility="visible"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
