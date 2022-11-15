@@ -20,14 +20,15 @@
             android:layout_height="@dimen/circle"
             android:src="@drawable/circle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/textColorGreen" />
 
         <TextView
             android:id="@+id/txt_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="?"
-            android:textSize="45sp"
+            android:text="A"
+            android:textSize="35sp"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/img_circle"
             app:layout_constraintEnd_toEndOf="@+id/img_circle"
@@ -40,17 +41,19 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:ellipsize="marquee"
-            android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:textAlignment="center"
             app:layout_constraintStart_toEndOf="@+id/img_circle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_menu"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="Qual seu nome?" />
 
-        <ImageButton
+        <!--<ImageButton
             android:id="@+id/btn_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +62,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:tint="@color/gray_900" />
+            app:tint="@color/gray_900" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

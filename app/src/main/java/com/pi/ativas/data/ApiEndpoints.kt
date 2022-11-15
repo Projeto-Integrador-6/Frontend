@@ -57,6 +57,11 @@ interface ApiEndpoints {
 
         @POST("upsertreport")
         suspend fun getUpserReport(@Body body : UpsetReportsBody): Response<UpsetReportsResponse>
+
+        @Headers("Content-Type: application/json")
+        @POST("ranking")
+        suspend fun requestRanking(@Body body : RequestRankingBody): Response<RequestRankingResponse>
+
     }
 
     interface StudentService{

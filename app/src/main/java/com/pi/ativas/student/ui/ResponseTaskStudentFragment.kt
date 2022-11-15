@@ -2,7 +2,6 @@ package com.pi.ativas.student.ui
 
 import android.Manifest
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,15 +9,12 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -29,26 +25,21 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.ReportBody
-import com.pi.ativas.data.bodys.RequestTaskBody
-import com.pi.ativas.databinding.FragmentViewTaskStudentBinding
+import com.pi.ativas.databinding.FragmentResponseTaskStudentBinding
 import com.pi.ativas.student.viewmodel.ViewTaskStudentViewModel
 import com.pi.ativas.util.ApiFileUtils
 import com.pi.ativas.util.DateUtils
-import okhttp3.ResponseBody
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
-class ViewTaskStudentFragment : BaseFragment() {
+class ResponseTaskStudentFragment : BaseFragment() {
 
-    private lateinit var binding: FragmentViewTaskStudentBinding
+    private lateinit var binding: FragmentResponseTaskStudentBinding
     private val viewTaskStudentViewModel: ViewTaskStudentViewModel by viewModel()
-    private val viewTaskStudentFragmentArgs: ViewTaskStudentFragmentArgs by navArgs()
+    private val viewTaskStudentFragmentArgs: ResponseTaskStudentFragmentArgs by navArgs()
     private lateinit var sharedPreferences: SharedPreferences
     var photoFile: File? = null
     val CAPTURE_IMAGE_REQUEST = 1
@@ -66,7 +57,7 @@ class ViewTaskStudentFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentViewTaskStudentBinding.inflate(layoutInflater)
+        binding = FragmentResponseTaskStudentBinding.inflate(layoutInflater)
         initViews()
         initObservers()
 

@@ -3,14 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".student.ui.RankStudentFragment">
-        <TextView
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/backgroundBottom"
+            android:layout_gravity="center"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Rank Student"
-            android:textSize="20sp"
-            android:textAllCaps="true"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_ranking"/>
+
+        <View
+            android:id="@+id/bottomSheetBG"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/opaqueBG"
+            android:elevation="5dp"/>
 
 
 </FrameLayout>
