@@ -10,6 +10,8 @@ import com.pi.ativas.teacher.homeTeacher.HomeTeacherViewModel
 import com.pi.ativas.teacher.taskTeams.TaskTeamsViewModel
 import com.pi.ativas.teacher.newTaskTeacher.NewTaskViewModel
 import com.pi.ativas.teacher.profileTeacher.ProfileTeacherViewModel
+import com.pi.ativas.teacher.taskReports.TasksReportTeacherViewModel
+import com.pi.ativas.teacher.upsetReport.UpsetReportViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -22,6 +24,8 @@ val mainModule = module {
     viewModel { HomeTeacherViewModel() }
     viewModel { TasksClassTeacherViewModel() }
     viewModel { TaskTeamsViewModel() }
+    viewModel { TasksReportTeacherViewModel() }
+    viewModel { UpsetReportViewModel() }
 
     /** Student viewModel flow */
     viewModel { HomeStudentViewModel() }

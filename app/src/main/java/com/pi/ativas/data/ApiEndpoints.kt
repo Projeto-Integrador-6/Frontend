@@ -48,6 +48,15 @@ interface ApiEndpoints {
        
         @POST("getTeamsinTask")
         suspend fun getTaskTeams(@Body body : RequestTaskTeamsBody): Response<RequestTaskTeamsResponse>
+
+        @POST("getstudentsinteam")
+        suspend fun getStudentsInTeam(@Body body : StudentsInTeamBody): Response<StudentsInTeamResponse>
+
+        @POST("getreports")
+        suspend fun getTaskReports(@Body body : GetReportsBody): Response<GetReportsResponse>
+
+        @POST("upsertreport")
+        suspend fun getUpserReport(@Body body : UpsetReportsBody): Response<UpsetReportsResponse>
     }
 
     interface StudentService{

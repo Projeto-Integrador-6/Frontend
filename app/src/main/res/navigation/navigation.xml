@@ -128,6 +128,44 @@
         <action
             android:id="@+id/action_taskClassTeacherFragment_to_taskTeamsFragment"
             app:destination="@id/taskTeamsFragment" />
+        <action
+            android:id="@+id/action_taskClassTeacherFragment_to_taskReportTeacherFragment"
+            app:destination="@id/taskReportsTeacherFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskReportsTeacherFragment"
+        android:name="com.pi.ativas.teacher.taskReports.TasksReportTeacherFragment"
+        android:label="fragment_class_teacher"
+        tools:layout="@layout/fragment_task_reports_teacher" >
+        <argument
+            android:name="task"
+            app:argType="com.pi.ativas.model.Task" />
+        <argument
+            android:name="idTask"
+            app:argType="string" />
+        <argument
+            android:name="dataForRequirement"
+            app:argType="com.pi.ativas.teacher.model.DataForRequirement" />
+        <action
+            android:id="@+id/action_taskReportTeacherFragment_to_upsetTaskTeacherFragment"
+            app:destination="@id/upsetReportTeacherFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/upsetReportTeacherFragment"
+        android:name="com.pi.ativas.teacher.upsetReport.UpsetReportFragment"
+        android:label="fragment_upset_report_teacher"
+        tools:layout="@layout/fragment_upset_report" >
+        <argument
+            android:name="report"
+            app:argType="com.pi.ativas.model.Report" />
+        <argument
+            android:name="dataForRequirement"
+            app:argType="com.pi.ativas.teacher.model.DataForRequirement" />
+       <argument
+            android:name="task"
+            app:argType="com.pi.ativas.model.Task" />
     </fragment>
 
     <fragment

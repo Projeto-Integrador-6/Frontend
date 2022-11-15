@@ -83,13 +83,11 @@ class ProfileTeacherFragment : BaseFragment() {
             progressBarLogin.visibility = View.VISIBLE
             profileTeacherViewModel.getProfile(loginBody)
             profileTeacherViewModel.profileTeacher.observe(viewLifecycleOwner) {
-                Log.i("TESTE", "initObservers: " + it)
                 txtSeusDadosNome.setText(it.name)
                 txtSeusDadosEmail.setText(it.email)
                 txtSeusDadosContato.setText(it.phone)
                 txtSeusDadosCurriculo.setText(it.lattes)
                 txtSeusDadosAniversario.setText(it.birthday)
-                Log.i("TESTE", "initViews: " + it.phone)
                 try {
                     it.photo?.let { photo ->
                         val imagemBites: ByteArray

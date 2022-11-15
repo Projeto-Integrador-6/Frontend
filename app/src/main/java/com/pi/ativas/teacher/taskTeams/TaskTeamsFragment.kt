@@ -3,6 +3,7 @@ package com.pi.ativas.teacher.taskTeams
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class TaskTeamsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPreferences = requireContext().getSharedPreferences("dataLogin", Context.MODE_PRIVATE)
+        Log.i("TESTE", "onCreate: "+taskTeamsFragmentArgs.idTask)
         with(sharedPreferences) {
             getString("email", "")?.let { email ->
                 getString("password", "")?.let { password ->

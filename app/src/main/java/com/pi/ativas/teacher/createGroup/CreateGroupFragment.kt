@@ -75,12 +75,21 @@ class CreateGroupFragment : BaseFragment() {
                 if(txtGroupName.text.toString().equals("") || listids.isEmpty()){
                     Toast.makeText(
                         requireContext(),
-                        "Favor inserir todos os valores obrigatórios!",
+                        "Favor inserir o nome da equipe e os alunos!",
                         Toast.LENGTH_SHORT
                     )
                         .show()
                 }else {
-                    newGroup()
+                    if(numberOfElements>=txtEquipe.text.toString().split(",").size) {
+                        newGroup()
+                    }else{
+                        Toast.makeText(
+                            requireContext(),
+                            "Número de alunos é superior ao permitido!",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
                 }
             }
         }
@@ -228,7 +237,8 @@ class CreateGroupFragment : BaseFragment() {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("TODAS AS EQUIPES FORAM FORMADAS COM SUCESSO")
                 .setPositiveButton("OK") { dialog, which ->
-                    findNavController().navigate(R.id.newTaskTeacherFragment)
+                //    findNavController().navigate(R.id.newTaskTeacherFragment)
+                    findNavController().popBackStack(R.id.homeTeacherFragment,false)
                 }
                 .show()
         }

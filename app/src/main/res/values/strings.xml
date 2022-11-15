@@ -79,5 +79,8 @@ Caso não concorde com algo ou esteja com dúvidas/problemas, favor entrar em co
 
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non mi eget enim tincidunt finibus sed at nisi. Nunc et laoreet arcu. Morbi libero ex, porttitor non volutpat ac, cursus iaculis erat. Vestibulum mattis turpis a velit hendrerit, nec ornare nisi semper. Phasellus feugiat consequat justo eu consequat. Curabitur faucibus, purus in vulputate finibus, est sapien ornare nunc, vel pharetra lectus erat nec orci. Mauris imperdiet mauris nec mauris sagittis.</string>
     <string name="enviar">Enviar atividade</string>
+    <string name="membros_da_equipe">Membros da Equipe</string>
+    <string name="nome_da_equipe">Nome da Equipe</string>
+    <string name="confirmar_corre_o">Confirmar Correção</string>
 
 </resources>
