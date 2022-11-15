@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/white"
-            android:textSize="150sp"
+            android:textSize="100sp"
             tools:text="1" />
 
     </FrameLayout>

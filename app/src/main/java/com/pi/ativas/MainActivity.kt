@@ -104,20 +104,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         with(binding.appBarMain.navHostFragment.findNavController()) {
             when (item.itemId) {
-                R.id.nav_student_home -> navigate(R.id.homeStudentFragment)
-                R.id.nav_student_rank -> navigate(R.id.rankStudentFragment)
-                R.id.nav_student_discipline -> navigate(R.id.disciplineStudentFragment)
-                R.id.nav_student_teacher -> navigate(R.id.teacherStudentFragment)
-                R.id.nav_student_task_pending -> navigate(R.id.pendingTaskStudentFragment)
-                R.id.nav_student_task_history -> navigate(R.id.taskHistoryStudentFragment)
-                R.id.nav_teacher_home -> navigate(R.id.homeTeacherFragment)
-                R.id.nav_teacher_classes -> navigate(R.id.homeTeacherFragment)
-                R.id.nav_teacher_profile -> navigate(R.id.profileTeacherFragment)
-                R.id.nav_teacher_new_task -> navigate(R.id.newTaskTeacherFragment)
-                R.id.nav_teacher_pending_task -> navigate(R.id.pendingTaskTeacherFragment)
-                R.id.nav_teacher_task_history -> navigate(R.id.taskHistoryTeacherFragment)
-                R.id.nav_support -> navigate(R.id.supportFragment)
-                R.id.nav_terms -> navigate(R.id.useTermsFragment)
+                R.id.nav_student_home -> navigateDirect(R.id.homeStudentFragment)
+                R.id.nav_student_rank -> navigateDirect(R.id.rankStudentFragment)
+                R.id.nav_student_discipline -> navigateDirect(R.id.disciplineStudentFragment)
+                R.id.nav_student_teacher -> navigateDirect(R.id.teacherStudentFragment)
+                R.id.nav_student_task_pending -> navigateDirect(R.id.pendingTaskStudentFragment)
+                R.id.nav_student_task_history -> navigateDirect(R.id.taskHistoryStudentFragment)
+                R.id.nav_teacher_home -> navigateDirect(R.id.homeTeacherFragment)
+                R.id.nav_teacher_classes -> navigateDirect(R.id.homeTeacherFragment)
+                R.id.nav_teacher_profile -> navigateDirect(R.id.profileTeacherFragment)
+                R.id.nav_teacher_new_task -> navigateDirect(R.id.newTaskTeacherFragment)
+                R.id.nav_teacher_pending_task -> navigateDirect(R.id.pendingTaskTeacherFragment)
+                R.id.nav_teacher_task_history -> navigateDirect(R.id.taskHistoryTeacherFragment)
+                R.id.nav_support -> navigateDirect(R.id.supportFragment)
+                R.id.nav_terms -> navigateDirect(R.id.useTermsFragment)
                 R.id.nav_share -> share()
                 R.id.nav_exit -> logOff()
                 else -> super.onOptionsItemSelected(item)
@@ -158,11 +158,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
         binding.appBarMain.toolbar.visibility = View.INVISIBLE
 
+        navigateDirect(R.id.loginFragment)
+    }
+
+    private fun navigateDirect(destination: Int){
         binding.appBarMain.navHostFragment.findNavController().navigate(
-            R.id.loginFragment, null,
+            destination, null,
             NavOptions.Builder().setPopUpTo(
                 binding.appBarMain.navHostFragment.findNavController().graph.startDestinationId,
-                true
+                false
             ).build()
         )
     }
