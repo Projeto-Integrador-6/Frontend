@@ -53,6 +53,7 @@ class CreateGroupFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as MainActivity).setTittleAppBar("Criar Grupo")
         val activity: MainActivity = activity as MainActivity
         idaqui = activity.getTaskId2()
         classId = activity.getClassId()

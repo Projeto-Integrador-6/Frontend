@@ -37,7 +37,8 @@ class StudentViewHolder(private val view: View): RecyclerView.ViewHolder(view){
             setOnClickListener{
                 setOnClickListener{ onItemClickListener.onClick(student)} }
                 with(binding){
-                    tvNameStudent.text = student.name
+                    txtName.text = student.name
+                    txtEmailName.text = student.email
                 }
 
         }

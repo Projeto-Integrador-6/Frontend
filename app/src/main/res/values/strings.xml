@@ -30,7 +30,7 @@
 
     <!-- Menu Teacher-->
     <string name="menu_teacher_home">Início</string>
-    <string name="menu_teacher_class">Turmas</string>
+    <string name="menu_teacher_class">Alunos</string>
     <string name="menu_teacher_task">Atividade</string>
     <string name="menu_teacher_rank">Rank</string>
     <string name="menu_teacher_new_task">Criar Atividade</string>

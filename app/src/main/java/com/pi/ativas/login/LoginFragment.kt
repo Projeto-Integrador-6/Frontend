@@ -76,8 +76,8 @@ class LoginFragment : BaseFragment() {
                     )
                 } else {
                     loginViewModel.newLogin(
-                        "arthur_morgan@gmail.com",
-                        "Arthur12@"
+                        "Joel_Muller@Gmail.com",
+                        "Joelm12@"
                     )
                 }
             }

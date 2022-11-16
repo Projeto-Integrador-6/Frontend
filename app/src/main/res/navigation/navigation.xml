@@ -83,6 +83,15 @@
             android:id="@+id/action_homeTeacherFragment_to_taskClassTeacherFragment"
             app:destination="@id/taskClassTeacherFragment"/>
     </fragment>
+    <fragment
+        android:id="@+id/studentsTeacherFragment"
+        android:name="com.pi.ativas.teacher.studentsTeacher.StudentTeacherFragment"
+        android:label="fragment_students_teacher"
+        tools:layout="@layout/fragment_student_teacher" >
+        <action
+            android:id="@+id/action_studentsTeacherFragment_to_viewStudentsTeacherFragment"
+            app:destination="@id/viewStudentsTeacherFragment"/>
+    </fragment>
 
     <fragment
         android:id="@+id/rankStudentFragment"
@@ -134,6 +143,9 @@
         <argument
             android:name="classroom"
             app:argType="com.pi.ativas.model.Classroom" />
+        <argument
+            android:name="type"
+            app:argType="string" />
         <argument
             android:name="dataForRequirement"
             app:argType="com.pi.ativas.teacher.model.DataForRequirement" />
@@ -230,7 +242,24 @@
         android:id="@+id/taskHistoryTeacherFragment"
         android:name="com.pi.ativas.teacher.taskHistoryTeacher.TaskHistoryTeacherFragment"
         android:label="fragment_task_history_teacher"
-        tools:layout="@layout/fragment_task_history_teacher" />
+        tools:layout="@layout/fragment_task_history_teacher">
+        <action
+            android:id="@+id/action_taskHistoryTeacherFragment_to_taskClassTeacherFragment"
+            app:destination="@id/taskClassTeacherFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/viewStudentsTeacherFragment"
+        android:name="com.pi.ativas.teacher.studentsTeacher.ViewStudentsTeacherFragment"
+        android:label="fragment_view_students_teacher"
+        tools:layout="@layout/fragment_view_students_teacher">
+        <argument
+            android:name="classroom"
+            app:argType="com.pi.ativas.model.Classroom" />
+        <argument
+            android:name="dataForRequirement"
+            app:argType="com.pi.ativas.teacher.model.DataForRequirement" />
+    </fragment>
 
     <fragment
         android:id="@+id/supportFragment"

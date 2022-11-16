@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.pi.ativas.MainActivity
 import com.pi.ativas.data.bodys.GetReportsBody
 import com.pi.ativas.data.bodys.RequestTaskBody
 import com.pi.ativas.data.bodys.RequestTaskTeamsBody
@@ -45,6 +46,7 @@ class TasksReportTeacherFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as MainActivity).setTittleAppBar("Respostas da Atividade")
         binding = FragmentTaskClassTeacherBinding.inflate(layoutInflater)
         tasksReportTeacherViewModel.getTaskReports(
             GetReportsBody(

@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.RoundedBitmapDrawable
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import com.pi.ativas.MainActivity
 import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.LoginBody
@@ -49,6 +50,8 @@ class ProfileTeacherFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as MainActivity).setTittleAppBar("Perfil")
+
         binding = FragmentProfileTeacherBinding.inflate(layoutInflater)
 
         initObservers()

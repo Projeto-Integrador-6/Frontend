@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.pi.ativas.MainActivity
 import com.pi.ativas.databinding.FragmentPendingTaskStudentBinding
 import com.pi.ativas.databinding.FragmentPendingTaskTeacherBinding
 
@@ -21,6 +22,7 @@ class PendingTaskTeacherFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as MainActivity).setTittleAppBar("Atividades Pendentes")
         binding=FragmentPendingTaskTeacherBinding.inflate(layoutInflater)
         return binding.root
     }

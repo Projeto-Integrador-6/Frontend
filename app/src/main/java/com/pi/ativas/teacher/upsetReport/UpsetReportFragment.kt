@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.pi.ativas.MainActivity
 import com.pi.ativas.R
 import com.pi.ativas.data.bodys.RequestTaskTeamsBody
 import com.pi.ativas.data.bodys.StudentsInTeamBody
@@ -55,6 +56,8 @@ class UpsetReportFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as MainActivity).setTittleAppBar("Corrigir Atividade")
+
         binding = FragmentUpsetReportBinding.inflate(layoutInflater)
         upsetReportViewModel.getTeams(
             RequestTaskTeamsBody(
