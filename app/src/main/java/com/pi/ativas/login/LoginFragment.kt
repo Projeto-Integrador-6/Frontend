@@ -40,9 +40,7 @@ class LoginFragment : BaseFragment() {
         binding = FragmentLoginBinding.inflate(layoutInflater)
         initViews()
         initObservers()
-        //checkFields()
-        binding.btnLogar.isClickable = true
-        binding.btnLogar.background.setTint(resources.getColor(R.color.backgroundBottom))
+        checkFields()
         return binding.root
     }
 
@@ -52,35 +50,24 @@ class LoginFragment : BaseFragment() {
                 TextChangedListener<EditText>(txtLogin) {
                 override fun onTextChanged(target: EditText, p0: Editable?) {
                     loginInputLayout.error = null
-                    //checkFields()
+                    checkFields()
                 }
             })
 
             txtSenha.addTextChangedListener(object :
                 TextChangedListener<EditText>(txtSenha) {
                 override fun onTextChanged(target: EditText, p0: Editable?) {
-                    //checkFields()
+                    checkFields()
                 }
             })
 
             btnLogar.setOnClickListener {
                 progressBarLogin.visibility = View.VISIBLE
                 bottomSheetBG.visibility = View.VISIBLE
-                /*loginViewModel.newLogin(
+                loginViewModel.newLogin(
                     txtLogin.text.toString(),
                     txtSenha.text.toString()
-                )*/
-                if (txtLogin.text.toString().isEmpty()){
-                    loginViewModel.newLogin(
-                        "gabrieltoledo@gmail.com",
-                        "Gabriel12@"
-                    )
-                } else {
-                    loginViewModel.newLogin(
-                        "arthur_morgan@gmail.com",
-                        "Arthur12@"
-                    )
-                }
+                )
             }
         }
     }

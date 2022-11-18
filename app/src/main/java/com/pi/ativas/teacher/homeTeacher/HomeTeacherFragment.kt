@@ -47,10 +47,10 @@ class HomeTeacherFragment : BaseFragment() {
         binding = FragmentHomeTeacherBinding.inflate(layoutInflater)
         val activity: MainActivity = activity as MainActivity
         activity.getDrawerTeatcher()
-        activity.setNavHeader("Walter White",dataForRequirement.email)
+        activity.setNavHeader("Walter White", dataForRequirement.email)
         initObservers()
         homeTeacherViewModel.getClassroom(dataForRequirement)
-        Log.i("TESTE", "onCreateView: "+dataForRequirement.token)
+        Log.i("TESTE", "onCreateView: " + dataForRequirement.token)
         return binding.root
     }
 
@@ -61,7 +61,7 @@ class HomeTeacherFragment : BaseFragment() {
             recycleView()
         }
 
-        homeTeacherViewModel.error.observe(viewLifecycleOwner){
+        homeTeacherViewModel.error.observe(viewLifecycleOwner) {
             binding.progressbar.visibility = View.GONE
             binding.bottomSheetBG.visibility = View.GONE
             MaterialAlertDialogBuilder(requireContext())
@@ -70,6 +70,12 @@ class HomeTeacherFragment : BaseFragment() {
                 .setPositiveButton("Ok") { dialog, which ->
                 }
                 .show()
+        }
+
+        homeTeacherViewModel.tokenInvalid.observe(viewLifecycleOwner) {
+            if (it) {
+                (activity as MainActivity).logOff()
+            }
         }
     }
 

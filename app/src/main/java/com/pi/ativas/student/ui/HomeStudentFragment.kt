@@ -75,6 +75,11 @@ class HomeStudentFragment : BaseFragment() {
                 }
                 .show()
         }
+        viewModel.tokenInvalid.observe(viewLifecycleOwner) {
+            if (it) {
+                (activity as MainActivity).logOff()
+            }
+        }
     }
 
     private fun recycleView(taskList: List<Task>) {

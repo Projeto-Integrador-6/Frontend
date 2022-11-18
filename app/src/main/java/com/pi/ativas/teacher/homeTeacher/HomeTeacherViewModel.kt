@@ -19,6 +19,9 @@ class HomeTeacherViewModel() : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    private val _tokenInvalid = MutableLiveData<Boolean>()
+    val tokenInvalid: LiveData<Boolean> = _tokenInvalid
+
     fun getClassroom(dataForRequirement: DataForRequirement) {
         getClassroom(dataForRequirement.toRequestClassroomBody())
     }
@@ -28,8 +31,15 @@ class HomeTeacherViewModel() : ViewModel() {
             Retrofit.teacherService.getClassroom(requestClassroomBody).let { response ->
                 if (response.isSuccessful) {
                     response.body()?.let { requestClassroomResponse ->
-                        _listClassroom?.postValue(requestClassroomResponse?.content as List<Classroom>)
-                        Log.i("TESTE", "getClassroom: "+requestClassroomResponse.content as List<Classroom>)
+                        if (requestClassroomResponse.success) {
+                            _listClassroom?.postValue(requestClassroomResponse?.content as List<Classroom>)
+                        } else {
+                            _tokenInvalid.postValue(requestClassroomResponse.generateToken == true)
+                        }
+                        Log.i(
+                            "TESTE",
+                            "getClassroom: " + requestClassroomResponse.content as List<Classroom>
+                        )
                     }
                 } else {
                     _error.postValue(response.raw().code.toString())

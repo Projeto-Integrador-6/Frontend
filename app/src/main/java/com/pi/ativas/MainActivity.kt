@@ -156,7 +156,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return classid
     }
 
-    private fun logOff() {
+    fun logOff() {
         val sharedPreferences = getSharedPreferences(DATA_USER, Context.MODE_PRIVATE)
         sharedPreferences.edit().clear().apply()
         binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
