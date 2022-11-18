@@ -236,7 +236,11 @@
         android:id="@+id/pendingTaskTeacherFragment"
         android:name="com.pi.ativas.teacher.pendingTask.PendingTaskTeacherFragment"
         android:label="fragment_pending_task_teacher"
-        tools:layout="@layout/fragment_pending_task_teacher" />
+        tools:layout="@layout/fragment_pending_task_teacher">
+        <action
+            android:id="@+id/action_taskPendingTeacherFragment_to_taskClassTeacherFragment"
+            app:destination="@id/taskClassTeacherFragment"/>
+    </fragment>
 
     <fragment
         android:id="@+id/taskHistoryTeacherFragment"
