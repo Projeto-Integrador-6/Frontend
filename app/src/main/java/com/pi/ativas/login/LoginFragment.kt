@@ -126,7 +126,7 @@ class LoginFragment : BaseFragment() {
                         binding.progressBarLogin.visibility = View.GONE
 
                         (activity as MainActivity).setNavHeader(
-                            user.name ?: "null",
+                            user.name,
                             user.email ?: "null"
                         )
 
@@ -148,7 +148,6 @@ class LoginFragment : BaseFragment() {
                             findNavController().navigate(R.id.action_loginFragment_to_homeTeacherFragment)
                         }
                     }
-
                 }
             }
         }

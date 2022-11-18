@@ -47,7 +47,6 @@ class HomeTeacherFragment : BaseFragment() {
         binding = FragmentHomeTeacherBinding.inflate(layoutInflater)
         val activity: MainActivity = activity as MainActivity
         activity.getDrawerTeatcher()
-        activity.setNavHeader("Walter White", dataForRequirement.email)
         initObservers()
         homeTeacherViewModel.getClassroom(dataForRequirement)
         Log.i("TESTE", "onCreateView: " + dataForRequirement.token)

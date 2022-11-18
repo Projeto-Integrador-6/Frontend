@@ -20,8 +20,4 @@ data class User(
     val lattes: String?,
     val cod: String?
 
-    ): Parcelable{
-    override fun toString(): String {
-        return name
-    }
-    }
+) : Parcelable
