@@ -1,6 +1,5 @@
 package com.pi.ativas.teacher.homeTeacher
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,12 +33,9 @@ class HomeTeacherViewModel() : ViewModel() {
                         if (requestClassroomResponse.success) {
                             _listClassroom?.postValue(requestClassroomResponse?.content as List<Classroom>)
                         } else {
-                            _tokenInvalid.postValue(requestClassroomResponse.generateToken == true)
+                            val x = (requestClassroomResponse.generateToken == true)
+                            _tokenInvalid.postValue(x)
                         }
-                        Log.i(
-                            "TESTE",
-                            "getClassroom: " + requestClassroomResponse.content as List<Classroom>
-                        )
                     }
                 } else {
                     _error.postValue(response.raw().code.toString())
