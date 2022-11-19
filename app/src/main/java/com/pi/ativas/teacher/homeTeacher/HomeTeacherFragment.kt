@@ -3,14 +3,19 @@ package com.pi.ativas.teacher.homeTeacher
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pi.ativas.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.RequestClassroomBody
 import com.pi.ativas.data.bodys.RequestTaskBody
@@ -25,6 +30,7 @@ class HomeTeacherFragment : BaseFragment() {
     private lateinit var dataForRequirement: DataForRequirement
     private val homeTeacherViewModel: HomeTeacherViewModel by viewModel()
     private lateinit var sharedPreferences: SharedPreferences
+    private var doubleBackToExitPressedOnce : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +61,24 @@ class HomeTeacherFragment : BaseFragment() {
                 }
             }
         }*/
+
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if(shouldInterceptBackPress()){
+                    if (doubleBackToExitPressedOnce){
+                        activity?.finish()
+                    }
+                    doubleBackToExitPressedOnce = true
+                    Toast.makeText(requireContext(), "Click novamente para sair!", Toast.LENGTH_SHORT).show()
+                    Handler(Looper.myLooper()!!).postDelayed({
+                        doubleBackToExitPressedOnce = false
+                    }, 2000)
+                }else{
+                    isEnabled = false
+                    activity?.onBackPressed()
+                }
+            }
+        })
 
     }
 
@@ -121,5 +145,7 @@ class HomeTeacherFragment : BaseFragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
     }
+
+    fun shouldInterceptBackPress() = true
 
 }

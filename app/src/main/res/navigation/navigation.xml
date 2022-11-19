@@ -78,26 +78,26 @@
         android:id="@+id/homeTeacherFragment"
         android:name="com.pi.ativas.teacher.homeTeacher.HomeTeacherFragment"
         android:label="fragment_home_teacher"
-        tools:layout="@layout/fragment_home_teacher" >
+        tools:layout="@layout/fragment_home_teacher">
         <action
             android:id="@+id/action_homeTeacherFragment_to_taskClassTeacherFragment"
-            app:destination="@id/taskClassTeacherFragment"/>
+            app:destination="@id/taskClassTeacherFragment" />
     </fragment>
     <fragment
         android:id="@+id/studentsTeacherFragment"
         android:name="com.pi.ativas.teacher.studentsTeacher.StudentTeacherFragment"
         android:label="fragment_students_teacher"
-        tools:layout="@layout/fragment_student_teacher" >
+        tools:layout="@layout/fragment_student_teacher">
         <action
             android:id="@+id/action_studentsTeacherFragment_to_viewStudentsTeacherFragment"
-            app:destination="@id/viewStudentsTeacherFragment"/>
+            app:destination="@id/viewStudentsTeacherFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/rankStudentFragment"
         android:name="com.pi.ativas.student.ui.RankStudentFragment"
         android:label="fragment_rank_student"
-        tools:layout="@layout/fragment_rank_student" >
+        tools:layout="@layout/fragment_rank_student">
         <action
             android:id="@+id/action_rankStudentFragment_to_viewRankingStudentFragment"
             app:destination="@id/viewRankingStudentFragment" />
@@ -113,7 +113,7 @@
         android:id="@+id/teacherStudentFragment"
         android:name="com.pi.ativas.student.ui.TeacherStudentFragment"
         android:label="fragment_teacher_student"
-        tools:layout="@layout/fragment_teacher_student" >
+        tools:layout="@layout/fragment_teacher_student">
         <action
             android:id="@+id/action_teacherStudentFragment_to_teacherProfileFragment"
             app:destination="@id/teacherProfileFragment" />
@@ -123,7 +123,7 @@
         android:id="@+id/pendingTaskStudentFragment"
         android:name="com.pi.ativas.student.ui.PendingTaskStudentFragment"
         android:label="fragment_pending_taks_student"
-        tools:layout="@layout/fragment_pending_task_student" >
+        tools:layout="@layout/fragment_pending_task_student">
         <action
             android:id="@+id/action_pendingTaskStudentFragment_to_viewTaskStudentFragment"
             app:destination="@id/viewTaskStudentFragment" />
@@ -133,7 +133,7 @@
         android:id="@+id/taskHistoryStudentFragment"
         android:name="com.pi.ativas.student.ui.TaskHistoryStudentFragment"
         android:label="fragment_taks_history_student"
-        tools:layout="@layout/fragment_task_history_student" >
+        tools:layout="@layout/fragment_task_history_student">
         <action
             android:id="@+id/action_taskHistoryStudentFragment_to_responseTaskStudentFragment"
             app:destination="@id/viewTaskStudentFragment" />
@@ -146,7 +146,7 @@
         android:id="@+id/taskClassTeacherFragment"
         android:name="com.pi.ativas.teacher.tasksClassTeacher.TasksClassTeacherFragment"
         android:label="fragment_class_teacher"
-        tools:layout="@layout/fragment_task_class_teacher" >
+        tools:layout="@layout/fragment_task_class_teacher">
         <argument
             android:name="classroom"
             app:argType="com.pi.ativas.model.Classroom" />
@@ -168,7 +168,7 @@
         android:id="@+id/taskReportsTeacherFragment"
         android:name="com.pi.ativas.teacher.taskReports.TasksReportTeacherFragment"
         android:label="fragment_class_teacher"
-        tools:layout="@layout/fragment_task_reports_teacher" >
+        tools:layout="@layout/fragment_task_reports_teacher">
         <argument
             android:name="task"
             app:argType="com.pi.ativas.model.Task" />
@@ -187,14 +187,14 @@
         android:id="@+id/upsetReportTeacherFragment"
         android:name="com.pi.ativas.teacher.upsetReport.UpsetReportFragment"
         android:label="fragment_upset_report_teacher"
-        tools:layout="@layout/fragment_upset_report" >
+        tools:layout="@layout/fragment_upset_report">
         <argument
             android:name="report"
             app:argType="com.pi.ativas.model.Report" />
         <argument
             android:name="dataForRequirement"
             app:argType="com.pi.ativas.teacher.model.DataForRequirement" />
-       <argument
+        <argument
             android:name="task"
             app:argType="com.pi.ativas.model.Task" />
     </fragment>
@@ -219,7 +219,7 @@
         android:id="@+id/newTaskTeacherFragment"
         android:name="com.pi.ativas.teacher.newTaskTeacher.NewTaskTeacherFragment"
         android:label="fragment_new_task_teacher"
-        tools:layout="@layout/fragment_new_task_teacher" >
+        tools:layout="@layout/fragment_new_task_teacher">
         <action
             android:id="@+id/action_newTaskTeacher_to_createGroup"
             app:destination="@id/createGroupTeacherFragment" />
@@ -246,7 +246,7 @@
         tools:layout="@layout/fragment_pending_task_teacher">
         <action
             android:id="@+id/action_taskPendingTeacherFragment_to_taskClassTeacherFragment"
-            app:destination="@id/taskClassTeacherFragment"/>
+            app:destination="@id/taskClassTeacherFragment" />
     </fragment>
 
     <fragment
@@ -256,7 +256,7 @@
         tools:layout="@layout/fragment_task_history_teacher">
         <action
             android:id="@+id/action_taskHistoryTeacherFragment_to_taskClassTeacherFragment"
-            app:destination="@id/taskClassTeacherFragment"/>
+            app:destination="@id/taskClassTeacherFragment" />
     </fragment>
 
     <fragment
@@ -305,14 +305,11 @@
             android:name="task"
             app:argType="com.pi.ativas.model.Task" />
     </fragment>
-    <navigation android:id="@+id/navigation2"
-        app:startDestination="@id/useTermsFragment">
-        <fragment
-            android:id="@+id/useTermsFragment"
-            android:name="com.pi.ativas.support.UseTermsFragment"
-            android:label="fragment_use_terms"
-            tools:layout="@layout/fragment_use_terms" />
-    </navigation>
+    <fragment
+        android:id="@+id/useTermsFragment"
+        android:name="com.pi.ativas.support.UseTermsFragment"
+        android:label="fragment_use_terms"
+        tools:layout="@layout/fragment_use_terms" />
     <fragment
         android:id="@+id/teacherProfileFragment"
         android:name="com.pi.ativas.student.ui.TeacherProfileFragment"
