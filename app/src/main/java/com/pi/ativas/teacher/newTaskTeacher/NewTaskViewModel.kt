@@ -18,22 +18,27 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class NewTaskViewModel(): ViewModel() {
+class NewTaskViewModel() : ViewModel() {
 
     private val _success = MutableLiveData<Boolean>()
     val success: LiveData<Boolean> = _success
+
     private val _listClassroom = MutableLiveData<List<Classroom>>()
     val listClassroom: LiveData<List<Classroom>> = _listClassroom
+
     private val _id = MutableLiveData<Int>()
     val id: LiveData<Int> = _id
 
+    private val _error = MutableLiveData<String>()
+    val error : LiveData<String> = _error
+
     private val _success1 = MutableLiveData<Boolean>()
     val success1: LiveData<Boolean> = _success1
-    fun newTask(insertTaskBody: InsertTaskBody, activity: MainActivity, memberlimit:Int) {
+    fun newTask(insertTaskBody: InsertTaskBody, activity: MainActivity, memberlimit: Int) {
         setTask(insertTaskBody, activity, memberlimit)
     }
 
-    fun getClassroom(dataForRequirement: DataForRequirement){
+    fun getClassroom(dataForRequirement: DataForRequirement) {
         getClassroom(dataForRequirement.toRequestClassroomBody())
     }
 
@@ -56,15 +61,21 @@ class NewTaskViewModel(): ViewModel() {
         }
     }
 
-    private fun setTask(insertTaskBody: InsertTaskBody,activity: MainActivity, memberlimit: Int) {
+    private fun setTask(insertTaskBody: InsertTaskBody, activity: MainActivity, memberlimit: Int) {
         viewModelScope.launch {
-            withContext(Dispatchers.Default) {
-                Retrofit.teacherService.getInsertTask(insertTaskBody).let { response ->
+            Retrofit.teacherService.getInsertTask(insertTaskBody).let { response ->
+                if (response.isSuccessful) {
                     response.body()?.let { insertTaskResponse ->
                         checkInsertTask(insertTaskResponse)
-                        activity.guardIdsLimit(insertTaskResponse.task!!.id,memberlimit,insertTaskResponse.task.class_id)
+                        activity.guardIdsLimit(
+                            insertTaskResponse.task!!.id,
+                            memberlimit,
+                            insertTaskResponse.task.class_id
+                        )
                         _id.postValue(insertTaskResponse.task?.id as Int)
                     }
+                } else {
+                    _error.postValue(response.message())
                 }
             }
         }

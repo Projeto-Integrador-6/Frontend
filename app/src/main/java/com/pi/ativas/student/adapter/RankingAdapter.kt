@@ -20,7 +20,7 @@ class RankingAdapter(
 
     override fun onBindViewHolder(holder: RankingStudentViewHolder, position: Int) {
         val rankingStudent = list[position]
-        holder.bind(rankingStudent, onItemClickListener, itemCount)
+        holder.bind(rankingStudent, onItemClickListener, position)
     }
 
     override fun getItemCount(): Int = list.size
@@ -33,13 +33,13 @@ class RankingStudentViewHolder(private val view: View) : RecyclerView.ViewHolder
     fun bind(
         rankingStudent: RankingStudent,
         onItemClickListener: ItemClickListenerRA,
-        itemCount: Int
+        position: Int
     ) {
         view.apply {
             setOnClickListener { onItemClickListener.onClick(rankingStudent) }
             with(binding) {
                 txtName.text = rankingStudent.student_name
-                txtNumber.text = itemCount.toString()
+                txtNumber.text = position.plus(1).toString()
             }
         }
     }

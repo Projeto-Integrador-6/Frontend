@@ -123,6 +123,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_terms -> navigateDirect(R.id.useTermsFragment)
             R.id.nav_share -> share()
             R.id.nav_exit -> logOff()
+            R.id.nav_teacher_rank -> navigateDirect(R.id.viewClassroomsRankingFragment)
             else -> super.onOptionsItemSelected(item)
         }
         val drawer = binding.drawerLayout
