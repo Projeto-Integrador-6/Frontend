@@ -1,4 +1,4 @@
-package com.pi.ativas.teacher.pendingTask
+package com.pi.ativas.teacher.studentsTeacher
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -11,10 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.MainActivity
+import com.pi.ativas.R
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.RequestClassroomBody
-import com.pi.ativas.databinding.FragmentPendingTaskStudentBinding
-import com.pi.ativas.databinding.FragmentPendingTaskTeacherBinding
+import com.pi.ativas.databinding.FragmentStudentTeacherBinding
 import com.pi.ativas.databinding.FragmentTaskHistoryTeacherBinding
 import com.pi.ativas.model.Classroom
 import com.pi.ativas.teacher.homeTeacher.ClassroomAdapter
@@ -24,9 +24,8 @@ import com.pi.ativas.teacher.model.DataForRequirement
 import com.pi.ativas.teacher.taskHistoryTeacher.TaskHistoryTeacherFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PendingTaskTeacherFragment : BaseFragment() {
-
-    private lateinit var binding: FragmentPendingTaskTeacherBinding
+class StudentTeacherFragment : BaseFragment() {
+    private lateinit var binding: FragmentStudentTeacherBinding
     private val viewModel: HomeTeacherViewModel by viewModel()
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var dataForRequirement: DataForRequirement
@@ -54,8 +53,8 @@ class PendingTaskTeacherFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as MainActivity).setTittleAppBar("Atividades Pendentes")
-        binding = FragmentPendingTaskTeacherBinding.inflate(layoutInflater)
+        (activity as MainActivity).setTittleAppBar("Visualizar Aluno")
+        binding = FragmentStudentTeacherBinding.inflate(layoutInflater)
         initObservers()
         return binding.root
     }
@@ -83,10 +82,7 @@ class PendingTaskTeacherFragment : BaseFragment() {
 
         val onClickListener = ItemClickListener { teste ->
             val action =
-                PendingTaskTeacherFragmentDirections.actionTaskPendingTeacherFragmentToTaskClassTeacherFragment(
-                    teste,"1",
-                    dataForRequirement
-                )
+               StudentTeacherFragmentDirections.actionStudentsTeacherFragmentToViewStudentsTeacherFragment(teste,dataForRequirement)
             findNavController().navigate(action)
         }
 
@@ -98,4 +94,5 @@ class PendingTaskTeacherFragment : BaseFragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
     }
+
 }

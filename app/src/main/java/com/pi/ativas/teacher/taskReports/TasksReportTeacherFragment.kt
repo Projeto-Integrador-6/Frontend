@@ -1,4 +1,4 @@
-package com.pi.ativas.teacher.tasksClassTeacher
+package com.pi.ativas.teacher.taskReports
 
 import android.os.Bundle
 import android.os.Handler
@@ -16,47 +16,53 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.MainActivity
+import com.pi.ativas.data.bodys.GetReportsBody
 import com.pi.ativas.data.bodys.RequestTaskBody
+import com.pi.ativas.data.bodys.RequestTaskTeamsBody
 import com.pi.ativas.databinding.FragmentTaskClassTeacherBinding
 import com.pi.ativas.model.Classroom
+import com.pi.ativas.model.Report
 import com.pi.ativas.model.Task
 import com.pi.ativas.teacher.model.DataForRequirement
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlin.math.log
 
-class TasksClassTeacherFragment : Fragment() {
+class TasksReportTeacherFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskClassTeacherBinding
-    private lateinit var taskList: List<Task>
-    private lateinit var classroom: Classroom
+    private lateinit var taskList: List<Report>
+    private lateinit var task: Task
     private lateinit var dataForRequirement: DataForRequirement
-    private lateinit var type: String
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
-    private val tasksClassTeacherViewModel: TasksClassTeacherViewModel by viewModel()
-    private val tasksClassTeacherFragmentArgs: TasksClassTeacherFragmentArgs by navArgs()
+    private val tasksReportTeacherViewModel: TasksReportTeacherViewModel by viewModel()
+    private val tasksReportTeacherFragmentArgs: TasksReportTeacherFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        classroom = tasksClassTeacherFragmentArgs.classroom
-        dataForRequirement = tasksClassTeacherFragmentArgs.dataForRequirement
-        type = tasksClassTeacherFragmentArgs.type
-        Log.i("TESTE", "onCreate: TYPE:"+type)
+        task = tasksReportTeacherFragmentArgs.task
+        dataForRequirement = tasksReportTeacherFragmentArgs.dataForRequirement
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as MainActivity).setTittleAppBar("Atividades da Turma")
-
+        (activity as MainActivity).setTittleAppBar("Respostas da Atividade")
         binding = FragmentTaskClassTeacherBinding.inflate(layoutInflater)
-        tasksClassTeacherViewModel.getClassroomTasks(
-            RequestTaskBody(
+        tasksReportTeacherViewModel.getTaskReports(
+            GetReportsBody(
                 email = dataForRequirement.email,
                 password = dataForRequirement.password,
                 token = dataForRequirement.token,
-                classId = classroom.id,
-                taskType = type.toInt()
+                task_id = task.id,
+                type = 1
+            )
+        )
+        tasksReportTeacherViewModel.getTaskTeams(
+            RequestTaskTeamsBody(
+                email = dataForRequirement.email,
+                password = dataForRequirement.password,
+                token = dataForRequirement.token,
+                taskId = task.id.toString()
             )
         )
         initObservers()
@@ -77,17 +83,18 @@ class TasksClassTeacherFragment : Fragment() {
     }
 
     private fun initObservers() {
-        tasksClassTeacherViewModel.listTask.observe(viewLifecycleOwner) {
+        tasksReportTeacherViewModel.listReport.observe(viewLifecycleOwner) {
             binding.progressBar.visibility = View.GONE
             binding.bottomSheetBG.visibility = View.GONE
-            recycleView(it)
+            taskList = it
+            recycleView()
         }
 
-        tasksClassTeacherViewModel.taskButtonClick.observe(viewLifecycleOwner) {
+        tasksReportTeacherViewModel.taskButtonClick.observe(viewLifecycleOwner) {
             viewTask(it)
         }
 
-        tasksClassTeacherViewModel.error.observe(viewLifecycleOwner){
+        tasksReportTeacherViewModel.error.observe(viewLifecycleOwner){
             binding.progressBar.visibility = View.GONE
             binding.bottomSheetBG.visibility = View.GONE
             MaterialAlertDialogBuilder(requireContext())
@@ -99,15 +106,16 @@ class TasksClassTeacherFragment : Fragment() {
         }
     }
 
-    private fun recycleView(list: List<Task>) {
+    private fun recycleView() {
 
-        val onClickListener = ItemClickListener { task ->
-            val action = TasksClassTeacherFragmentDirections.actionTaskClassTeacherFragmentToTaskReportTeacherFragment(task,task.id.toString(),dataForRequirement)
-            findNavController().navigate(action)
+        val onClickListener = ItemClickListener { report ->
+           val action = TasksReportTeacherFragmentDirections.actionTaskReportTeacherFragmentToUpsetTaskTeacherFragment(report,dataForRequirement,task)
+            Log.i("TESTE", "recycleView: REPORT E DATA: "+report+" - "+dataForRequirement)
+           findNavController().navigate(action)
         }
 
         val recyclerView = binding.recycleviewClassTeacher
-        val adapter = TaskAdapter(list, onClickListener, tasksClassTeacherViewModel)
+        val adapter = ReportAdapter(taskList, onClickListener, tasksReportTeacherViewModel)
         val layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
@@ -115,10 +123,10 @@ class TasksClassTeacherFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    private fun viewTask(task: Task) {
+    private fun viewTask(report: Report) {
         binding.bottomSheet.apply {
-            titleTask.text = "Titulo da atividade"
-            questionTask.text = task.question
+            titleTask.text = "Repostas da atividade"
+            questionTask.text = report.answer
         }
 
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED

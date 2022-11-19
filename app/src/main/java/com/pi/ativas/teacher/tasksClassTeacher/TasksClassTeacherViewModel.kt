@@ -1,5 +1,6 @@
 package com.pi.ativas.teacher.tasksClassTeacher
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,6 +33,8 @@ class TasksClassTeacherViewModel(): ViewModel() {
                 Retrofit.teacherService.getClassroomTasks(requestTaskBody).let { response ->
                     if (response.isSuccessful){
                         response.body()?.let { requestTaskResponse ->
+                            Log.i("TESTE", "getClassroom: Body:"+requestTaskBody)
+                            Log.i("TESTE", "getClassroom: Body:"+requestTaskResponse)
                             _listTask.postValue(requestTaskResponse.content as List<Task>)
                         }
                     }else{

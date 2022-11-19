@@ -126,7 +126,7 @@ class LoginFragment : BaseFragment() {
                         binding.progressBarLogin.visibility = View.GONE
 
                         (activity as MainActivity).setNavHeader(
-                            user.name,
+                            user.name ?: "null",
                             user.email ?: "null"
                         )
 

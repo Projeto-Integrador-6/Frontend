@@ -9,22 +9,14 @@
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateTint="@color/backgroundBottom"
         android:layout_gravity="center"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleViewHistory"
+        android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_classroom" />
-
-    <View
-        android:id="@+id/bottomSheetBG"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/opaqueBG"
-        android:elevation="5dp"/>
+        tools:listitem="@layout/item_students" />
 
     <TextView
         android:id="@+id/txt_noTasks"

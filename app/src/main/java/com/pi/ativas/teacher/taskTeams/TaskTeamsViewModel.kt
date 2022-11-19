@@ -1,5 +1,6 @@
 package com.pi.ativas.teacher.taskTeams
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,6 +25,7 @@ class TaskTeamsViewModel : ViewModel() {
             Retrofit.teacherService.getTaskTeams(requestTaskTeamsBody).let { response ->
                 if (response.isSuccessful) {
                     response.body()?.let { requestTaskTeamsResponse ->
+                    Log.i("TESTE", "getTaskTeams: RESPONSe "+requestTaskTeamsResponse)
                         _listTeams.postValue(requestTaskTeamsResponse.content as List<Team>)
                     }
                 } else {

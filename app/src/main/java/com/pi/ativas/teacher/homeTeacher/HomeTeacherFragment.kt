@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.pi.ativas.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.base.BaseFragment
+import com.pi.ativas.data.bodys.RequestClassroomBody
+import com.pi.ativas.data.bodys.RequestTaskBody
 import com.pi.ativas.databinding.FragmentHomeTeacherBinding
 import com.pi.ativas.model.Classroom
 import com.pi.ativas.teacher.model.DataForRequirement
@@ -21,7 +23,6 @@ class HomeTeacherFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeTeacherBinding
     private lateinit var dataForRequirement: DataForRequirement
-    private lateinit var classroomList: List<Classroom>
     private val homeTeacherViewModel: HomeTeacherViewModel by viewModel()
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -33,17 +34,36 @@ class HomeTeacherFragment : BaseFragment() {
             getString("email", "")?.let { email ->
                 getString("password", "")?.let { password ->
                     getString("token", "")?.let { token ->
-                        dataForRequirement = DataForRequirement(email, password, token)
+                        dataForRequirement= DataForRequirement(email,password,token)
+                        homeTeacherViewModel.getClassroom2(RequestClassroomBody(
+                            email = email,
+                            password = password,
+                            token = token,
+                        ))
                     }
                 }
             }
         }
+       /* with(sharedPreferences) {
+            getString("email", "")?.let { email ->
+                getString("password", "")?.let { password ->
+                    getString("token", "")?.let { token ->
+                        dataForRequirement = DataForRequirement(email, password, token)
+                        homeTeacherViewModel.getClassroom(DataForRequirement(email,password,token))
+
+                    }
+                }
+            }
+        }*/
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as MainActivity).setTittleAppBar("Tela Inicial")
+
         binding = FragmentHomeTeacherBinding.inflate(layoutInflater)
         val activity: MainActivity = activity as MainActivity
         activity.getDrawerTeatcher()
@@ -55,9 +75,9 @@ class HomeTeacherFragment : BaseFragment() {
 
 
     override fun initObservers() {
+
         homeTeacherViewModel.listClassroom.observe(viewLifecycleOwner) {
-            classroomList = it
-            recycleView()
+            recycleView(it)
         }
 
         homeTeacherViewModel.error.observe(viewLifecycleOwner) {
@@ -78,7 +98,7 @@ class HomeTeacherFragment : BaseFragment() {
         }
     }
 
-    private fun recycleView() {
+    private fun recycleView(list: List<Classroom>) {
         binding.progressbar.visibility = View.GONE
         binding.bottomSheetBG.visibility = View.GONE
 
@@ -87,13 +107,14 @@ class HomeTeacherFragment : BaseFragment() {
             val action =
                 HomeTeacherFragmentDirections.actionHomeTeacherFragmentToTaskClassTeacherFragment(
                     classroom,
+                    "1",
                     dataForRequirement
                 )
             findNavController().navigate(action)
         }
 
         val recyclerView = binding.recycleViewHomeTeacher
-        val adapter = ClassroomAdapter(classroomList, onClickListener)
+        val adapter = ClassroomAdapter(list, onClickListener)
         val layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 

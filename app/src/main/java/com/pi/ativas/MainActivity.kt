@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.nav_student_task_pending -> navigateDirect(R.id.pendingTaskStudentFragment)
                 R.id.nav_student_task_history -> navigateDirect(R.id.taskHistoryStudentFragment)
                 R.id.nav_teacher_home -> navigateDirect(R.id.homeTeacherFragment)
-                R.id.nav_teacher_classes -> navigateDirect(R.id.homeTeacherFragment)
+                R.id.nav_teacher_classes -> navigateDirect(R.id.studentsTeacherFragment)
                 R.id.nav_teacher_profile -> navigateDirect(R.id.profileTeacherFragment)
                 R.id.nav_teacher_new_task -> navigateDirect(R.id.newTaskTeacherFragment)
                 R.id.nav_teacher_pending_task -> navigateDirect(R.id.pendingTaskTeacherFragment)
@@ -174,5 +174,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ).build()
         )
     }
-
+    fun setTittleAppBar(tittle: String){
+        binding.appBarMain.toolbar.title = tittle
+    }
 }
