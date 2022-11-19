@@ -319,4 +319,22 @@
             android:name="teacher"
             app:argType="com.pi.ativas.model.Teacher" />
     </fragment>
+    <fragment
+        android:id="@+id/viewClassroomsRankingFragment"
+        android:name="com.pi.ativas.teacher.viewRankingTeacher.ViewClassroomsRankingFragment"
+        android:label="ViewClassroomsRankingFragment"
+        tools:layout="@layout/fragment_home_teacher">
+        <action
+            android:id="@+id/action_viewClassroomsRankingFragment_to_viewRankingTeacherFragment"
+            app:destination="@id/viewRankingTeacherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewRankingTeacherFragment"
+        android:name="com.pi.ativas.teacher.viewRankingTeacher.ViewRankingTeacherFragment"
+        android:label="ViewRankingTeacherFragment"
+        tools:layout="@layout/fragment_rank_student">
+        <argument
+            android:name="classroomId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

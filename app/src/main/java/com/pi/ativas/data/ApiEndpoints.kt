@@ -72,6 +72,7 @@ interface ApiEndpoints {
         @Headers("Content-Type: application/json")
         @POST("postreport")
         suspend fun postReport(@Body body : ReportBody): Response<ReportResponse>
+
         @Headers("Content-Type: application/json")
         @POST("ranking")
         suspend fun requestRanking(@Body body : RequestRankingBody): Response<RequestRankingResponse>

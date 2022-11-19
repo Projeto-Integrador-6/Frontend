@@ -25,6 +25,7 @@ class HomeTeacherViewModel() : ViewModel() {
     fun getClassroom(dataForRequirement: DataForRequirement) {
         getClassroom(dataForRequirement.toRequestClassroomBody())
     }
+
     fun getClassroom2(requestClassroomBody: RequestClassroomBody) {
         getClassroom(requestClassroomBody)
     }
@@ -34,12 +35,10 @@ class HomeTeacherViewModel() : ViewModel() {
             Retrofit.teacherService.getClassroom(requestClassroomBody).let { response ->
                 if (response.isSuccessful) {
                     response.body()?.let { requestClassroomResponse ->
-                        _listClassroom?.postValue(requestClassroomResponse?.content as List<Classroom>)
-//                        Log.i("TESTE", "getClassroom: "+requestClassroomResponse.content as List<Classroom>)
-                        Log.i("TESTE", "getClassroom: "+requestClassroomResponse)
-                        Log.i("TESTE", "getClassroom: "+requestClassroomBody)
                         if (requestClassroomResponse.success) {
                             _listClassroom?.postValue(requestClassroomResponse?.content as List<Classroom>)
+                            Log.i("TESTE", "getClassroom: " + requestClassroomResponse)
+                            Log.i("TESTE", "getClassroom: " + requestClassroomBody)
                         } else {
                             val x = (requestClassroomResponse.generateToken == true)
                             _tokenInvalid.postValue(x)

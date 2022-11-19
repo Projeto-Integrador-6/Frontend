@@ -21,3 +21,8 @@ data class User(
     val cod: String?
 
 ) : Parcelable
+{
+    override fun toString(): String{
+        return name
+    }
+}

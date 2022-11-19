@@ -93,6 +93,9 @@ class NewTaskTeacherFragment : BaseFragment() {
             }
         }
 
+        newTaskViewModel.error.observe(viewLifecycleOwner){
+            Toast.makeText(requireContext(), "Não foi possivel criar a atividade! Erro $it", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
