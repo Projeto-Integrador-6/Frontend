@@ -36,6 +36,7 @@ class ClassroomViewHolder(private val view: View) : RecyclerView.ViewHolder(view
             setOnClickListener { onItemClickListener.onClick(classroom) }
             with(binding) {
                 tvNameClassroom.text = classroom.name
+                txtNumber.text = classroom.name.substring(0,1)
             }
         }
     }

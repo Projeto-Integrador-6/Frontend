@@ -17,12 +17,19 @@ class HomeStudentViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    private val _tokenInvalid = MutableLiveData<Boolean>()
+    val tokenInvalid: LiveData<Boolean> = _tokenInvalid
+
     fun getTask(requestTaskBody: RequestTaskBody) {
         viewModelScope.launch {
             Retrofit.studentService.getTasks(requestTaskBody).let { response ->
                 if (response.isSuccessful) {
                     response.body()?.let { requestTaskResponse ->
-                        _listTask.postValue(requestTaskResponse.content as List<Task>)
+                        if (requestTaskResponse.success) {
+                            _listTask.postValue(requestTaskResponse.content as List<Task>)
+                        } else {
+                            _tokenInvalid.postValue(requestTaskResponse.generateToken == true)
+                        }
                     }
                 } else {
                     _error.postValue(response.raw().code.toString())

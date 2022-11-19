@@ -3,14 +3,16 @@ package com.pi.ativas.student.ui
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.*
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.pi.ativas.databinding.FragmentHomeStudentBinding
+import com.pi.ativas.MainActivity
 import com.pi.ativas.base.BaseFragment
 import com.pi.ativas.data.bodys.RequestTaskBody
+import com.pi.ativas.databinding.FragmentHomeStudentBinding
 import com.pi.ativas.model.Task
 import com.pi.ativas.student.adapter.ItemClickListener
 import com.pi.ativas.student.adapter.TaskAdapter
@@ -37,7 +39,7 @@ class HomeStudentFragment : BaseFragment() {
                                 password = password,
                                 token = token,
                                 classId = 0,
-                                taskType = 0
+                                taskType = 3
                             )
                         )
                     }
@@ -51,6 +53,7 @@ class HomeStudentFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         initObservers()
+        (activity as MainActivity).setTittleAppBar("Tela Inicial")
         binding = FragmentHomeStudentBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -71,6 +74,11 @@ class HomeStudentFragment : BaseFragment() {
                 .setPositiveButton("Ok") { dialog, which ->
                 }
                 .show()
+        }
+        viewModel.tokenInvalid.observe(viewLifecycleOwner) {
+            if (it) {
+                (activity as MainActivity).logOff()
+            }
         }
     }
 

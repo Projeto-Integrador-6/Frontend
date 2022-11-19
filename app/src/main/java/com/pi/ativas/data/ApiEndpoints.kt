@@ -48,6 +48,20 @@ interface ApiEndpoints {
        
         @POST("getTeamsinTask")
         suspend fun getTaskTeams(@Body body : RequestTaskTeamsBody): Response<RequestTaskTeamsResponse>
+
+        @POST("getstudentsinteam")
+        suspend fun getStudentsInTeam(@Body body : StudentsInTeamBody): Response<StudentsInTeamResponse>
+
+        @POST("getreports")
+        suspend fun getTaskReports(@Body body : GetReportsBody): Response<GetReportsResponse>
+
+        @POST("upsertreport")
+        suspend fun getUpserReport(@Body body : UpsetReportsBody): Response<UpsetReportsResponse>
+
+        @Headers("Content-Type: application/json")
+        @POST("ranking")
+        suspend fun requestRanking(@Body body : RequestRankingBody): Response<RequestRankingResponse>
+
     }
 
     interface StudentService{
@@ -58,5 +72,16 @@ interface ApiEndpoints {
         @Headers("Content-Type: application/json")
         @POST("postreport")
         suspend fun postReport(@Body body : ReportBody): Response<ReportResponse>
+        @Headers("Content-Type: application/json")
+        @POST("ranking")
+        suspend fun requestRanking(@Body body : RequestRankingBody): Response<RequestRankingResponse>
+
+        @Headers("Content-Type: application/json")
+        @POST("getmyteachers")
+        suspend fun getTeachers(@Body body : GetTeachersBody): Response<GetTeachersResponse>
+
+        @Headers("Content-Type: application/json")
+        @POST("getmydisciplines")
+        suspend fun getDisciplines(@Body body : LoginBody): Response<GetDisciplinesResponse>
     }
 }

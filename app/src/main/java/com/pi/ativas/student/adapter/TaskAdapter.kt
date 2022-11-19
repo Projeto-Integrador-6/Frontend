@@ -34,7 +34,7 @@ class TaskViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         view.apply {
             setOnClickListener { onItemClickListener.onClick(task) }
             with(binding) {
-                tvNameTask.text = "task."
+                tvNameTask.text = task.question_title
             }
         }
     }

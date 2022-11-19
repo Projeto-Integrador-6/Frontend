@@ -51,6 +51,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navView.setNavigationItemSelectedListener(this)
     }
 
+    fun setTittleAppBar(tittle: String) {
+        binding.appBarMain.toolbar.title = tittle
+    }
+
     fun setNavHeader(nomeUsuario: String, emailUsuario: String) {
         val txtNameHeader: TextView = binding.navView.getHeaderView(0).findViewById(R.id.nameHeader)
         val txtEmailHeader: TextView =
@@ -102,69 +106,75 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
          * se não colocar desta maneira todos os "navigate(R.id.xxxxxx)"
          * teriam que ter esse trecho de cod antes */
 
-        with(binding.appBarMain.navHostFragment.findNavController()) {
-            when (item.itemId) {
-                R.id.nav_student_home -> navigate(R.id.homeStudentFragment)
-                R.id.nav_student_rank -> navigate(R.id.rankStudentFragment)
-                R.id.nav_student_discipline -> navigate(R.id.disciplineStudentFragment)
-                R.id.nav_student_teacher -> navigate(R.id.teacherStudentFragment)
-                R.id.nav_student_task_pending -> navigate(R.id.pendingTaskStudentFragment)
-                R.id.nav_student_task_history -> navigate(R.id.taskHistoryStudentFragment)
-                R.id.nav_teacher_home -> navigate(R.id.homeTeacherFragment)
-                R.id.nav_teacher_classes -> navigate(R.id.homeTeacherFragment)
-                R.id.nav_teacher_profile -> navigate(R.id.profileTeacherFragment)
-                R.id.nav_teacher_new_task -> navigate(R.id.newTaskTeacherFragment)
-                R.id.nav_teacher_pending_task -> navigate(R.id.pendingTaskTeacherFragment)
-                R.id.nav_teacher_task_history -> navigate(R.id.taskHistoryTeacherFragment)
-                R.id.nav_support -> navigate(R.id.supportFragment)
-                R.id.nav_terms -> navigate(R.id.useTermsFragment)
-                R.id.nav_share -> share()
-                R.id.nav_exit -> logOff()
-                else -> super.onOptionsItemSelected(item)
-            }
+        when (item.itemId) {
+            R.id.nav_student_home -> navigateDirect(R.id.homeStudentFragment)
+            R.id.nav_student_rank -> navigateDirect(R.id.rankStudentFragment)
+            R.id.nav_student_discipline -> navigateDirect(R.id.disciplineStudentFragment)
+            R.id.nav_student_teacher -> navigateDirect(R.id.teacherStudentFragment)
+            R.id.nav_student_task_pending -> navigateDirect(R.id.pendingTaskStudentFragment)
+            R.id.nav_student_task_history -> navigateDirect(R.id.taskHistoryStudentFragment)
+            R.id.nav_teacher_home -> navigateDirect(R.id.homeTeacherFragment)
+            R.id.nav_teacher_classes -> navigateDirect(R.id.studentsTeacherFragment)
+            R.id.nav_teacher_profile -> navigateDirect(R.id.profileTeacherFragment)
+            R.id.nav_teacher_new_task -> navigateDirect(R.id.newTaskTeacherFragment)
+            R.id.nav_teacher_pending_task -> navigateDirect(R.id.pendingTaskTeacherFragment)
+            R.id.nav_teacher_task_history -> navigateDirect(R.id.taskHistoryTeacherFragment)
+            R.id.nav_support -> navigateDirect(R.id.supportFragment)
+            R.id.nav_terms -> navigateDirect(R.id.useTermsFragment)
+            R.id.nav_share -> share()
+            R.id.nav_exit -> logOff()
+            else -> super.onOptionsItemSelected(item)
         }
         val drawer = binding.drawerLayout
         drawer.closeDrawer(GravityCompat.START)
         return true
     }
+
     //lateinit var insertTaskBody2:InsertTaskBody
-    var id:Int=0
-    var limit:Int =0
-    var classid:Int =0
+    var id: Int = 0
+    var limit: Int = 0
+    var classid: Int = 0
+
     /*fun guardTask(insertTaskBody: InsertTaskBody){
         insertTaskBody2 = insertTaskBody
   }*/
-    fun guardIdsLimit(idTask:Int, limitMember: Int, classId:Int){
-        id=idTask
-        limit=limitMember
-        classid=classId
-        Log.i("TESTE", "guardIdTask: "+id)
-        Log.i("TESTE", "guardIdTask: "+classid)
-        Log.i("TESTE", "guardIdTask: "+limitMember)
+    fun guardIdsLimit(idTask: Int, limitMember: Int, classId: Int) {
+        id = idTask
+        limit = limitMember
+        classid = classId
+        Log.i("TESTE", "guardIdTask: " + id)
+        Log.i("TESTE", "guardIdTask: " + classid)
+        Log.i("TESTE", "guardIdTask: " + limitMember)
     }
-    fun getTaskId2():Int{
+
+    fun getTaskId2(): Int {
         return id
     }
-    fun getTaskLimit():Int{
+
+    fun getTaskLimit(): Int {
         return limit
     }
-    fun getClassId():Int{
+
+    fun getClassId(): Int {
         return classid
     }
 
-    private fun logOff() {
+    fun logOff() {
         val sharedPreferences = getSharedPreferences(DATA_USER, Context.MODE_PRIVATE)
         sharedPreferences.edit().clear().apply()
         binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
         binding.appBarMain.toolbar.visibility = View.INVISIBLE
 
+        navigateDirect(R.id.loginFragment)
+    }
+
+    private fun navigateDirect(destination: Int) {
         binding.appBarMain.navHostFragment.findNavController().navigate(
-            R.id.loginFragment, null,
+            destination, null,
             NavOptions.Builder().setPopUpTo(
                 binding.appBarMain.navHostFragment.findNavController().graph.startDestinationId,
-                true
+                false
             ).build()
         )
     }
-
 }

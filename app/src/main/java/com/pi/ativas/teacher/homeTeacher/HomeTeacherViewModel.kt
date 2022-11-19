@@ -19,8 +19,14 @@ class HomeTeacherViewModel() : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
+    private val _tokenInvalid = MutableLiveData<Boolean>()
+    val tokenInvalid: LiveData<Boolean> = _tokenInvalid
+
     fun getClassroom(dataForRequirement: DataForRequirement) {
         getClassroom(dataForRequirement.toRequestClassroomBody())
+    }
+    fun getClassroom2(requestClassroomBody: RequestClassroomBody) {
+        getClassroom(requestClassroomBody)
     }
 
     private fun getClassroom(requestClassroomBody: RequestClassroomBody) {
@@ -29,7 +35,15 @@ class HomeTeacherViewModel() : ViewModel() {
                 if (response.isSuccessful) {
                     response.body()?.let { requestClassroomResponse ->
                         _listClassroom?.postValue(requestClassroomResponse?.content as List<Classroom>)
-                        Log.i("TESTE", "getClassroom: "+requestClassroomResponse.content as List<Classroom>)
+//                        Log.i("TESTE", "getClassroom: "+requestClassroomResponse.content as List<Classroom>)
+                        Log.i("TESTE", "getClassroom: "+requestClassroomResponse)
+                        Log.i("TESTE", "getClassroom: "+requestClassroomBody)
+                        if (requestClassroomResponse.success) {
+                            _listClassroom?.postValue(requestClassroomResponse?.content as List<Classroom>)
+                        } else {
+                            val x = (requestClassroomResponse.generateToken == true)
+                            _tokenInvalid.postValue(x)
+                        }
                     }
                 } else {
                     _error.postValue(response.raw().code.toString())

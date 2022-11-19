@@ -53,6 +53,8 @@ class NewTaskTeacherFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as MainActivity).setTittleAppBar("Criar Atividade")
+
         binding = FragmentNewTaskTeacherBinding.inflate(layoutInflater)
         initObservers()
         newTaskViewModel.getClassroom(dataForRequirement)
