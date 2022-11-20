@@ -52,8 +52,12 @@ class NewPasswordViewModel() : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
                 Retrofit.loginApiStudent.getNewPassword(newPasswordBody).let { response ->
-                    response.body()?.let { newPasswordResponse ->
-                        checkNewPassword(newPasswordResponse)
+                    if (response.isSuccessful) {
+                        response.body()?.let { newPasswordResponse ->
+                            checkNewPassword(newPasswordResponse)
+                        }
+                    } else {
+                        _error.postValue("Erro ao conectar ao servidor!")
                     }
                 }
             }

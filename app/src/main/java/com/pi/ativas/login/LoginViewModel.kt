@@ -70,6 +70,7 @@ class LoginViewModel() : ViewModel() {
             changePassword?.let {
                 _dataLogin.postValue(credentialsLogin)
                 _newPassword.postValue(it)
+                _userIsStudent.postValue(isStudent)
             }
             user?.let {
                 _userIsStudent.postValue(isStudent)
