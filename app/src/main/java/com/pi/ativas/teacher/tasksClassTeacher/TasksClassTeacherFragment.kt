@@ -117,7 +117,7 @@ class TasksClassTeacherFragment : Fragment() {
 
     private fun viewTask(task: Task) {
         binding.bottomSheet.apply {
-            titleTask.text = "Titulo da atividade"
+            titleTask.text = task.question_title
             questionTask.text = task.question
         }
 

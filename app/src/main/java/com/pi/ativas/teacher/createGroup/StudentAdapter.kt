@@ -13,10 +13,11 @@ import com.pi.ativas.model.User
 class StudentAdapter(
     private val list: List<User>,
     private val onItemClickListener: ItemClickListener,
-    ): RecyclerView.Adapter<StudentViewHolder>(){
+) : RecyclerView.Adapter<StudentViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_students, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_students, parent, false)
         return StudentViewHolder(view)
     }
 
@@ -29,22 +30,20 @@ class StudentAdapter(
 
 }
 
-class StudentViewHolder(private val view: View): RecyclerView.ViewHolder(view){
+class StudentViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     private var binding: ItemStudentsBinding = ItemStudentsBinding.bind(view)
 
-    fun bind(student: User, onItemClickListener: ItemClickListener){
+    fun bind(student: User, onItemClickListener: ItemClickListener) {
         view.apply {
-            setOnClickListener{
-                setOnClickListener{ onItemClickListener.onClick(student)} }
-                with(binding){
-                    txtName.text = student.name
-                    txtEmailName.text = student.email
-                }
-
+            setOnClickListener { onItemClickListener.onClick(student) }
+            with(binding) {
+                txtName.text = student.name
+                txtEmailName.text = student.email
+            }
         }
     }
 }
 
-fun interface ItemClickListener{
+fun interface ItemClickListener {
     fun onClick(requirement: User)
 }

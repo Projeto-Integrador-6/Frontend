@@ -129,7 +129,9 @@ class NewTaskTeacherFragment : BaseFragment() {
             setDate(txtTaskLimitDate2)
             spnClass.adapter
             btnCriarAtividade.setOnClickListener {
-                if (txtTaskTitle.equals("") || txtTaskDescription.text.toString()
+                val groupNumberValid = if (radioGrupo2 == 1) !txtMemberLimit.text.isNullOrEmpty() else true
+
+                if ( groupNumberValid || txtTaskTitle.equals("") || txtTaskDescription.text.toString()
                         .equals("") || txtTaskLimitDate.text.toString().equals("")
                     || txtTaksReductionFactor.text.toString()
                         .equals("") || txtTaskPontuation.equals("")

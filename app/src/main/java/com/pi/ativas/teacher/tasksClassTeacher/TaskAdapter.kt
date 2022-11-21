@@ -40,7 +40,7 @@ class TaskViewHolder(
         view.apply {
             setOnClickListener { onItemClickListener.onClick(task) }
             with(binding) {
-                tvNameTask.text = task.question
+                tvNameTask.text = task.question_title
                 btnMenu.setOnClickListener {
                     tasksClassTeacherViewModel.taskButtonClick(task)
                 }
