@@ -64,7 +64,7 @@ class ViewRankingTeacherFragment: BaseFragment() {
 
         viewModel.response.observe(viewLifecycleOwner) {
             it.content?.let { list ->
-                recycleView(list)
+                if (list.isNotEmpty()) recycleView(list) else noTasks()
                 binding.progressbar.visibility = View.GONE
                 binding.bottomSheetBG.visibility = View.GONE
             }
@@ -85,7 +85,9 @@ class ViewRankingTeacherFragment: BaseFragment() {
                 .show()
         }
     }
-
+    private fun noTasks() {
+        binding.txtNoRank.visibility = View.VISIBLE
+    }
     private fun recycleView(rankingStudentList: List<RankingStudent>) {
 
         val onClickListener = ItemClickListenerRA { rankingStudent ->

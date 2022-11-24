@@ -69,13 +69,15 @@ class ViewStudentsTeacherFragment : BaseFragment() {
         )
         viewModel.getStudents(studentsInClassBody)
         viewModel.students.observe(viewLifecycleOwner) {
-            recycleView(it)
+            if (it.isNotEmpty()) recycleView(it) else noTasks()
+            binding.progressbar.visibility = View.GONE
+
         }
     }
-
+    private fun noTasks() {
+        binding.txtNoTasks.visibility = View.VISIBLE
+    }
     private fun recycleView(list: List<User>) {
-        binding.progressbar.visibility = View.GONE
-
         val onClickListener = ItemClickListener { user ->
 
         }

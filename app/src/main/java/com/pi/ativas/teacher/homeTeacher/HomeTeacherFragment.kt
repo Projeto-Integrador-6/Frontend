@@ -101,7 +101,8 @@ class HomeTeacherFragment : BaseFragment() {
     override fun initObservers() {
 
         homeTeacherViewModel.listClassroom.observe(viewLifecycleOwner) {
-            recycleView(it)
+            if (it.isNotEmpty()) recycleView(it) else noTasks()
+            binding.progressbar.visibility = View.GONE
         }
 
         homeTeacherViewModel.error.observe(viewLifecycleOwner) {
@@ -147,5 +148,7 @@ class HomeTeacherFragment : BaseFragment() {
     }
 
     fun shouldInterceptBackPress() = true
-
+    private fun noTasks() {
+        binding.txtNoClass.visibility = View.VISIBLE
+    }
 }

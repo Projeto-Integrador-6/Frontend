@@ -17,10 +17,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.ativas.MainActivity
 import com.pi.ativas.data.bodys.GetReportsBody
-import com.pi.ativas.data.bodys.RequestTaskBody
 import com.pi.ativas.data.bodys.RequestTaskTeamsBody
 import com.pi.ativas.databinding.FragmentTaskClassTeacherBinding
-import com.pi.ativas.model.Classroom
 import com.pi.ativas.model.Report
 import com.pi.ativas.model.Task
 import com.pi.ativas.teacher.model.DataForRequirement
@@ -29,7 +27,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class TasksReportTeacherFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskClassTeacherBinding
-    private lateinit var taskList: List<Report>
     private lateinit var task: Task
     private lateinit var dataForRequirement: DataForRequirement
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
@@ -84,18 +81,17 @@ class TasksReportTeacherFragment : Fragment() {
 
     private fun initObservers() {
         tasksReportTeacherViewModel.listReport.observe(viewLifecycleOwner) {
-            binding.progressBar.visibility = View.GONE
+            if (it.isNotEmpty()) recycleView(it) else noTasks()
+            binding.progressbar.visibility = View.GONE
             binding.bottomSheetBG.visibility = View.GONE
-            taskList = it
-            recycleView()
         }
 
         tasksReportTeacherViewModel.taskButtonClick.observe(viewLifecycleOwner) {
-            viewTask(it)
+        viewTask(it)
         }
 
         tasksReportTeacherViewModel.error.observe(viewLifecycleOwner){
-            binding.progressBar.visibility = View.GONE
+            binding.progressbar.visibility = View.GONE
             binding.bottomSheetBG.visibility = View.GONE
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Erro $it")
@@ -105,8 +101,10 @@ class TasksReportTeacherFragment : Fragment() {
                 .show()
         }
     }
-
-    private fun recycleView() {
+    private fun noTasks() {
+        binding.txtNoTasks.visibility = View.VISIBLE
+    }
+    private fun recycleView(list: List<Report>) {
 
         val onClickListener = ItemClickListener { report ->
            val action = TasksReportTeacherFragmentDirections.actionTaskReportTeacherFragmentToUpsetTaskTeacherFragment(report,dataForRequirement,task)
@@ -115,7 +113,7 @@ class TasksReportTeacherFragment : Fragment() {
         }
 
         val recyclerView = binding.recycleviewClassTeacher
-        val adapter = ReportAdapter(taskList, onClickListener, tasksReportTeacherViewModel)
+        val adapter = ReportAdapter(list, onClickListener, tasksReportTeacherViewModel)
         val layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 

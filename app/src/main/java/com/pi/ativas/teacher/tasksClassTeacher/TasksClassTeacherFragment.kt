@@ -78,9 +78,9 @@ class TasksClassTeacherFragment : Fragment() {
 
     private fun initObservers() {
         tasksClassTeacherViewModel.listTask.observe(viewLifecycleOwner) {
-            binding.progressBar.visibility = View.GONE
+            if (it.isNotEmpty()) recycleView(it) else noTasks()
+            binding.progressbar.visibility = View.GONE
             binding.bottomSheetBG.visibility = View.GONE
-            recycleView(it)
         }
 
         tasksClassTeacherViewModel.taskButtonClick.observe(viewLifecycleOwner) {
@@ -88,7 +88,7 @@ class TasksClassTeacherFragment : Fragment() {
         }
 
         tasksClassTeacherViewModel.error.observe(viewLifecycleOwner){
-            binding.progressBar.visibility = View.GONE
+            binding.progressbar.visibility = View.GONE
             binding.bottomSheetBG.visibility = View.GONE
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Erro $it")
@@ -98,7 +98,9 @@ class TasksClassTeacherFragment : Fragment() {
                 .show()
         }
     }
-
+    private fun noTasks() {
+        binding.txtNoTasks.visibility = View.VISIBLE
+    }
     private fun recycleView(list: List<Task>) {
 
         val onClickListener = ItemClickListener { task ->

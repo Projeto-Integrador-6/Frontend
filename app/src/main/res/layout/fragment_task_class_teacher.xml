@@ -15,12 +15,10 @@
         tools:listitem="@layout/item_task"/>
 
     <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+        android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/backgroundBottom"
-        android:elevation="10dp"
         android:layout_gravity="center"/>
 
     <View
@@ -29,7 +27,18 @@
         android:layout_height="match_parent"
         android:background="@color/opaqueBG"
         android:elevation="5dp"/>
-
+    <TextView
+        android:id="@+id/txt_noTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"
+        android:textAllCaps="true"
+        android:text="Sem atividades para mostrar"
+        android:textSize="36sp"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
     <include
         android:id="@+id/bottomSheet"
         layout="@layout/bottom_sheet_task"/>

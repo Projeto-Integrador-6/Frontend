@@ -62,7 +62,9 @@ class PendingTaskTeacherFragment : BaseFragment() {
 
     override fun initObservers() {
         viewModel.listClassroom.observe(viewLifecycleOwner) {
-            recycleView(it)
+            if (it.isNotEmpty()) recycleView(it) else noTasks()
+            binding.progressbar.visibility = View.GONE
+            binding.bottomSheetBG.visibility = View.GONE
         }
 
         viewModel.error.observe(viewLifecycleOwner) {
@@ -76,9 +78,13 @@ class PendingTaskTeacherFragment : BaseFragment() {
                 .show()
         }
     }
+
+    private fun noTasks() {
+        binding.txtNoTasks.visibility = View.VISIBLE
+    }
+
     private fun recycleView(list: List<Classroom>) {
-        binding.progressbar.visibility = View.GONE
-        binding.bottomSheetBG.visibility = View.GONE
+
 
 
         val onClickListener = ItemClickListener { teste ->

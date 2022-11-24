@@ -31,6 +31,7 @@ class NewTaskTeacherFragment : BaseFragment() {
     private lateinit var dataForRequirement: DataForRequirement
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var classroom: Classroom
+    private var radioGrupo2: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,16 +86,32 @@ class NewTaskTeacherFragment : BaseFragment() {
                 override fun onNothingSelected(adapterView: AdapterView<*>?) {}
             })
             newTaskViewModel.success.observe(viewLifecycleOwner) {
+                binding.progressbar.visibility = View.GONE
                 MaterialAlertDialogBuilder(requireContext())
                     .setTitle("NOVA ATIVIDADE CRIADA COM SUCESSO")
                     .setPositiveButton("OK") { dialog, which ->
+                        if (radioGrupo2 == 1) {
+                            findNavController().navigate(R.id.action_newTaskTeacher_to_createGroup)
+                        }
+                        else {
+                            binding.txtTaskTitle.setText("")
+                            binding.txtTaskAnswer.setText("")
+                            binding.txtTaskDescription.setText("")
+                            binding.txtTaskLimitDate.setText("")
+                            binding.txtTaksReductionFactor.setText("")
+                            binding.txtTaskPontuation.setText("")
+                        }
+
                     }
                     .show()
             }
+
+
         }
 
         newTaskViewModel.error.observe(viewLifecycleOwner){
             Toast.makeText(requireContext(), "Não foi possivel criar a atividade! Erro $it", Toast.LENGTH_SHORT).show()
+            binding.progressbar.visibility=View.GONE
         }
 
     }
@@ -102,7 +119,6 @@ class NewTaskTeacherFragment : BaseFragment() {
     override fun initViews() {
         with(binding) {
             var radioRank: Int = 0
-            var radioGrupo2: Int = 0
             val txtTaskLimitDate2: TextView = txtTaskLimitDate
             radioEmGrupo.setOnClickListener {
                 txtMemberLimit.visibility = View.VISIBLE
@@ -129,9 +145,9 @@ class NewTaskTeacherFragment : BaseFragment() {
             setDate(txtTaskLimitDate2)
             spnClass.adapter
             btnCriarAtividade.setOnClickListener {
-                val groupNumberValid = if (radioGrupo2 == 1) !txtMemberLimit.text.isNullOrEmpty() else true
+               // val groupNumberValid = if (radioGrupo2 == 1) !txtMemberLimit.text.isNullOrEmpty() else true
 
-                if ( groupNumberValid || txtTaskTitle.equals("") || txtTaskDescription.text.toString()
+                if ( txtTaskTitle.equals("") || txtTaskDescription.text.toString()
                         .equals("") || txtTaskLimitDate.text.toString().equals("")
                     || txtTaksReductionFactor.text.toString()
                         .equals("") || txtTaskPontuation.equals("")
@@ -168,7 +184,6 @@ class NewTaskTeacherFragment : BaseFragment() {
                         newTaskGroup(insertTaskBody, memberInt)
                     } else {
                         insertNewTask(insertTaskBody, memberInt)
-
                     }
                 }
             }
@@ -179,25 +194,21 @@ class NewTaskTeacherFragment : BaseFragment() {
         insertTaskBody: InsertTaskBody,
         memberInt: Int
     ) {
+        binding.progressbar.visibility = View.VISIBLE
+        binding.progressbar.bringToFront()
         val activity: MainActivity = activity as MainActivity
         newTaskViewModel.newTask(insertTaskBody, activity, memberInt)
-        Handler(Looper.myLooper()!!).postDelayed({
-            findNavController().navigate(R.id.action_newTaskTeacher_to_createGroup)
-        }, 3000)
     }
 
     private fun FragmentNewTaskTeacherBinding.insertNewTask(
         insertTaskBody: InsertTaskBody,
         memberInt: Int
     ) {
+       binding.progressbar.visibility = View.VISIBLE
+        binding.progressbar.bringToFront()
+
         val activity: MainActivity = activity as MainActivity
         newTaskViewModel.newTask(insertTaskBody, activity, memberInt)
-        txtTaskTitle.setText("")
-        txtTaskAnswer.setText("")
-        txtTaskDescription.setText("")
-        txtTaskLimitDate.setText("")
-        txtTaksReductionFactor.setText("")
-        txtTaskPontuation.setText("")
     }
 
 

@@ -9,6 +9,7 @@
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:indeterminateTint="@color/backgroundBottom"
         android:layout_gravity="center"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -32,7 +33,7 @@
         android:layout_margin="16dp"
         android:textColor="@color/black"
         android:textAllCaps="true"
-        android:text="Sem atividades no historico"
+        android:text="Você ainda não tem turmas cadastradas"
         android:textSize="36sp"
         android:textAlignment="center"
         android:layout_gravity="center"

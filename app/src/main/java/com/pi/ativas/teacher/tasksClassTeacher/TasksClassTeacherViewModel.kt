@@ -33,9 +33,7 @@ class TasksClassTeacherViewModel(): ViewModel() {
                 Retrofit.teacherService.getClassroomTasks(requestTaskBody).let { response ->
                     if (response.isSuccessful){
                         response.body()?.let { requestTaskResponse ->
-                            Log.i("TESTE", "getClassroom: Body:"+requestTaskBody)
-                            Log.i("TESTE", "getClassroom: Body:"+requestTaskResponse)
-                            _listTask.postValue(requestTaskResponse.content as List<Task>)
+                          _listTask.postValue(requestTaskResponse.content as List<Task>)
                         }
                     }else{
                         _error.postValue(response.raw().code.toString())

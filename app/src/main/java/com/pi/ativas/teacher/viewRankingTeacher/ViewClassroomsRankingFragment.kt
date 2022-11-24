@@ -51,7 +51,7 @@ class ViewClassroomsRankingFragment: BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as MainActivity).setTittleAppBar("Histórico de Atividades")
+        (activity as MainActivity).setTittleAppBar("Ranking")
         binding = FragmentTaskHistoryTeacherBinding.inflate(layoutInflater)
         initObservers()
         return binding.root
@@ -59,7 +59,11 @@ class ViewClassroomsRankingFragment: BaseFragment() {
 
     override fun initObservers() {
         viewModel.listClassroom.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) recycleView(it) else noTasks()
             recycleView(it)
+            binding.progressbar.visibility = View.GONE
+            binding.bottomSheetBG.visibility = View.GONE
+
         }
 
         viewModel.error.observe(viewLifecycleOwner) {
@@ -74,9 +78,6 @@ class ViewClassroomsRankingFragment: BaseFragment() {
         }
     }
     private fun recycleView(list: List<Classroom>) {
-        binding.progressbar.visibility = View.GONE
-        binding.bottomSheetBG.visibility = View.GONE
-
 
         val onClickListener = ItemClickListener { teste ->
             val action = ViewClassroomsRankingFragmentDirections.actionViewClassroomsRankingFragmentToViewRankingTeacherFragment(teste.id)
@@ -90,5 +91,8 @@ class ViewClassroomsRankingFragment: BaseFragment() {
 
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
+    }
+    private fun noTasks() {
+        binding.txtNoTasks.visibility = View.VISIBLE
     }
 }
