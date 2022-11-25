@@ -28,6 +28,7 @@ class TasksReportTeacherFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskClassTeacherBinding
     private lateinit var task: Task
+    private lateinit var type:String
     private lateinit var dataForRequirement: DataForRequirement
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
     private val tasksReportTeacherViewModel: TasksReportTeacherViewModel by viewModel()
@@ -37,6 +38,7 @@ class TasksReportTeacherFragment : Fragment() {
         super.onCreate(savedInstanceState)
         task = tasksReportTeacherFragmentArgs.task
         dataForRequirement = tasksReportTeacherFragmentArgs.dataForRequirement
+        type = tasksReportTeacherFragmentArgs.idTask
     }
 
     override fun onCreateView(
@@ -51,7 +53,7 @@ class TasksReportTeacherFragment : Fragment() {
                 password = dataForRequirement.password,
                 token = dataForRequirement.token,
                 task_id = task.id,
-                type = 1
+                type = type.toInt()
             )
         )
         tasksReportTeacherViewModel.getTaskTeams(
@@ -103,6 +105,7 @@ class TasksReportTeacherFragment : Fragment() {
     }
     private fun noTasks() {
         binding.txtNoTasks.visibility = View.VISIBLE
+        binding.recycleviewClassTeacher.visibility = View.GONE
     }
     private fun recycleView(list: List<Report>) {
 

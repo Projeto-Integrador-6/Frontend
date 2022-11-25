@@ -7,9 +7,9 @@ import java.sql.Blob
 @Parcelize
 data class Report(
     val id: Int?,
-    val pontuation: Int?,
+    val Pontuation: Int?,
     val data: String?,
-    val correct:Int?,
+    val Correct:Int?,
     val answer:String?,
     val task_id: Int?,
     val team_id: Int?,

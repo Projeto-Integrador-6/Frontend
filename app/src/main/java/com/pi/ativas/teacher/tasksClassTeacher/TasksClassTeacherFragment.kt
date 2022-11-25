@@ -100,11 +100,15 @@ class TasksClassTeacherFragment : Fragment() {
     }
     private fun noTasks() {
         binding.txtNoTasks.visibility = View.VISIBLE
+        binding.recycleviewClassTeacher.visibility= View.GONE
     }
     private fun recycleView(list: List<Task>) {
 
         val onClickListener = ItemClickListener { task ->
-            val action = TasksClassTeacherFragmentDirections.actionTaskClassTeacherFragmentToTaskReportTeacherFragment(task,task.id.toString(),dataForRequirement)
+            val action = TasksClassTeacherFragmentDirections.actionTaskClassTeacherFragmentToTaskReportTeacherFragment(
+                task,
+                type,
+                dataForRequirement)
             findNavController().navigate(action)
         }
 

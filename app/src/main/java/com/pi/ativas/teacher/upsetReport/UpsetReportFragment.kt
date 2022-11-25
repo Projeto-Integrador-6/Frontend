@@ -50,6 +50,7 @@ class UpsetReportFragment : Fragment() {
         dataForRequirement = upsetReportTeacherFragment.dataForRequirement
         task = upsetReportTeacherFragment.task
         Log.i("TESTE", "onCreate: " + task)
+        Log.i("TESTE", "onCreate: " + report)
     }
 
     override fun onCreateView(
@@ -139,7 +140,10 @@ class UpsetReportFragment : Fragment() {
                             txtDaysLate.setText("Tarefa entregue com "+dias * -1+" dia(s) de antecedência")
                             txtPontuationAvailable.setText("Pontuação maxima que o aluno pode obter:"+task.pontuation.toString())
                         }
-
+                        if(report.Pontuation != null){
+                            txtPontuationReport.setText("Atividade corrigida a nota foi de: "+report.Pontuation)
+                            txtPontuationReport.isEnabled = false
+                        }
                         txtStartPontuation.setText(task.pontuation.toString())
                     }
 
