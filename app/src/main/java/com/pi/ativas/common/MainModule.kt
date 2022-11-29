@@ -37,4 +37,5 @@ val mainModule = module {
     viewModel { RankStudentViewModel() }
     viewModel { DisciplineStudentViewModel() }
     viewModel { TeacherStudentViewModel() }
+    viewModel { TasksReportsStudentViewModel() }
 }

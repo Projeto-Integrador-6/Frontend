@@ -143,6 +143,7 @@ class UpsetReportFragment : Fragment() {
                         if(report.Pontuation != null){
                             txtPontuationReport.setText("Atividade corrigida a nota foi de: "+report.Pontuation)
                             txtPontuationReport.isEnabled = false
+                            btnCorrigir.visibility=View.GONE
                         }
                         txtStartPontuation.setText(task.pontuation.toString())
                     }

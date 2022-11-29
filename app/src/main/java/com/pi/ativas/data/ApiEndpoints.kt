@@ -84,5 +84,10 @@ interface ApiEndpoints {
         @Headers("Content-Type: application/json")
         @POST("getmydisciplines")
         suspend fun getDisciplines(@Body body : LoginBody): Response<GetDisciplinesResponse>
+
+        @Headers("Content-Type: application/json")
+        @POST("getreports")
+        suspend fun getStudentReports(@Body body : GetStudentReportBody): Response<GetStudentReportResponse>
+
     }
 }

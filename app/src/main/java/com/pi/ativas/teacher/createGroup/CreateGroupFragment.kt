@@ -238,8 +238,7 @@ class CreateGroupFragment : BaseFragment() {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("TODAS AS EQUIPES FORAM FORMADAS COM SUCESSO")
                 .setPositiveButton("OK") { dialog, which ->
-                //    findNavController().navigate(R.id.newTaskTeacherFragment)
-                    findNavController().popBackStack(R.id.homeTeacherFragment,false)
+                  findNavController().navigate(R.id.newTaskTeacherFragment)
                 }
                 .show()
         }

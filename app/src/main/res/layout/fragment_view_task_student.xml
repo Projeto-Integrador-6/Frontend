@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+            <TextView
             android:id="@+id/txt_tittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:layout_marginHorizontal="8dp"
-            android:textAlignment="textStart"
+            android:textAlignment="center"
             app:layout_constraintTop_toBottomOf="@id/txt_tittle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,19 +121,86 @@
             android:textAlignment="textStart"
             app:layout_constraintTop_toBottomOf="@id/txt_youResponse"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@string/lorem_ipsum"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
             android:id="@+id/imageResponse"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="200dp"
             android:layout_margin="16dp"
-            app:layout_constraintTop_toBottomOf="@id/txt_questionResponse"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:visibility="gone"
-            android:src="@drawable/image_example"
-            tools:visibility="visible"/>
+            app:layout_constraintTop_toBottomOf="@id/txt_questionResponse"
+            app:layout_constraintBottom_toBottomOf="@id/txtPontuationLayout"
+            android:src="@drawable/image_example" />
+
+        <TextView
+            android:id="@+id/txtPontuationLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+           android:layout_marginTop="10dp"
+            android:text="Valor Inicial da Atividade: "
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageResponse" />
+
+        <TextView
+            android:id="@+id/txtPontuation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtPontuationLayout"
+            app:layout_constraintStart_toEndOf="@id/txtPontuationLayout"
+            tools:text="12"/>
+        <TextView
+            android:id="@+id/txtPontuationAvailableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/txtPontuationLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Valor da Atividade com Fator de Redução: "/>
+
+        <TextView
+            android:id="@+id/txtPontuationAvailable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtPontuationAvailableLayout"
+            app:layout_constraintStart_toEndOf="@id/txtPontuationAvailableLayout"
+            tools:text="12"/>
+        <TextView
+            android:id="@+id/txtYourPontuationLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/txtPontuationAvailableLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Sua Pontuação: "/>
+
+        <TextView
+            android:id="@+id/txtYourPontuation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtYourPontuationLayout"
+            app:layout_constraintStart_toEndOf="@id/txtYourPontuationLayout"
+            tools:text="12"/>
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/backgroundBottom"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_questionResponse"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txt_questionResponse"
+            app:layout_constraintTop_toBottomOf="@+id/txt_youResponse" />
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </ScrollView>
